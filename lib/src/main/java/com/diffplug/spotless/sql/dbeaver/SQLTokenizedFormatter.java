@@ -22,6 +22,8 @@ import java.util.Objects;
 
 import com.diffplug.spotless.annotations.Internal;
 
+import static java.lang.System.lineSeparator;
+
 /**
  * **Warning:** Use this class at your own risk. It is an implementation detail and is not
  * guaranteed to exist in future versions.
@@ -38,24 +40,38 @@ public class SQLTokenizedFormatter {
 
 	private static final String[] JOIN_BEGIN = {"LEFT", "RIGHT", "INNER", "OUTER", "JOIN"};
 	private static final SQLDialect sqlDialect = SQLDialect.INSTANCE;
-	private final DBeaverSQLFormatterConfiguration formatterCfg;
-	private final List<Boolean> functionBracket = new ArrayList<>();
-	private final List<String> statementDelimiters = new ArrayList<>(2);
+	private DBeaverSQLFormatterConfiguration formatterCfg;
+	private List<Boolean> functionBracket = new ArrayList<>();
+	private List<String> statementDelimiters = new ArrayList<>(2);
 
 	public SQLTokenizedFormatter(DBeaverSQLFormatterConfiguration formatterCfg) {
 		this.formatterCfg = formatterCfg;
 	}
 
 	public String format(final String argSql) {
+
 		statementDelimiters.add(formatterCfg.getStatementDelimiter());
+		SQLTokensParser fParser = new SQLTokensParser();
+
 		functionBracket.clear();
+
+		boolean isSqlEndsWithNewLine = false;
+		if (argSql.endsWith("\n")) {
+			isSqlEndsWithNewLine = true;
+		}
+
+		List<FormatterToken> list = fParser.parse(argSql);
+		list = format(list);
+
 		StringBuilder after = new StringBuilder(argSql.length() + 20);
-		for (FormatterToken token : format(new SQLTokensParser().parse(argSql))) {
+		for (FormatterToken token : list) {
 			after.append(token.getString());
 		}
-		if (argSql.endsWith("\n")) {
-			after.append(getDefaultLineSeparator());
+
+		if (isSqlEndsWithNewLine) {
+			after.append(lineSeparator());
 		}
+
 		return after.toString();
 	}
 
@@ -80,31 +96,27 @@ public class SQLTokenizedFormatter {
 			}
 		}
 
+		final KeywordCase keywordCase = formatterCfg.getKeywordCase();
 		for (FormatterToken anArgList : argList) {
 			token = anArgList;
 			if (token.getType() == TokenType.KEYWORD) {
-				token.setString(formatterCfg.getKeywordCase().transform(token.getString()));
+				token.setString(keywordCase.transform(token.getString()));
 			}
 		}
 
-		Remove_extra_tokens(argList);
+		// Remove extra tokens (spaces, etc)
+		for (int index = argList.size() - 1; index >= 1; index--) {
+			token = argList.get(index);
+			FormatterToken prevToken = argList.get(index - 1);
+			if (token.getType() == TokenType.SPACE && (prevToken.getType() == TokenType.SYMBOL || prevToken.getType() == TokenType.COMMENT)) {
+				argList.remove(index);
+			} else if ((token.getType() == TokenType.SYMBOL || token.getType() == TokenType.COMMENT) && prevToken.getType() == TokenType.SPACE) {
+				argList.remove(index - 1);
+			} else if (token.getType() == TokenType.SPACE) {
+				token.setString(" ");
+			}
+		}
 
-		extracted2(argList);
-
-		int indent = 0;
-		final List<Integer> bracketIndent = new ArrayList<>();
-		FormatterToken prev = new FormatterToken(TokenType.SPACE, " ");
-		boolean encounterBetween = false;
-		extracted(argList, prev, bracketIndent, indent, encounterBetween);
-
-		extracted(argList);
-
-		extracted1(argList);
-
-		return argList;
-	}
-
-	private static void extracted2(List<FormatterToken> argList) {
 		for (int index = 0; index < argList.size() - 2; index++) {
 			FormatterToken t0 = argList.get(index);
 			FormatterToken t1 = argList.get(index + 1);
@@ -136,90 +148,11 @@ public class SQLTokenizedFormatter {
 				argList.remove(index + 1);
 			}
 		}
-	}
 
-	private static void Remove_extra_tokens(List<FormatterToken> argList) {
-		FormatterToken token;
-		// Remove extra tokens (spaces, etc)
-		for (int index = argList.size() - 1; index >= 1; index--) {
-			token = argList.get(index);
-			FormatterToken prevToken = argList.get(index - 1);
-			if (token.getType() == TokenType.SPACE && (prevToken.getType() == TokenType.SYMBOL || prevToken.getType() == TokenType.COMMENT)) {
-				argList.remove(index);
-			} else if ((token.getType() == TokenType.SYMBOL || token.getType() == TokenType.COMMENT) && prevToken.getType() == TokenType.SPACE) {
-				argList.remove(index - 1);
-			} else if (token.getType() == TokenType.SPACE) {
-				token.setString(" ");
-			}
-		}
-	}
-
-	private void extracted1(List<FormatterToken> argList) {
-		FormatterToken prev;
-		FormatterToken token;
-		for (int index = 1; index < argList.size(); index++) {
-			prev = argList.get(index - 1);
-			token = argList.get(index);
-
-			if (prev.getType() != TokenType.SPACE &&
-					token.getType() != TokenType.SPACE &&
-					!token.getString().startsWith("(")) {
-				if (token.getString().equals(",") || statementDelimiters.contains(token.getString())) {
-					continue;
-				}
-				if (isFunction(prev.getString())
-						&& token.getString().equals("(")) {
-					continue;
-				}
-				if (token.getType() == TokenType.VALUE && prev.getType() == TokenType.NAME) {
-					// Do not add space between name and value [JDBC:MSSQL]
-					continue;
-				}
-				if (token.getType() == TokenType.SYMBOL && isEmbeddedToken(token) ||
-						prev.getType() == TokenType.SYMBOL && isEmbeddedToken(prev)) {
-					// Do not insert spaces around colons
-					continue;
-				}
-				if (token.getType() == TokenType.SYMBOL && prev.getType() == TokenType.SYMBOL) {
-					// Do not add space between symbols
-					continue;
-				}
-				if (prev.getType() == TokenType.COMMENT) {
-					// Do not add spaces to comments
-					continue;
-				}
-				argList.add(index, new FormatterToken(TokenType.SPACE, " "));
-			}
-		}
-	}
-
-	private static void extracted(List<FormatterToken> argList) {
-		for (int index = argList.size() - 1; index >= 4; index--) {
-			if (index >= argList.size()) {
-				continue;
-			}
-
-			FormatterToken t0 = argList.get(index);
-			FormatterToken t1 = argList.get(index - 1);
-			FormatterToken t2 = argList.get(index - 2);
-			FormatterToken t3 = argList.get(index - 3);
-			FormatterToken t4 = argList.get(index - 4);
-
-			if (t4.getString().equals("(")
-					&& t3.getString().trim().isEmpty()
-					&& t1.getString().trim().isEmpty()
-					&& t0.getString().equalsIgnoreCase(")")) {
-				t4.setString(t4.getString() + t2.getString() + t0.getString());
-				argList.remove(index);
-				argList.remove(index - 1);
-				argList.remove(index - 2);
-				argList.remove(index - 3);
-			}
-		}
-	}
-
-	private void extracted(List<FormatterToken> argList, FormatterToken prev, List<Integer> bracketIndent, int indent, boolean encounterBetween) {
-		FormatterToken token;
+		int indent = 0;
+		final List<Integer> bracketIndent = new ArrayList<>();
+		FormatterToken prev = new FormatterToken(TokenType.SPACE, " ");
+		boolean encounterBetween = false;
 		for (int index = 0; index < argList.size(); index++) {
 			token = argList.get(index);
 			String tokenString = token.getString().toUpperCase(Locale.ENGLISH);
@@ -349,6 +282,66 @@ public class SQLTokenizedFormatter {
 			}
 			prev = token;
 		}
+
+		for (int index = argList.size() - 1; index >= 4; index--) {
+			if (index >= argList.size()) {
+				continue;
+			}
+
+			FormatterToken t0 = argList.get(index);
+			FormatterToken t1 = argList.get(index - 1);
+			FormatterToken t2 = argList.get(index - 2);
+			FormatterToken t3 = argList.get(index - 3);
+			FormatterToken t4 = argList.get(index - 4);
+
+			if (t4.getString().equals("(")
+					&& t3.getString().trim().isEmpty()
+					&& t1.getString().trim().isEmpty()
+					&& t0.getString().equalsIgnoreCase(")")) {
+				t4.setString(t4.getString() + t2.getString() + t0.getString());
+				argList.remove(index);
+				argList.remove(index - 1);
+				argList.remove(index - 2);
+				argList.remove(index - 3);
+			}
+		}
+
+		for (int index = 1; index < argList.size(); index++) {
+			prev = argList.get(index - 1);
+			token = argList.get(index);
+
+			if (prev.getType() != TokenType.SPACE &&
+					token.getType() != TokenType.SPACE &&
+					!token.getString().startsWith("(")) {
+				if (token.getString().equals(",") || statementDelimiters.contains(token.getString())) {
+					continue;
+				}
+				if (isFunction(prev.getString())
+						&& token.getString().equals("(")) {
+					continue;
+				}
+				if (token.getType() == TokenType.VALUE && prev.getType() == TokenType.NAME) {
+					// Do not add space between name and value [JDBC:MSSQL]
+					continue;
+				}
+				if (token.getType() == TokenType.SYMBOL && isEmbeddedToken(token) ||
+						prev.getType() == TokenType.SYMBOL && isEmbeddedToken(prev)) {
+					// Do not insert spaces around colons
+					continue;
+				}
+				if (token.getType() == TokenType.SYMBOL && prev.getType() == TokenType.SYMBOL) {
+					// Do not add space between symbols
+					continue;
+				}
+				if (prev.getType() == TokenType.COMMENT) {
+					// Do not add spaces to comments
+					continue;
+				}
+				argList.add(index, new FormatterToken(TokenType.SPACE, " "));
+			}
+		}
+
+		return argList;
 	}
 
 	private static boolean isEmbeddedToken(FormatterToken token) {
@@ -360,7 +353,7 @@ public class SQLTokenizedFormatter {
 		// And we must be in the beginning of sequence
 
 		// check current token
-		if (!contains(argList.get(index).getString())) {
+		if (!contains(JOIN_BEGIN, argList.get(index).getString())) {
 			return false;
 		}
 		// check previous token
@@ -369,7 +362,7 @@ public class SQLTokenizedFormatter {
 			if (token.getType() == TokenType.SPACE) {
 				continue;
 			}
-			if (contains(token.getString())) {
+			if (contains(JOIN_BEGIN, token.getString())) {
 				// It is not the begin of sequence
 				return false;
 			} else {
@@ -385,7 +378,7 @@ public class SQLTokenizedFormatter {
 			if (token.getString().equals("JOIN")) {
 				return true;
 			}
-			if (!contains(token.getString())) {
+			if (!contains(JOIN_BEGIN, token.getString())) {
 				// It is not the begin of sequence
 				return false;
 			}
@@ -397,22 +390,20 @@ public class SQLTokenizedFormatter {
 		return sqlDialect.getKeywordType(name) == DBPKeywordType.FUNCTION;
 	}
 
-	private static String getDefaultLineSeparator() {
-		return System.getProperty("line.separator", "\n");
-	}
-
 	private int insertReturnAndIndent(final List<FormatterToken> argList, final int argIndex, final int argIndent) {
 		if (functionBracket.contains(Boolean.TRUE))
 			return 0;
 		try {
-			final String defaultLineSeparator = getDefaultLineSeparator();
+			final String defaultLineSeparator = lineSeparator();
 			StringBuilder s = new StringBuilder(defaultLineSeparator);
-			s.append(String.valueOf(formatterCfg.getIndentString()).repeat(Math.max(0, argIndent)));
+			for (int index = 0; index < argIndent; index++) {
+				s.append(formatterCfg.getIndentString());
+			}
 			if (argIndex > 0) {
 				final FormatterToken token = argList.get(argIndex);
 				final FormatterToken prevToken = argList.get(argIndex - 1);
 				if (token.getType() == TokenType.COMMENT &&
-						isCommentLine(token.getString()) &&
+						isCommentLine(sqlDialect, token.getString()) &&
 						prevToken.getType() != TokenType.END) {
 					s.setCharAt(0, ' ');
 					s.setLength(1);
@@ -453,8 +444,8 @@ public class SQLTokenizedFormatter {
 		}
 	}
 
-	private static boolean isCommentLine(String line) {
-		for (String slc : SQLTokenizedFormatter.sqlDialect.getSingleLineComments()) {
+	private static boolean isCommentLine(SQLDialect dialect, String line) {
+		for (String slc : dialect.getSingleLineComments()) {
 			if (line.startsWith(slc)) {
 				return true;
 			}
@@ -462,10 +453,10 @@ public class SQLTokenizedFormatter {
 		return false;
 	}
 
-	private static <OBJECT_TYPE> boolean contains(OBJECT_TYPE value) {
-		if (SQLTokenizedFormatter.JOIN_BEGIN == null)
+	private static <OBJECT_TYPE> boolean contains(OBJECT_TYPE[] array, OBJECT_TYPE value) {
+		if (array == null || array.length == 0)
 			return false;
-		for (OBJECT_TYPE anArray : (OBJECT_TYPE[]) SQLTokenizedFormatter.JOIN_BEGIN) {
+		for (OBJECT_TYPE anArray : array) {
 			if (Objects.equals(value, anArray))
 				return true;
 		}
