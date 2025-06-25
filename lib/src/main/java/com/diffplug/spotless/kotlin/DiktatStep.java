@@ -18,15 +18,11 @@ package com.diffplug.spotless.kotlin;
 import java.io.File;
 import java.io.Serializable;
 import java.lang.reflect.Constructor;
-import java.util.Objects;
+import java.util.*;
 
 import javax.annotation.Nullable;
 
-import com.diffplug.spotless.FileSignature;
-import com.diffplug.spotless.FormatterFunc;
-import com.diffplug.spotless.FormatterStep;
-import com.diffplug.spotless.JarState;
-import com.diffplug.spotless.Provisioner;
+import com.diffplug.spotless.*;
 
 /** Wraps up <a href="https://github.com/cqfn/diKTat">diktat</a> as a FormatterStep. */
 public class DiktatStep implements Serializable {
