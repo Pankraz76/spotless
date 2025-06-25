@@ -21,13 +21,13 @@ import org.junit.jupiter.api.Test;
 class ReplaceObsoletesStepTest extends MavenIntegrationHarness {
 
 	@Test
-	void testDefaults() throws Exception {
+	void testSortPomCfg() throws Exception {
 		writePomWithJavaSteps("<replaceObsoletes/>");
 
 		String path = "src/main/java/test.java";
-		setFile(path).toResource("java/replaceobsoletes/ReplaceObsoletesPre.test");
+		setFile(path).toResource("java/replaceobsoletes/SortPomCfgPre.test");
 		mavenRunner().withArguments("spotless:apply").runNoError();
-		assertFile(path).sameAsResource("java/replaceobsoletes/ReplaceObsoletesPost.test");
+		assertFile(path).sameAsResource("java/replaceobsoletes/SortPomCfgPost.test");
 	}
 
 	@Test

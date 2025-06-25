@@ -27,7 +27,7 @@ class ReplaceObsoletesTest extends ResourceHarness {
 	@Test
 	void sortImportsDefault() {
 		forStep(ReplaceObsoletesStep.forJava())
-			.testResource("java/replaceobsoletes/ReplaceObsoletesPre.test", "java/replaceobsoletes/ReplaceObsoletesPost.test");
+			.testResource("java/replaceobsoletes/SortPomCfgPre.test", "java/replaceobsoletes/SortPomCfgPost.test");
 	}
 
 }
