@@ -15,23 +15,18 @@
  */
 package com.diffplug.spotless.java;
 
-import java.util.Set;
-
-import com.diffplug.spotless.generic.ReplaceWithSingleClassImport;
+import com.diffplug.spotless.generic.ReplaceWildcardWithSingleClassImport;
 
 import org.junit.jupiter.api.Test;
 
-import com.diffplug.spotless.FormatterStep;
 import com.diffplug.spotless.ResourceHarness;
-import com.diffplug.spotless.SerializableEqualityTester;
-import com.diffplug.spotless.StepHarness;
 
 import static com.diffplug.spotless.StepHarness.forStep;
 
-class ReplaceWithSingleClassImportTest extends ResourceHarness {
+class ReplaceWildcardWithSingleClassImportTest extends ResourceHarness {
 	@Test
 	void sortImportsDefault() {
-		forStep(ReplaceWithSingleClassImport.forJava())
+		forStep(ReplaceWildcardWithSingleClassImport.forJava())
 			.testResource("java/replacewithsingleclassimport/ReplaceWithSingleClassImportPre.test", "java/replacewithsingleclassimport/ReplaceWithSingleClassImportPost.test");
 	}
 

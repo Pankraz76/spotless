@@ -16,31 +16,26 @@
 package com.diffplug.spotless.generic;
 
 import java.io.File;
-import java.io.Serializable;
-import java.util.Objects;
 
-import com.diffplug.spotless.FormatterFunc;
 import com.diffplug.spotless.FormatterStep;
-import com.diffplug.spotless.java.ImportOrderStep;
 
 import javax.annotation.Nullable;
 
-public final class ReplaceWithSingleClassImport implements FormatterStep {
+public final class ReplaceWildcardWithSingleClassImport implements FormatterStep {
 
 
-	private ReplaceWithSingleClassImport() {
+	private ReplaceWildcardWithSingleClassImport() {
 	}
 
 	public static FormatterStep forJava() {
-		return new ReplaceWithSingleClassImport();
+		return new ReplaceWildcardWithSingleClassImport();
 	}
 
 	@Override
 	public String getName() {
-		return "";
+		return "replaceWildcardWithSingleClassImport";
 	}
 
-	@Nullable
 	@Override
 	public String format(String rawUnix, File file) throws Exception {
 		return "";
