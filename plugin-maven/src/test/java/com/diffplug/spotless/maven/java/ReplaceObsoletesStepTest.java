@@ -59,4 +59,14 @@ class ReplaceObsoletesStepTest extends MavenIntegrationHarness {
 		assertFile(path).sameAsResource("java/replaceobsoletes/NullInitializersPost.test");
 	}
 
+	@Test
+	void testIntInitializers() throws Exception {
+		writePomWithJavaSteps("<replaceObsoletes/>");
+
+		String path = "src/main/java/test.java";
+		setFile(path).toResource("java/replaceobsoletes/IntInitializersPre.test");
+		mavenRunner().withArguments("spotless:apply").runNoError();
+		assertFile(path).sameAsResource("java/replaceobsoletes/IntInitializersPost.test");
+	}
+
 }
