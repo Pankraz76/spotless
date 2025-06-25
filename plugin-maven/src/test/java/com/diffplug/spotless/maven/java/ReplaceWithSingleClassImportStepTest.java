@@ -26,8 +26,8 @@ class ReplaceWithSingleClassImportStepTest extends MavenIntegrationHarness {
 		writePomWithJavaSteps("<replaceWildcardWithSingleClassImport/>");
 
 		String path = "src/main/java/test.java";
-		setFile(path).toResource("java/removeunusedimports/JavaCodeWithPackageUnformatted.test");
+		setFile(path).toResource("java/replacewithsingleclassimport/ReplaceWithSingleClassImportPre.test");
 		mavenRunner().withArguments("spotless:apply").runNoError();
-		assertFile(path).sameAsResource("java/removeunusedimports/JavaCodeWithPackageFormatted.test");
+		assertFile(path).sameAsResource("java/replacewithsingleclassimport/ReplaceWithSingleClassImportPost.test");
 	}
 }
