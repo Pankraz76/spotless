@@ -19,16 +19,14 @@ import java.io.File;
 
 import com.diffplug.spotless.FormatterStep;
 
-import javax.annotation.Nullable;
-
-public final class ReplaceWildcardWithSingleClassImport implements FormatterStep {
+public final class ReplaceWildcardWithSingleClassImportStep implements FormatterStep {
 
 
-	private ReplaceWildcardWithSingleClassImport() {
+	private ReplaceWildcardWithSingleClassImportStep() {
 	}
 
 	public static FormatterStep forJava() {
-		return new ReplaceWildcardWithSingleClassImport();
+		return new ReplaceWildcardWithSingleClassImportStep();
 	}
 
 	@Override

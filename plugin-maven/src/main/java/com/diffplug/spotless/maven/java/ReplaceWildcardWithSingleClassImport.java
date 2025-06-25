@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2024 DiffPlug
+ * Copyright 2025 DiffPlug
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,21 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.diffplug.spotless.java;
+package com.diffplug.spotless.maven.java;
 
+import com.diffplug.spotless.FormatterStep;
 import com.diffplug.spotless.generic.ReplaceWildcardWithSingleClassImportStep;
+import com.diffplug.spotless.maven.FormatterStepConfig;
+import com.diffplug.spotless.maven.FormatterStepFactory;
 
-import org.junit.jupiter.api.Test;
-
-import com.diffplug.spotless.ResourceHarness;
-
-import static com.diffplug.spotless.StepHarness.forStep;
-
-class ReplaceWildcardWithSingleClassImportTest extends ResourceHarness {
-	@Test
-	void sortImportsDefault() {
-		forStep(ReplaceWildcardWithSingleClassImportStep.forJava())
-			.testResource("java/replacewithsingleclassimport/ReplaceWithSingleClassImportPre.test", "java/replacewithsingleclassimport/ReplaceWithSingleClassImportPost.test");
+public class ReplaceWildcardWithSingleClassImport implements FormatterStepFactory {
+	@Override
+	public FormatterStep newFormatterStep(FormatterStepConfig config) {
+		return  ReplaceWildcardWithSingleClassImportStep.forJava();
 	}
-
 }
