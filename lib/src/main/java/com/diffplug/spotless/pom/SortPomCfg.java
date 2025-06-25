@@ -25,7 +25,7 @@ public class SortPomCfg implements Serializable {
 
 	public String encoding = "UTF-8";
 
-	public String lineSeparator = System.getProperty("line.separator");
+	public String lineSeparator = System.lineSeparator();
 
 	public boolean expandEmptyElements = true;
 
