@@ -19,15 +19,15 @@ import com.diffplug.spotless.maven.MavenIntegrationHarness;
 
 import org.junit.jupiter.api.Test;
 
-class ReplaceWithSingleClassImportStepTest extends MavenIntegrationHarness {
+class ReplaceObsoletesStepTest extends MavenIntegrationHarness {
 
 	@Test
 	void testRemoveUnusedImports() throws Exception {
 		writePomWithJavaSteps("<replaceObsoletes/>");
 
 		String path = "src/main/java/test.java";
-		setFile(path).toResource("java/replacewithsingleclassimport/ReplaceWithSingleClassImportPre.test");
+		setFile(path).toResource("java/replacewithsingleclassimport/ReplaceObsoletesPre.test");
 		mavenRunner().withArguments("spotless:apply").runNoError();
-		assertFile(path).sameAsResource("java/replacewithsingleclassimport/ReplaceWithSingleClassImportPost.test");
+		assertFile(path).sameAsResource("java/replacewithsingleclassimport/ReplaceObsoletesPost.test");
 	}
 }
