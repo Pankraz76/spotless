@@ -19,19 +19,19 @@ import java.io.File;
 
 import com.diffplug.spotless.FormatterStep;
 
-public final class ReplaceWildcardWithSingleClassImportStep implements FormatterStep {
+public final class ReplaceObsoletesStep implements FormatterStep {
 
 
-	private ReplaceWildcardWithSingleClassImportStep() {
+	private ReplaceObsoletesStep() {
 	}
 
 	public static FormatterStep forJava() {
-		return new ReplaceWildcardWithSingleClassImportStep();
+		return new ReplaceObsoletesStep();
 	}
 
 	@Override
 	public String getName() {
-		return "replaceWildcardWithSingleClassImport";
+		return "replaceObsoletes";
 	}
 
 	@Override

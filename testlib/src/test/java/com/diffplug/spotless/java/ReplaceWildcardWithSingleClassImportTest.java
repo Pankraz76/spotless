@@ -15,7 +15,7 @@
  */
 package com.diffplug.spotless.java;
 
-import com.diffplug.spotless.generic.ReplaceWildcardWithSingleClassImportStep;
+import com.diffplug.spotless.generic.ReplaceObsoletesStep;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,10 +23,10 @@ import com.diffplug.spotless.ResourceHarness;
 
 import static com.diffplug.spotless.StepHarness.forStep;
 
-class ReplaceWildcardWithSingleClassImportTest extends ResourceHarness {
+class ReplaceObsoletesTest extends ResourceHarness {
 	@Test
 	void sortImportsDefault() {
-		forStep(ReplaceWildcardWithSingleClassImportStep.forJava())
+		forStep(ReplaceObsoletesStep.forJava())
 			.testResource("java/replacewithsingleclassimport/ReplaceWithSingleClassImportPre.test", "java/replacewithsingleclassimport/ReplaceWithSingleClassImportPost.test");
 	}
 

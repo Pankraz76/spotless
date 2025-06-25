@@ -80,8 +80,8 @@ public class Java extends FormatterFactory {
 		addStepFactory(removeWildcardImports);
 	}
 
-	public void addReplaceWildcardWithSingleClassImport(ReplaceWildcardWithSingleClassImport replaceWildcardWithSingleClassImport) {
-		addStepFactory(replaceWildcardWithSingleClassImport);
+	public void addReplaceObsoletes(ReplaceObsoletes replaceObsoletes) {
+		addStepFactory(replaceObsoletes);
 	}
 
 	public void addFormatAnnotations(FormatAnnotations formatAnnotations) {
