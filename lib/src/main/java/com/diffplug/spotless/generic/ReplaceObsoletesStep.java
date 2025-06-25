@@ -49,6 +49,16 @@ public final class ReplaceObsoletesStep implements FormatterStep {
 			"(public\\s+(?:String|\\w+)\\s+\\w+)\\s*=\\s*null",
 			"$1");
 
+		// Remove = 0 from numeric fields (int, long, short, byte)
+		result = result.replaceAll(
+			"(public\\s+(?:int|long|short|byte)\\s+\\w+)\\s*=\\s*0(?:L)?\\s*;",
+			"$1;");
+
+		// Remove = 0.0 from floating-point fields (float, double)
+		result = result.replaceAll(
+			"(public\\s+(?:float|double)\\s+\\w+)\\s*=\\s*0(?:\\.0)?(?:f|d)?\\s*;",
+			"$1;");
+
 		return result;
 	}
 
