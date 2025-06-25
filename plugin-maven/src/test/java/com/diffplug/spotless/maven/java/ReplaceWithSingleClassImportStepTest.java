@@ -24,6 +24,7 @@ class ReplaceWithSingleClassImportStepTest extends MavenIntegrationHarness {
 	@Test
 	void testRemoveUnusedImports() throws Exception {
 		writePomWithJavaSteps("<removeUnusedImports/>");
+		writePomWithJavaSteps("<replaceWildcardWithSingleClassImport/>");
 
 		String path = "src/main/java/test.java";
 		setFile(path).toResource("java/removeunusedimports/JavaCodeWithPackageUnformatted.test");
