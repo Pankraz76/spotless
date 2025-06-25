@@ -388,6 +388,7 @@ public class SQLTokenizedFormatter {
 		return sqlDialect.getKeywordType(name) == DBPKeywordType.FUNCTION;
 	}
 
+	// TODO test for this and remove the whole m,etnhoid.
 	private static String getDefaultLineSeparator() {
 		return System.getProperty("line.separator", "\n");
 	}

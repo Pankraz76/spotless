@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2021 DiffPlug
+ * Copyright 2016-2024 DiffPlug
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,13 +16,12 @@
 package com.diffplug.spotless.maven.java;
 
 import com.diffplug.spotless.maven.MavenIntegrationHarness;
-
 import org.junit.jupiter.api.Test;
 
 class ReplaceObsoletesStepTest extends MavenIntegrationHarness {
 
 	@Test
-	void testRemoveUnusedImports() throws Exception {
+	void testDefaults() throws Exception {
 		writePomWithJavaSteps("<replaceObsoletes/>");
 
 		String path = "src/main/java/test.java";
@@ -30,4 +29,35 @@ class ReplaceObsoletesStepTest extends MavenIntegrationHarness {
 		mavenRunner().withArguments("spotless:apply").runNoError();
 		assertFile(path).sameAsResource("java/replaceobsoletes/ReplaceObsoletesPost.test");
 	}
+
+	@Test
+	void testSystemLineSeparator() throws Exception {
+		writePomWithJavaSteps("<replaceObsoletes/>");
+
+		String path = "src/main/java/test.java";
+		setFile(path).toResource("java/replaceobsoletes/SystemLineSeparatorPre.test");
+		mavenRunner().withArguments("spotless:apply").runNoError();
+		assertFile(path).sameAsResource("java/replaceobsoletes/SystemLineSeparatorPost.test");
+	}
+
+	@Test
+	void testBooleanInitializers() throws Exception {
+		writePomWithJavaSteps("<replaceObsoletes/>");
+
+		String path = "src/main/java/test.java";
+		setFile(path).toResource("java/replaceobsoletes/BooleanInitializersPre.test");
+		mavenRunner().withArguments("spotless:apply").runNoError();
+		assertFile(path).sameAsResource("java/replaceobsoletes/BooleanInitializersPost.test");
+	}
+
+	@Test
+	void testNullInitializers() throws Exception {
+		writePomWithJavaSteps("<replaceObsoletes/>");
+
+		String path = "src/main/java/test.java";
+		setFile(path).toResource("java/replaceobsoletes/NullInitializersPre.test");
+		mavenRunner().withArguments("spotless:apply").runNoError();
+		assertFile(path).sameAsResource("java/replaceobsoletes/NullInitializersPost.test");
+	}
+
 }
