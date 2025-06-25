@@ -26,8 +26,8 @@ class ReplaceObsoletesStepTest extends MavenIntegrationHarness {
 		writePomWithJavaSteps("<replaceObsoletes/>");
 
 		String path = "src/main/java/test.java";
-		setFile(path).toResource("java/replacewithsingleclassimport/ReplaceObsoletesPre.test");
+		setFile(path).toResource("java/replaceobsoletes/ReplaceObsoletesPre.test");
 		mavenRunner().withArguments("spotless:apply").runNoError();
-		assertFile(path).sameAsResource("java/replacewithsingleclassimport/ReplaceObsoletesPost.test");
+		assertFile(path).sameAsResource("java/replaceobsoletes/ReplaceObsoletesPost.test");
 	}
 }
