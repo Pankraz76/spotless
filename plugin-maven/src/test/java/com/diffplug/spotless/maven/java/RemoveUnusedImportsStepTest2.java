@@ -15,11 +15,11 @@
  */
 package com.diffplug.spotless.maven.java;
 
-import org.junit.jupiter.api.Test;
-
 import com.diffplug.spotless.maven.MavenIntegrationHarness;
 
-class RemoveUnusedImportsStepTest extends MavenIntegrationHarness {
+import org.junit.jupiter.api.Test;
+
+class ReplaceWithSingleClassImportStepTest extends MavenIntegrationHarness {
 
 	@Test
 	void testRemoveUnusedImports() throws Exception {
