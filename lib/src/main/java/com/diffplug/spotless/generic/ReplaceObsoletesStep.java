@@ -20,10 +20,7 @@ import java.io.File;
 import com.diffplug.spotless.FormatterStep;
 
 public final class ReplaceObsoletesStep implements FormatterStep {
-
-
-	private ReplaceObsoletesStep() {
-	}
+	private ReplaceObsoletesStep() {}
 
 	public static FormatterStep forJava() {
 		return new ReplaceObsoletesStep();
@@ -36,11 +33,25 @@ public final class ReplaceObsoletesStep implements FormatterStep {
 
 	@Override
 	public String format(String rawUnix, File file) throws Exception {
-		return "";
+		String result = rawUnix;
+		// Replace System.getProperty("line.separator") with System.lineSeparator()
+		result = result.replace(
+			"System.getProperty(\"line.separator\")",
+			"System.lineSeparator()");
+
+		// Remove = false from boolean fields
+		result = result.replaceAll(
+			"(public\\s+boolean\\s+\\w+)\\s*=\\s*false",
+			"$1");
+
+		// Remove = null from reference fields
+		result = result.replaceAll(
+			"(public\\s+(?:String|\\w+)\\s+\\w+)\\s*=\\s*null",
+			"$1");
+
+		return result;
 	}
 
 	@Override
-	public void close() throws Exception {
-
-	}
+	public void close() throws Exception {}
 }
