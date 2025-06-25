@@ -1,0 +1,5 @@
+public class Test {
+    public int int1;
+    public long long1;
+    public float float1;
+}

@@ -19,7 +19,6 @@ import com.diffplug.spotless.maven.MavenIntegrationHarness;
 import org.junit.jupiter.api.Test;
 
 class ReplaceObsoletesStepTest extends MavenIntegrationHarness {
-
 	@Test
 	void testSortPomCfg() throws Exception {
 		writePomWithJavaSteps("<replaceObsoletes/>");
