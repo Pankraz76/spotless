@@ -28,6 +28,7 @@ public class SortPomTest extends ResourceHarness {
 		FormatterStep step = SortPomStep.create(cfg, TestProvisioner.mavenCentral());
 		StepHarness.forStep(step).testResource("pom/pom_dirty.xml", "pom/pom_clean_default.xml");
 	}
+	// test prop sorting
 
 	@ParameterizedTest
 	@ValueSource(strings = {"3.2.1", "3.3.0", "3.4.1", "4.0.0"})
