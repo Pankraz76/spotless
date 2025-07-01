@@ -20,10 +20,10 @@ import org.junit.jupiter.api.Test;
 
 import com.diffplug.spotless.maven.MavenIntegrationHarness;
 
-class ReplaceObsoletesStepTest extends MavenIntegrationHarness {
+class MissingOverrideStepTest extends MavenIntegrationHarness {
 	@Test
 	void testSortPomCfg() throws Exception {
-		writePomWithJavaSteps("<replaceObsoletes/>");
+		writePomWithJavaSteps("<missingOverride/>");
 
 		String path = "src/main/java/test.java";
 		setFile(path).toResource("java/replaceobsoletes/SortPomCfgPre.test");
@@ -33,7 +33,7 @@ class ReplaceObsoletesStepTest extends MavenIntegrationHarness {
 
 	@Test
 	void testSystemLineSeparator() throws Exception {
-		writePomWithJavaSteps("<replaceObsoletes/>");
+		writePomWithJavaSteps("<missingOverride/>");
 
 		String path = "src/main/java/test.java";
 		setFile(path).toResource("java/replaceobsoletes/SystemLineSeparatorPre.test");
@@ -43,7 +43,7 @@ class ReplaceObsoletesStepTest extends MavenIntegrationHarness {
 
 	@Test
 	void testBooleanInitializers() throws Exception {
-		writePomWithJavaSteps("<replaceObsoletes/>");
+		writePomWithJavaSteps("<missingOverride/>");
 
 		String path = "src/main/java/test.java";
 		setFile(path).toResource("java/replaceobsoletes/BooleanInitializersPre.test");
@@ -53,7 +53,7 @@ class ReplaceObsoletesStepTest extends MavenIntegrationHarness {
 
 	@Test
 	void testNullInitializers() throws Exception {
-		writePomWithJavaSteps("<replaceObsoletes/>");
+		writePomWithJavaSteps("<missingOverride/>");
 
 		String path = "src/main/java/test.java";
 		setFile(path).toResource("java/replaceobsoletes/NullInitializersPre.test");
@@ -63,7 +63,7 @@ class ReplaceObsoletesStepTest extends MavenIntegrationHarness {
 
 	@Test
 	void testIntInitializers() throws Exception {
-		writePomWithJavaSteps("<replaceObsoletes/>");
+		writePomWithJavaSteps("<missingOverride/>");
 
 		String path = "src/main/java/test.java";
 		setFile(path).toResource("java/replaceobsoletes/IntInitializersPre.test");
@@ -73,7 +73,7 @@ class ReplaceObsoletesStepTest extends MavenIntegrationHarness {
 
 	@Test
 	void testEnumPublicStatic() throws Exception {
-		writePomWithJavaSteps("<replaceObsoletes/>");
+		writePomWithJavaSteps("<missingOverride/>");
 
 		String path = "src/main/java/test.java";
 		setFile(path).toResource("java/replaceobsoletes/EnumPublicStaticPre.test");
@@ -83,7 +83,7 @@ class ReplaceObsoletesStepTest extends MavenIntegrationHarness {
 
 	@Test
 	void testInterfacePublicStatic() throws Exception {
-		writePomWithJavaSteps("<replaceObsoletes/>");
+		writePomWithJavaSteps("<missingOverride/>");
 
 		String path = "src/main/java/test.java";
 		setFile(path).toResource("java/replaceobsoletes/InterfacePublicStaticPre.test");
@@ -94,7 +94,7 @@ class ReplaceObsoletesStepTest extends MavenIntegrationHarness {
 	@Test
 	@Disabled("feature envy: (edge case/hard to implement) having a dedicated method")
 	void testSQLTokenizedFormatterPost() throws Exception {
-		writePomWithJavaSteps("<replaceObsoletes/>");
+		writePomWithJavaSteps("<missingOverride/>");
 
 		String path = "src/main/java/test.java";
 		setFile(path).toResource("java/replaceobsoletes/SQLTokenizedFormatterPre.test");

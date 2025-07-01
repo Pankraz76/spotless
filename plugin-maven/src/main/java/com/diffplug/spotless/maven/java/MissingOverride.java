@@ -16,13 +16,13 @@
 package com.diffplug.spotless.maven.java;
 
 import com.diffplug.spotless.FormatterStep;
-import com.diffplug.spotless.generic.ReplaceObsoletesStep;
+import com.diffplug.spotless.generic.MissingOverrideStep;
 import com.diffplug.spotless.maven.FormatterStepConfig;
 import com.diffplug.spotless.maven.FormatterStepFactory;
 
-public class ReplaceObsoletes implements FormatterStepFactory {
+public class MissingOverride implements FormatterStepFactory {
 	@Override
 	public FormatterStep newFormatterStep(FormatterStepConfig config) {
-		return ReplaceObsoletesStep.forJava();
+		return MissingOverrideStep.forJava();
 	}
 }

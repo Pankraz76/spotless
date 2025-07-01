@@ -22,19 +22,19 @@ import java.io.File;
 
 import com.diffplug.spotless.FormatterStep;
 
-public final class ReplaceObsoletesStep implements FormatterStep {
+public final class MissingOverrideStep implements FormatterStep {
 
 	private static final long serialVersionUID = -6643164760547140534L;
 
-	private ReplaceObsoletesStep() {}
+	private MissingOverrideStep() {}
 
 	public static FormatterStep forJava() {
-		return new ReplaceObsoletesStep();
+		return new MissingOverrideStep();
 	}
 
 	@Override
 	public String getName() {
-		return "replaceObsoletes";
+		return "missingOverride";
 	}
 
 	@Override
