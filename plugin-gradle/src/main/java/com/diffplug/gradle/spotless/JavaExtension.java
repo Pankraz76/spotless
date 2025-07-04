@@ -147,6 +147,9 @@ public class JavaExtension extends FormatExtension implements HasBuiltinDelimite
 	public void removeUnusedImports() {
 		addStep(RemoveUnusedImportsStep.create(RemoveUnusedImportsStep.defaultFormatter(), provisioner()));
 	}
+	public void removeUnusedDeclarations() {
+		addStep(RemoveUnusedImportsStep.create(RemoveUnusedImportsStep.defaultFormatter(), provisioner()));
+	}
 
 	public void removeUnusedImports(String formatter) {
 		addStep(RemoveUnusedImportsStep.create(formatter, provisioner()));
