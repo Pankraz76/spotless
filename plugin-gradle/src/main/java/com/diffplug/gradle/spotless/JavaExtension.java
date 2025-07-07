@@ -158,7 +158,7 @@ public class JavaExtension extends FormatExtension implements HasBuiltinDelimite
 		addStep(RemoveWildcardImportsStep.create());
 	}
 	public void removeUnusedDeclarations() {
-		addStep(RemoveUnusedDeclarationsStep.create(RemoveUnusedImportsStep.defaultFormatter(), provisioner()));
+		addStep(RemoveUnusedDeclarationsStep.create());
 	}
 
 	/** Uses the <a href="https://github.com/google/google-java-format">google-java-format</a> jar to format source code. */
