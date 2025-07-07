@@ -29,6 +29,8 @@ import java.util.Set;
 
 import javax.inject.Inject;
 
+import com.diffplug.spotless.java.RemoveUnusedDeclarationsStep;
+
 import org.gradle.api.Project;
 import org.gradle.api.tasks.SourceSet;
 
@@ -147,9 +149,6 @@ public class JavaExtension extends FormatExtension implements HasBuiltinDelimite
 	public void removeUnusedImports() {
 		addStep(RemoveUnusedImportsStep.create(RemoveUnusedImportsStep.defaultFormatter(), provisioner()));
 	}
-	public void removeUnusedDeclarations() {
-		addStep(RemoveUnusedImportsStep.create(RemoveUnusedImportsStep.defaultFormatter(), provisioner()));
-	}
 
 	public void removeUnusedImports(String formatter) {
 		addStep(RemoveUnusedImportsStep.create(formatter, provisioner()));
@@ -157,6 +156,9 @@ public class JavaExtension extends FormatExtension implements HasBuiltinDelimite
 
 	public void removeWildcardImports() {
 		addStep(RemoveWildcardImportsStep.create());
+	}
+	public void removeUnusedDeclarations() {
+		addStep(RemoveUnusedDeclarationsStep.create(RemoveUnusedImportsStep.defaultFormatter(), provisioner()));
 	}
 
 	/** Uses the <a href="https://github.com/google/google-java-format">google-java-format</a> jar to format source code. */
