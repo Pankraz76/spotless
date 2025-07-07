@@ -27,33 +27,28 @@ public class RemoveUnusedDeclarationsStep implements Serializable {
 	private static final long serialVersionUID = 1L;
 	static final String NAME = "removeUnusedImports";
 
-	static final String GJF = "google-java-format";
+	static final String DEFAULT_FORMATTER = "palantir-java-format";
 	static final String CLEANTHAT = "cleanthat-javaparser-unnecessaryimport";
 
 	// https://github.com/solven-eu/cleanthat/blob/master/java/src/main/java/eu/solven/cleanthat/engine/java/refactorer/mutators/UnnecessaryImport.java
 	private static final String CLEANTHAT_MUTATOR = "UnnecessaryImport";
-
-	// prevent direct instantiation
-	private RemoveUnusedDeclarationsStep() {}
-
 	public static String defaultFormatter() {
-		return GJF;
+		return DEFAULT_FORMATTER;
 	}
 
 	public static FormatterStep create(Provisioner provisioner) {
-		// The default importRemover is GJF
-		return create(GJF, provisioner);
+		return create(DEFAULT_FORMATTER, provisioner);
 	}
 
 	public static FormatterStep create(String unusedImportRemover, Provisioner provisioner) {
 		Objects.requireNonNull(provisioner, "provisioner");
 		switch (unusedImportRemover) {
-		case GJF:
-			return GoogleJavaFormatStep.createRemoveUnusedImportsOnly(provisioner);
-		case CLEANTHAT:
-			return CleanthatJavaStep.createWithStepName(NAME, CleanthatJavaStep.defaultGroupArtifact(), CleanthatJavaStep.defaultVersion(), "99.9", List.of(CLEANTHAT_MUTATOR), List.of(), false, provisioner);
-		default:
-			throw new IllegalArgumentException("Invalid unusedImportRemover: " + unusedImportRemover);
+			case DEFAULT_FORMATTER:
+				return GoogleJavaFormatStep.createRemoveUnusedImportsOnly(provisioner);
+			case CLEANTHAT:
+				return CleanthatJavaStep.createWithStepName(NAME, CleanthatJavaStep.defaultGroupArtifact(), CleanthatJavaStep.defaultVersion(), "99.9", List.of(CLEANTHAT_MUTATOR), List.of(), false, provisioner);
+			default:
+				throw new IllegalArgumentException("Invalid unusedImportRemover: " + unusedImportRemover);
 		}
 	}
 }
