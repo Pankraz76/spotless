@@ -15,8 +15,14 @@
  */
 package com.diffplug.spotless.glue.pjf;
 
+import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.List;
+
+import com.diffplug.spotless.FormatterStep;
+
+import com.diffplug.spotless.Lint;
 
 import com.palantir.javaformat.java.Formatter;
 import com.palantir.javaformat.java.ImportOrderer;
@@ -25,7 +31,9 @@ import com.palantir.javaformat.java.RemoveUnusedImports;
 
 import com.diffplug.spotless.FormatterFunc;
 
-public class PalantirJavaFormatFormatterFunc implements FormatterFunc {
+import javax.annotation.Nullable;
+
+public class PalantirJavaFormatFormatterFunc implements FormatterFunc, FormatterStep {
 
 	private final Formatter formatter;
 
@@ -56,6 +64,16 @@ public class PalantirJavaFormatFormatterFunc implements FormatterFunc {
 	}
 
 	@Override
+	public String apply(String unix, File file) throws Exception {
+		return FormatterFunc.super.apply(unix, file);
+	}
+
+	@Override
+	public List<Lint> lint(String content, File file) throws Exception {
+		return FormatterFunc.super.lint(content, file);
+	}
+
+	@Override
 	public String toString() {
 		return "PalantirJavaFormatFormatterFunc{formatter=" + formatter + '}';
 	}
@@ -69,5 +87,21 @@ public class PalantirJavaFormatFormatterFunc implements FormatterFunc {
 		} catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
 			throw new IllegalStateException("Cannot enable formatJavadoc option, make sure you are using Palantir with version 2.36.0 or later", e);
 		}
+	}
+
+	@Override
+	public String getName() {
+		return toString();
+	}
+
+	@Nullable
+	@Override
+	public String format(String rawUnix, File file) throws Exception {
+		return apply(rawUnix);
+	}
+
+	@Override
+	public void close() throws Exception {
+
 	}
 }

@@ -20,6 +20,7 @@ import java.util.Objects;
 
 import com.diffplug.spotless.FormatterStep;
 import com.diffplug.spotless.Provisioner;
+import com.diffplug.spotless.glue.pjf.PalantirJavaFormatFormatterFunc;
 
 import static com.diffplug.spotless.java.RemoveUnusedDeclarationsStep.CLEANTHAT;
 
@@ -57,7 +58,7 @@ public interface RemoveUnusedImportsStep {
 		Objects.requireNonNull(provisioner, "provisioner");
 		switch (unusedImportRemover) {
 		case DEFAULT_FORMATTER:
-			return GoogleJavaFormatStep.createRemoveUnusedImportsOnly(provisioner);
+			return new PalantirJavaFormatFormatterFunc("",true);
 		case CLEANTHAT:
 			return CleanthatJavaStep.createWithStepName(NAME, CleanthatJavaStep.defaultGroupArtifact(), CleanthatJavaStep.defaultVersion(), "99.9", List.of(CLEANTHAT_MUTATOR), List.of(), false, provisioner);
 		default:
