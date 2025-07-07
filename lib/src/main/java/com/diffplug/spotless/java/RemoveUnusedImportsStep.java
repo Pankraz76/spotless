@@ -15,36 +15,45 @@
  */
 package com.diffplug.spotless.java;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
 import com.diffplug.spotless.FormatterStep;
 import com.diffplug.spotless.Provisioner;
 
-/** Uses palantir-java-format or cleanthat.UnnecessaryImport, but only to remove unused imports. */
-public class RemoveUnusedImportsStep implements Serializable {
-	private static final long serialVersionUID = 1L;
-	static final String NAME = "removeUnusedImports";
+import static com.diffplug.spotless.java.RemoveUnusedDeclarationsStep.CLEANTHAT;
 
-	static final String DEFAULT_FORMATTER = "palantir-java-format";
-	static final String CLEANTHAT = "cleanthat-javaparser-unnecessaryimport";
+/** Provides utility methods for removing unused imports using different formatters. */
+public interface RemoveUnusedImportsStep {
+	String NAME = "removeUnusedImports";
+	String DEFAULT_FORMATTER = "palantir-java-format";
+	String CLEANTHAT_MUTATOR = "UnnecessaryImport";
 
-	// https://github.com/solven-eu/cleanthat/blob/master/java/src/main/java/eu/solven/cleanthat/engine/java/refactorer/mutators/UnnecessaryImport.java
-	private static final String CLEANTHAT_MUTATOR = "UnnecessaryImport";
-
-	// prevent direct instantiation
-	private RemoveUnusedImportsStep() {}
-
-	public static String defaultFormatter() {
+	/**
+	 * @return the default formatter name for removing unused imports
+	 */
+	static String defaultFormatter() {
 		return DEFAULT_FORMATTER;
 	}
 
-	public static FormatterStep create(Provisioner provisioner) {
+	/**
+	 * Creates a FormatterStep using the default import remover.
+	 * @param provisioner the provisioner for required dependencies
+	 * @return configured FormatterStep
+	 */
+	static FormatterStep create(Provisioner provisioner) {
 		return create(DEFAULT_FORMATTER, provisioner);
 	}
 
-	public static FormatterStep create(String unusedImportRemover, Provisioner provisioner) {
+	/**
+	 * Creates a FormatterStep using the specified unused import remover.
+	 * @param unusedImportRemover the import remover to use
+	 * @param provisioner the provisioner for required dependencies
+	 * @return configured FormatterStep
+	 * @throws IllegalArgumentException if the unusedImportRemover is invalid
+	 * @throws NullPointerException if provisioner is null
+	 */
+	static FormatterStep create(String unusedImportRemover, Provisioner provisioner) {
 		Objects.requireNonNull(provisioner, "provisioner");
 		switch (unusedImportRemover) {
 		case DEFAULT_FORMATTER:

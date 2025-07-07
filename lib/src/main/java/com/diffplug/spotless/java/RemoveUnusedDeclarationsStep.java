@@ -18,35 +18,35 @@ package com.diffplug.spotless.java;
 import com.diffplug.spotless.FormatterStep;
 import com.diffplug.spotless.Provisioner;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
 /** Uses google-java-format or cleanthat.UnnecessaryImport, but only to remove unused imports. */
-public class RemoveUnusedDeclarationsStep implements Serializable {
-	private static final long serialVersionUID = 1L;
-	static final String NAME = "removeUnusedImports";
-
-	static final String DEFAULT_FORMATTER = "palantir-java-format";
-	static final String CLEANTHAT = "cleanthat-javaparser-unnecessaryimport";
+public interface RemoveUnusedDeclarationsStep {
+	String NAME = "removeUnusedImports";
+	String DEFAULT_FORMATTER = "palantir-java-format";
+	String CLEANTHAT = "cleanthat-javaparser-unnecessaryimport";
 
 	// https://github.com/solven-eu/cleanthat/blob/master/java/src/main/java/eu/solven/cleanthat/engine/java/refactorer/mutators/UnnecessaryImport.java
-	private static final String CLEANTHAT_MUTATOR = "UnnecessaryImport";
-	public static String defaultFormatter() {
+	String CLEANTHAT_MUTATOR = "UnnecessaryImport";
+
+	static String defaultFormatter() {
 		return DEFAULT_FORMATTER;
 	}
 
-	public static FormatterStep create(Provisioner provisioner) {
+	static FormatterStep create(Provisioner provisioner) {
 		return create(DEFAULT_FORMATTER, provisioner);
 	}
 
-	public static FormatterStep create(String unusedImportRemover, Provisioner provisioner) {
+	static FormatterStep create(String unusedImportRemover, Provisioner provisioner) {
 		Objects.requireNonNull(provisioner, "provisioner");
 		switch (unusedImportRemover) {
 			case DEFAULT_FORMATTER:
 				return GoogleJavaFormatStep.createRemoveUnusedImportsOnly(provisioner);
 			case CLEANTHAT:
-				return CleanthatJavaStep.createWithStepName(NAME, CleanthatJavaStep.defaultGroupArtifact(), CleanthatJavaStep.defaultVersion(), "99.9", List.of(CLEANTHAT_MUTATOR), List.of(), false, provisioner);
+				return CleanthatJavaStep.createWithStepName(NAME, CleanthatJavaStep.defaultGroupArtifact(),
+					CleanthatJavaStep.defaultVersion(), "99.9", List.of(CLEANTHAT_MUTATOR),
+					List.of(), false, provisioner);
 			default:
 				throw new IllegalArgumentException("Invalid unusedImportRemover: " + unusedImportRemover);
 		}
