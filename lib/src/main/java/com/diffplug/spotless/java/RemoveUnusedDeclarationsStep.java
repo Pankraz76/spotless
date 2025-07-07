@@ -34,8 +34,8 @@ public interface RemoveUnusedDeclarationsStep {
 		return DEFAULT_FORMATTER;
 	}
 
-	static FormatterStep create(Provisioner provisioner) {
-		return create(DEFAULT_FORMATTER, provisioner);
+	static FormatterStep create() {
+		return create(DEFAULT_FORMATTER, null);
 	}
 
 	static FormatterStep create(String unusedImportRemover, Provisioner provisioner) {
