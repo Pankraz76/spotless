@@ -27,3 +27,15 @@ spotless {
 		endWithNewline()
 	}
 }
+
+// Rewrite plugin configuration
+apply plugin: 'org.openrewrite.rewrite'
+rewrite {
+	activeRecipe("org.openrewrite.staticanalysis.RemoveUnusedPrivateMethods")
+	activeRecipe("org.openrewrite.staticanalysis.MissingOverrideAnnotation")
+	setExportDatatables(true)
+}
+
+dependencies {
+	rewrite("org.openrewrite.recipe:rewrite-static-analysis:2.11.0")
+}
