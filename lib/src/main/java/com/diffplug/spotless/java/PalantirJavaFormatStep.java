@@ -16,10 +16,10 @@
 package com.diffplug.spotless.java;
 
 import java.io.Serializable;
-import java.lang.reflect.Constructor;
 import java.util.Objects;
 
 import com.diffplug.spotless.*;
+import com.diffplug.spotless.glue.pjf.PalantirJavaFormatFormatterFunc;
 
 /** Wraps up <a href="https://github.com/palantir/palantir-java-format">palantir-java-format</a> fork of
  * <a href="https://github.com/google/google-java-format">google-java-format</a> as a FormatterStep. */
@@ -118,11 +118,13 @@ public class PalantirJavaFormatStep implements Serializable {
 		}
 
 		FormatterFunc createFormat() throws Exception {
-			final ClassLoader classLoader = jarState.getClassLoader();
-			final Class<?> formatterFunc = classLoader.loadClass("com.diffplug.spotless.glue.pjf.PalantirJavaFormatFormatterFunc");
-			// 1st arg is "style", 2nd arg is "formatJavadoc"
-			final Constructor<?> constructor = formatterFunc.getConstructor(String.class, boolean.class);
-			return JVM_SUPPORT.suggestLaterVersionOnError(formatterVersion, (FormatterFunc) constructor.newInstance(style, formatJavadoc));
+			return JVM_SUPPORT.suggestLaterVersionOnError(formatterVersion,
+					(FormatterFunc) jarState
+							.getClassLoader()
+							.loadClass(PalantirJavaFormatFormatterFunc.class.toString())
+							// 1st arg is "style", 2nd arg is "formatJavadoc"
+							.getConstructor(String.class, boolean.class)
+							.newInstance(style, formatJavadoc));
 		}
 	}
 }
