@@ -26,9 +26,9 @@ class RingBufferByteArrayOutputStream extends ByteArrayOutputStream {
 
 	private final int limit;
 
-	private int zeroIndexPointer = 0;
+	private int zeroIndexPointer;
 
-	private boolean isOverLimit = false;
+	private boolean isOverLimit;
 
 	public RingBufferByteArrayOutputStream(int limit) {
 		this(limit, 32);

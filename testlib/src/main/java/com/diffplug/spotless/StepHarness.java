@@ -25,7 +25,7 @@ import com.diffplug.selfie.Selfie;
 import com.diffplug.selfie.StringSelfie;
 
 /** An api for testing a {@code FormatterStep} that doesn't depend on the File path. DO NOT ADD FILE SUPPORT TO THIS, use {@link StepHarnessWithFile} if you need that. */
-public class StepHarness extends StepHarnessBase {
+public final class StepHarness extends StepHarnessBase {
 	private StepHarness(Formatter formatter, RoundTrip roundTrip) {
 		super(formatter, roundTrip);
 	}

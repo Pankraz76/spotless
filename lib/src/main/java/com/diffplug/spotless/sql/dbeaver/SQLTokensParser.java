@@ -35,13 +35,13 @@ class SQLTokensParser {
 	private static final SQLDialect sqlDialect = SQLDialect.INSTANCE;
 
 	private final String[][] quoteStrings;
-	private String fBefore = null;
+	private String fBefore;
 	private int fPos;
-	private char structSeparator;
-	private String catalogSeparator;
-	private Set<String> commands = new HashSet<>();
-	private String[] singleLineComments;
-	private char[] singleLineCommentStart;
+	private final char structSeparator;
+	private final String catalogSeparator;
+	private final Set<String> commands = new HashSet<>();
+	private final String[] singleLineComments;
+	private final char[] singleLineCommentStart;
 
 	SQLTokensParser() {
 		this.structSeparator = sqlDialect.getStructSeparator();
@@ -49,11 +49,12 @@ class SQLTokensParser {
 		this.quoteStrings = sqlDialect.getIdentifierQuoteStrings();
 		this.singleLineComments = sqlDialect.getSingleLineComments();
 		this.singleLineCommentStart = new char[this.singleLineComments.length];
-		for (int i = 0; i < singleLineComments.length; i++) {
-			if (singleLineComments[i].isEmpty())
+		for (int i = 0;i < singleLineComments.length;i++) {
+			if (singleLineComments[i].isEmpty()) {
 				singleLineCommentStart[i] = 0;
-			else
+			} else {
 				singleLineCommentStart[i] = singleLineComments[i].charAt(0);
+			}
 		}
 	}
 
@@ -177,7 +178,7 @@ class SQLTokensParser {
 			String word = s.toString();
 			if (commands.contains(word.toUpperCase(Locale.ENGLISH))) {
 				s.setLength(0);
-				for (; fPos < fBefore.length(); fPos++) {
+				for (;fPos < fBefore.length();fPos++) {
 					fChar = fBefore.charAt(fPos);
 					if (fChar == '\n' || fChar == '\r') {
 						break;
@@ -292,11 +293,13 @@ class SQLTokensParser {
 	}
 
 	private static boolean contains(char[] array, char value) {
-		if (array == null || array.length == 0)
+		if (array == null || array.length == 0) {
 			return false;
+		}
 		for (char aChar : array) {
-			if (aChar == value)
+			if (aChar == value) {
 				return true;
+			}
 		}
 		return false;
 	}

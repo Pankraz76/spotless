@@ -27,7 +27,7 @@ class ValuePerStep<T> extends AbstractList<T> {
 	private final int size;
 	private @Nullable T value;
 	private int valueIdx;
-	private @Nullable Object[] multipleValues = null;
+	private @Nullable Object[] multipleValues;
 
 	ValuePerStep(Formatter formatter) {
 		this.size = formatter.getSteps().size();
@@ -73,7 +73,7 @@ class ValuePerStep<T> extends AbstractList<T> {
 
 	public int indexOfFirstValue() {
 		if (multipleValues != null) {
-			for (int i = 0; i < multipleValues.length; i++) {
+			for (int i = 0;i < multipleValues.length;i++) {
 				if (multipleValues[i] != null) {
 					return i;
 				}

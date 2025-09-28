@@ -34,7 +34,7 @@ import com.diffplug.spotless.ProcessRunner;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
-public class ShfmtStep {
+public final class ShfmtStep {
 	public static String name() {
 		return "shfmt";
 	}

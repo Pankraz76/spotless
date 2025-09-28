@@ -28,7 +28,7 @@ import com.diffplug.spotless.ResourceHarness;
 
 class JsonWriterTest extends ResourceHarness {
 
-	private JsonWriter jsonWriter = new JsonWriter();
+	private final JsonWriter jsonWriter = new JsonWriter();
 
 	@Test
 	void itWritesAValidEmptyObject() {

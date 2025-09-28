@@ -33,7 +33,7 @@ import com.diffplug.spotless.Formatter;
  *    <li>Formatter instances created according to the POM configuration</li>
  * </ol>
  */
-class PluginFingerprint {
+final class PluginFingerprint {
 
 	private static final String SPOTLESS_PLUGIN_KEY = "com.diffplug.spotless:spotless-maven-plugin";
 

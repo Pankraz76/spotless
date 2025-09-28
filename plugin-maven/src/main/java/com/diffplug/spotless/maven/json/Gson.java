@@ -28,10 +28,10 @@ public class Gson implements FormatterStepFactory {
 	int indentSpaces = Json.DEFAULT_INDENTATION;
 
 	@Parameter
-	boolean sortByKeys = false;
+	boolean sortByKeys;
 
 	@Parameter
-	boolean escapeHtml = false;
+	boolean escapeHtml;
 
 	@Parameter
 	String version = GsonStep.DEFAULT_VERSION;

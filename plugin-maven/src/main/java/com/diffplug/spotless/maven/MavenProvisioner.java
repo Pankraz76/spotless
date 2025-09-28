@@ -18,7 +18,7 @@ package com.diffplug.spotless.maven;
 import com.diffplug.spotless.Provisioner;
 
 /** Maven integration for Provisioner. */
-public class MavenProvisioner {
+public final class MavenProvisioner {
 	private MavenProvisioner() {}
 
 	public static Provisioner create(ArtifactResolver artifactResolver) {

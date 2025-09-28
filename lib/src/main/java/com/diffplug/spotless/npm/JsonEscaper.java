@@ -76,7 +76,7 @@ final class JsonEscaper {
 		escaped.append('"');
 		char b;
 		char c = 0;
-		for (int i = 0; i < unescaped.length(); i++) {
+		for (int i = 0;i < unescaped.length();i++) {
 			b = c;
 			c = unescaped.charAt(i);
 			switch (c) {

@@ -28,7 +28,7 @@ import com.diffplug.spotless.FormatterFunc;
 import com.diffplug.spotless.FormatterStep;
 import com.diffplug.spotless.ProcessRunner;
 
-public class NativeCmdStep {
+public final class NativeCmdStep {
 	// prevent direct instantiation
 	private NativeCmdStep() {}
 

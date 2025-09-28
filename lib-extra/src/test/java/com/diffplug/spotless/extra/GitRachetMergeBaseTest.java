@@ -111,7 +111,7 @@ class GitRachetMergeBaseTest extends ResourceHarness {
 					continue;
 				}
 				boolean expectedClean = !dirtyFiles.contains(file.getName());
-				for (int i = 0; i < shas.length; ++i) {
+				for (int i = 0;i < shas.length;++i) {
 					assertClean(i, file.getName(), expectedClean);
 				}
 			}

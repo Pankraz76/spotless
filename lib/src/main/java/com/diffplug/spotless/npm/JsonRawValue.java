@@ -20,7 +20,7 @@ import static java.util.Objects.requireNonNull;
 /**
  * Wrapper class to signal the contained string must not be escaped when printing to json.
  */
-class JsonRawValue {
+final class JsonRawValue {
 	private final String rawJson;
 
 	private JsonRawValue(String rawJson) {

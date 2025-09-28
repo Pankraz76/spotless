@@ -22,7 +22,7 @@ import java.util.Objects;
 
 import javax.annotation.Nonnull;
 
-class ListableAdapter<T> implements Iterable<T> {
+final class ListableAdapter<T> implements Iterable<T> {
 
 	private final List<T> delegate;
 

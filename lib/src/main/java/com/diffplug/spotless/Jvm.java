@@ -60,7 +60,7 @@ public final class Jvm {
 	 * Utility to map constraints of formatter to this JVM
 	 * @param <V> Version type of formatter
 	 */
-	public static class Support<V> {
+	public static final class Support<V> {
 		static final String LINT_CODE = "jvm-version";
 
 		private final String fmtName;
@@ -268,7 +268,7 @@ public final class Jvm {
 				int numberOfElements = version0Items.length > version1Items.length ? version0Items.length : version1Items.length;
 				version0Items = Arrays.copyOf(version0Items, numberOfElements);
 				version1Items = Arrays.copyOf(version1Items, numberOfElements);
-				for (int i = 0; i < numberOfElements; i++) {
+				for (int i = 0;i < numberOfElements;i++) {
 					if (version0Items[i] > version1Items[i]) {
 						return 1;
 					} else if (version1Items[i] > version0Items[i]) {
@@ -289,7 +289,7 @@ public final class Jvm {
 					throw new IllegalArgumentException("Not a semantic version: %s".formatted(versionObject), e);
 				}
 			}
-		};
+		}
 	}
 
 	/**
@@ -300,6 +300,6 @@ public final class Jvm {
 	 */
 	public static <V> Support<V> support(String formatterName) {
 		Objects.requireNonNull(formatterName);
-		return new Support<V>(formatterName);
+		return new Support<>(formatterName);
 	}
 }

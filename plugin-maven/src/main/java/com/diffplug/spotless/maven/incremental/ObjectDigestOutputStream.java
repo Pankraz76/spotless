@@ -22,7 +22,7 @@ import java.security.DigestOutputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-class ObjectDigestOutputStream extends ObjectOutputStream {
+final class ObjectDigestOutputStream extends ObjectOutputStream {
 
 	private final MessageDigest messageDigest;
 

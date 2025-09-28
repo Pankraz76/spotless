@@ -206,11 +206,11 @@ public final class LicenseHeaderStep {
 
 	public static final String spotlessSetLicenseHeaderYearsFromGitHistory = "spotlessSetLicenseHeaderYearsFromGitHistory";
 
-	public static final String FLAG_SET_LICENSE_HEADER_YEARS_FROM_GIT_HISTORY() {
+	public static String FLAG_SET_LICENSE_HEADER_YEARS_FROM_GIT_HISTORY() {
 		return spotlessSetLicenseHeaderYearsFromGitHistory;
 	}
 
-	private static class Runtime implements Serializable {
+	private static final class Runtime implements Serializable {
 		private static final long serialVersionUID = 1475199492829130965L;
 
 		private final Pattern delimiterPattern;
@@ -305,8 +305,7 @@ public final class LicenseHeaderStep {
 
 		private String addOrUpdateLicenseHeader(String raw, File file) {
 			raw = replaceYear(raw);
-			raw = replaceFileName(raw, file);
-			return raw;
+			return replaceFileName(raw, file);
 		}
 
 		private String replaceYear(String raw) {

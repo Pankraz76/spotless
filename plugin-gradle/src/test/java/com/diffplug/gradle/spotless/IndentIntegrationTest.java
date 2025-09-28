@@ -83,8 +83,7 @@ class IndentIntegrationTest extends GradleIntegrationHarness {
 				"  }",
 				"}");
 		setFile("test.txt").toResource(resourceFile);
-		BuildResult result = gradleRunner().withArguments("spotlessApply").build();
-		return result;
+		return gradleRunner().withArguments("spotlessApply").build();
 	}
 
 }

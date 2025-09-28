@@ -29,7 +29,7 @@ public abstract class AJacksonGradleConfig<T extends AJacksonGradleConfig> {
 	protected String version = JacksonJsonStep.defaultVersion();
 
 	// Make sure to call 'formatExtension.addStep(createStep());' in the extented constructors
-	public AJacksonGradleConfig(JacksonConfig jacksonConfig, FormatExtension formatExtension) {
+	protected AJacksonGradleConfig(JacksonConfig jacksonConfig, FormatExtension formatExtension) {
 		this.formatExtension = formatExtension;
 
 		this.jacksonConfig = jacksonConfig;

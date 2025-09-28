@@ -51,7 +51,7 @@ import com.diffplug.spotless.yaml.SerializeToByteArrayHack;
  * It is a horrific hack, but it works, and it's the only way I can figure
  * to make Spotless work with all of Gradle's cache systems at once.
  */
-public class ConfigurationCacheHackList implements java.io.Serializable {
+public final class ConfigurationCacheHackList implements java.io.Serializable {
 	@Serial
 	private static final long serialVersionUID = 6914178791997323870L;
 
@@ -59,7 +59,7 @@ public class ConfigurationCacheHackList implements java.io.Serializable {
 	private ArrayList<Object> backingList = new ArrayList<>();
 
 	private boolean shouldWeSerializeToByteArrayFirst() {
-		return backingList.stream().anyMatch(step -> step instanceof SerializeToByteArrayHack);
+		return backingList.stream().anyMatch(SerializeToByteArrayHack.class::isInstance);
 	}
 
 	private void writeObject(java.io.ObjectOutputStream out) throws IOException {
@@ -83,7 +83,7 @@ public class ConfigurationCacheHackList implements java.io.Serializable {
 		optimizeForEquality = in.readBoolean();
 		backingList = new ArrayList<>();
 		int size = in.readInt();
-		for (int i = 0; i < size; i++) {
+		for (int i = 0;i < size;i++) {
 			if (serializeToByteArrayFirst) {
 				backingList.add(LazyForwardingEquality.fromBytes((byte[]) in.readObject()));
 			} else {
@@ -133,10 +133,12 @@ public class ConfigurationCacheHackList implements java.io.Serializable {
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o)
+		if (this == o) {
 			return true;
-		if (o == null || getClass() != o.getClass())
+		}
+		if (o == null || getClass() != o.getClass()) {
 			return false;
+		}
 		ConfigurationCacheHackList stepList = (ConfigurationCacheHackList) o;
 		return optimizeForEquality == stepList.optimizeForEquality &&
 				backingList.equals(stepList.backingList);

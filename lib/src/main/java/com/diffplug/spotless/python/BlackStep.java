@@ -30,7 +30,7 @@ import com.diffplug.spotless.ProcessRunner;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
-public class BlackStep {
+public final class BlackStep {
 	public static String name() {
 		return "black";
 	}

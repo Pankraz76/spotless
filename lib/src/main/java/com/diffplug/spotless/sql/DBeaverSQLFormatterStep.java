@@ -23,7 +23,7 @@ import com.diffplug.spotless.FormatterProperties;
 import com.diffplug.spotless.FormatterStep;
 
 /** SQL formatter step which wraps up DBeaver's SqlTokenizedFormatter implementation. */
-public class DBeaverSQLFormatterStep {
+public final class DBeaverSQLFormatterStep {
 
 	private static final String NAME = "dbeaverSql";
 

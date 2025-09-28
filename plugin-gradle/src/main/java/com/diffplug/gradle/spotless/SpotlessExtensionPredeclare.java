@@ -29,7 +29,7 @@ public class SpotlessExtensionPredeclare extends SpotlessExtension {
 	public SpotlessExtensionPredeclare(Project project, GradleProvisioner.Policy policy) {
 		super(project);
 		getRegisterDependenciesTask().getTaskService().get().predeclaredProvisioner = policy.dedupingProvisioner(project);
-		project.afterEvaluate(unused -> {
+		project.afterEvaluate(unused ->
 			toSetup.forEach((name, formatExtension) -> {
 				for (Action<FormatExtension> lazyAction : formatExtension.lazyActions) {
 					lazyAction.execute(formatExtension);
@@ -37,8 +37,7 @@ public class SpotlessExtensionPredeclare extends SpotlessExtension {
 				getRegisterDependenciesTask().steps.addAll(formatExtension.steps);
 				// needed to fix Deemon memory leaks (#1194), but this line came from https://github.com/diffplug/spotless/pull/1206
 				LazyForwardingEquality.unlazy(getRegisterDependenciesTask().steps);
-			});
-		});
+			}));
 	}
 
 	@Override

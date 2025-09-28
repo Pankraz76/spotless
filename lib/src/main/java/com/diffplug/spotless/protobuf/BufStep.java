@@ -32,7 +32,7 @@ import com.diffplug.spotless.ProcessRunner;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
-public class BufStep {
+public final class BufStep {
 	public static String name() {
 		return "buf";
 	}
