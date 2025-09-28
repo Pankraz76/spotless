@@ -19,7 +19,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Locale;
 
-class PlatformInfo {
+final class PlatformInfo {
 	private PlatformInfo() {
 		// no instance
 	}

@@ -43,11 +43,11 @@ public class PrettierFormatterStep {
 
 	public static final String DEFAULT_VERSION = "2.8.8";
 
-	public static final Map<String, String> defaultDevDependencies() {
+	public static Map<String, String> defaultDevDependencies() {
 		return defaultDevDependenciesWithPrettier(DEFAULT_VERSION);
 	}
 
-	public static final Map<String, String> defaultDevDependenciesWithPrettier(String version) {
+	public static Map<String, String> defaultDevDependenciesWithPrettier(String version) {
 		return Collections.singletonMap("prettier", version);
 	}
 

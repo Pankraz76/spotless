@@ -34,7 +34,7 @@ public class ImportOrder implements FormatterStepFactory {
 	private String order;
 
 	@Parameter
-	private boolean wildcardsLast = false;
+	private boolean wildcardsLast;
 
 	/**
 	 * Whether imports should be sorted based on semantics (i.e. sorted by package,
@@ -44,7 +44,7 @@ public class ImportOrder implements FormatterStepFactory {
 	 * lexicographically.
 	 */
 	@Parameter
-	private boolean semanticSort = false;
+	private boolean semanticSort;
 
 	/**
 	 * The prefixes that should be treated as packages for

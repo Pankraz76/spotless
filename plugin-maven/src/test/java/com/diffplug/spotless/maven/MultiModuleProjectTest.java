@@ -177,7 +177,7 @@ class MultiModuleProjectTest extends MavenIntegrationHarness {
 		}
 	}
 
-	static class SubProjectFile {
+	static final class SubProjectFile {
 
 		private final String from;
 		private final String to;

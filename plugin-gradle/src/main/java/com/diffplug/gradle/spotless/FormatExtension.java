@@ -214,19 +214,15 @@ public class FormatExtension {
 	}
 
 	/** The files to be formatted = (target - targetExclude). */
-	protected FileCollection target, targetExclude;
+	protected FileCollection target;
+	protected FileCollection targetExclude;
 
 	/** The value from which files will be excluded if their content contain it. */
-	@Nullable protected String targetExcludeContentPattern = null;
+	@Nullable protected String targetExcludeContentPattern;
 
 	protected boolean isLicenseHeaderStep(FormatterStep formatterStep) {
 		String formatterStepName = formatterStep.getName();
-
-		if (formatterStepName.startsWith(LicenseHeaderStep.class.getName())) {
-			return true;
-		}
-
-		return false;
+		return formatterStepName.startsWith(LicenseHeaderStep.class.getName());
 	}
 
 	/**
@@ -378,7 +374,7 @@ public class FormatExtension {
 	 * step exists.
 	 */
 	protected int getExistingStepIdx(String stepName) {
-		for (int i = 0; i < steps.size(); ++i) {
+		for (int i = 0;i < steps.size();++i) {
 			if (steps.get(i).getName().equals(stepName)) {
 				return i;
 			}
@@ -566,7 +562,7 @@ public class FormatExtension {
 	 */
 	public class LicenseHeaderConfig {
 		LicenseHeaderStep builder;
-		Boolean updateYearWithLatest = null;
+		Boolean updateYearWithLatest;
 
 		public LicenseHeaderConfig named(String name) {
 			String existingStepName = builder.getName();
@@ -686,7 +682,7 @@ public class FormatExtension {
 
 		private Consumer<FormatterStep> replaceStep;
 
-		public NpmStepConfig(Project project, Consumer<FormatterStep> replaceStep) {
+		protected NpmStepConfig(Project project, Consumer<FormatterStep> replaceStep) {
 			this.project = requireNonNull(project);
 			this.replaceStep = requireNonNull(replaceStep);
 		}
@@ -1137,12 +1133,11 @@ public class FormatExtension {
 					task.mustRunAfter(BasePlugin.CLEAN_TASK_NAME);
 				});
 		// create the apply task
-		TaskProvider<SpotlessApply> applyTask = spotless.project.getTasks().register(taskName, SpotlessApply.class,
+		return spotless.project.getTasks().register(taskName, SpotlessApply.class,
 				task -> {
 					task.dependsOn(spotlessTask);
 					task.init(spotlessTask.get());
 				});
-		return applyTask;
 	}
 
 	protected GradleException noDefaultTargetException() {

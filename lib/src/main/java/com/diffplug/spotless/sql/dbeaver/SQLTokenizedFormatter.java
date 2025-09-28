@@ -103,7 +103,7 @@ public class SQLTokenizedFormatter {
 		}
 
 		// Remove extra tokens (spaces, etc)
-		for (int index = argList.size() - 1; index >= 1; index--) {
+		for (int index = argList.size() - 1;index >= 1;index--) {
 			token = argList.get(index);
 			FormatterToken prevToken = argList.get(index - 1);
 			if (token.getType() == TokenType.SPACE && (prevToken.getType() == TokenType.SYMBOL || prevToken.getType() == TokenType.COMMENT)) {
@@ -115,7 +115,7 @@ public class SQLTokenizedFormatter {
 			}
 		}
 
-		for (int index = 0; index < argList.size() - 2; index++) {
+		for (int index = 0;index < argList.size() - 2;index++) {
 			FormatterToken t0 = argList.get(index);
 			FormatterToken t1 = argList.get(index + 1);
 			FormatterToken t2 = argList.get(index + 2);
@@ -151,7 +151,7 @@ public class SQLTokenizedFormatter {
 		final List<Integer> bracketIndent = new ArrayList<>();
 		FormatterToken prev = new FormatterToken(TokenType.SPACE, " ");
 		boolean encounterBetween = false;
-		for (int index = 0; index < argList.size(); index++) {
+		for (int index = 0;index < argList.size();index++) {
 			token = argList.get(index);
 			String tokenString = token.getString().toUpperCase(Locale.ENGLISH);
 			if (token.getType() == TokenType.SYMBOL) {
@@ -281,7 +281,7 @@ public class SQLTokenizedFormatter {
 			prev = token;
 		}
 
-		for (int index = argList.size() - 1; index >= 4; index--) {
+		for (int index = argList.size() - 1;index >= 4;index--) {
 			if (index >= argList.size()) {
 				continue;
 			}
@@ -304,7 +304,7 @@ public class SQLTokenizedFormatter {
 			}
 		}
 
-		for (int index = 1; index < argList.size(); index++) {
+		for (int index = 1;index < argList.size();index++) {
 			prev = argList.get(index - 1);
 			token = argList.get(index);
 
@@ -355,7 +355,7 @@ public class SQLTokenizedFormatter {
 			return false;
 		}
 		// check previous token
-		for (int i = index - 1; i >= 0; i--) {
+		for (int i = index - 1;i >= 0;i--) {
 			FormatterToken token = argList.get(i);
 			if (token.getType() == TokenType.SPACE) {
 				continue;
@@ -368,7 +368,7 @@ public class SQLTokenizedFormatter {
 			}
 		}
 		// check last token
-		for (int i = index; i < argList.size(); i++) {
+		for (int i = index;i < argList.size();i++) {
 			FormatterToken token = argList.get(i);
 			if (token.getType() == TokenType.SPACE) {
 				continue;
@@ -393,12 +393,13 @@ public class SQLTokenizedFormatter {
 	}
 
 	private int insertReturnAndIndent(final List<FormatterToken> argList, final int argIndex, final int argIndent) {
-		if (functionBracket.contains(Boolean.TRUE))
+		if (functionBracket.contains(Boolean.TRUE)) {
 			return 0;
+		}
 		try {
 			final String defaultLineSeparator = getDefaultLineSeparator();
 			StringBuilder s = new StringBuilder(defaultLineSeparator);
-			for (int index = 0; index < argIndent; index++) {
+			for (int index = 0;index < argIndent;index++) {
 				s.append(formatterCfg.getIndentString());
 			}
 			if (argIndex > 0) {
@@ -456,11 +457,13 @@ public class SQLTokenizedFormatter {
 	}
 
 	private static <OBJECT_TYPE> boolean contains(OBJECT_TYPE[] array, OBJECT_TYPE value) {
-		if (array == null || array.length == 0)
+		if (array == null || array.length == 0) {
 			return false;
+		}
 		for (OBJECT_TYPE anArray : array) {
-			if (Objects.equals(value, anArray))
+			if (Objects.equals(value, anArray)) {
 				return true;
+			}
 		}
 		return false;
 	}

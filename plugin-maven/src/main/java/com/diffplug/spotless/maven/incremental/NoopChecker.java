@@ -20,7 +20,7 @@ import java.nio.file.Path;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.project.MavenProject;
 
-class NoopChecker implements UpToDateChecker {
+final class NoopChecker implements UpToDateChecker {
 
 	private NoopChecker() {}
 

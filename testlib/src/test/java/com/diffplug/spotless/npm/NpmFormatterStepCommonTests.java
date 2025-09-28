@@ -39,7 +39,7 @@ public abstract class NpmFormatterStepCommonTests extends ResourceHarness {
 		return new NpmrcResolver().tryFind().orElse(null);
 	}
 
-	private File buildDir = null;
+	private File buildDir;
 
 	protected File buildDir() {
 		if (this.buildDir == null) {
@@ -48,7 +48,7 @@ public abstract class NpmFormatterStepCommonTests extends ResourceHarness {
 		return this.buildDir;
 	}
 
-	private File projectDir = null;
+	private File projectDir;
 
 	protected File projectDir() {
 		if (this.projectDir == null) {

@@ -47,7 +47,7 @@ public final class JarState implements Serializable {
 	private static final Logger logger = LoggerFactory.getLogger(JarState.class);
 
 	// Let the classloader be overridden for tools using different approaches to classloading
-	@Nullable private static ClassLoader forcedClassLoader = null;
+	@Nullable private static ClassLoader forcedClassLoader;
 
 	/** Overrides the classloader used by all JarStates. */
 	public static void setForcedClassLoader(@Nullable ClassLoader forcedClassLoader) {

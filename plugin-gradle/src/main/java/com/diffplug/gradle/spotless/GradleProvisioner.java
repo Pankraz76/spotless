@@ -38,7 +38,7 @@ import com.diffplug.common.collect.ImmutableList;
 import com.diffplug.spotless.Provisioner;
 
 /** Should be package-private. */
-class GradleProvisioner {
+final class GradleProvisioner {
 	private GradleProvisioner() {}
 
 	enum Policy {

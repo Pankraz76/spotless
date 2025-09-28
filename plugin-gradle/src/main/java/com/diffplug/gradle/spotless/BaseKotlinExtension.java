@@ -71,7 +71,7 @@ public abstract class BaseKotlinExtension extends FormatExtension {
 
 	protected abstract boolean isScript();
 
-	public class DiktatConfig {
+	public final class DiktatConfig {
 		private final String version;
 		private FileSignature config;
 
@@ -97,7 +97,7 @@ public abstract class BaseKotlinExtension extends FormatExtension {
 		}
 	}
 
-	public class KtfmtConfig {
+	public final class KtfmtConfig {
 		private final String version;
 		private final ConfigurableStyle configurableStyle = new ConfigurableStyle();
 		private KtfmtStep.Style style;
@@ -149,7 +149,7 @@ public abstract class BaseKotlinExtension extends FormatExtension {
 		}
 	}
 
-	public class KtlintConfig {
+	public final class KtlintConfig {
 		private final String version;
 		private FileSignature editorConfigPath;
 		private Map<String, Object> editorConfigOverride;

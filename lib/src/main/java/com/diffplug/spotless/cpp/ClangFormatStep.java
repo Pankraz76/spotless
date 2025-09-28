@@ -32,7 +32,7 @@ import com.diffplug.spotless.ProcessRunner;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
-public class ClangFormatStep {
+public final class ClangFormatStep {
 	public static String name() {
 		return "clang";
 	}

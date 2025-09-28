@@ -112,7 +112,7 @@ final class ImportSorterImpl {
 		}
 
 		int indexOfFirstStatic = 0;
-		for (int i = 0; i < importsGroups.size(); i++) {
+		for (int i = 0;i < importsGroups.size();i++) {
 			boolean subgroupMatch = importsGroups.get(i).getSubGroups().stream().anyMatch(subgroup -> subgroup.startsWith(STATIC_KEYWORD));
 			if (subgroupMatch) {
 				indexOfFirstStatic = i;
@@ -230,7 +230,7 @@ final class ImportSorterImpl {
 		if (order1.equals(order2)) {
 			throw new IllegalArgumentException("orders are same");
 		}
-		for (int i = 0; i < anImport.length() - 1; i++) {
+		for (int i = 0;i < anImport.length() - 1;i++) {
 			if (order1.length() - 1 == i && order2.length() - 1 != i) {
 				return order2;
 			}
@@ -267,7 +267,7 @@ final class ImportSorterImpl {
 		return string1IsWildcard == wildcardsLast ? 1 : -1;
 	}
 
-	private static class LexicographicalOrderingComparator implements Comparator<String>, Serializable {
+	private static final class LexicographicalOrderingComparator implements Comparator<String>, Serializable {
 		private static final long serialVersionUID = 1;
 
 		private final boolean wildcardsLast;
@@ -282,7 +282,7 @@ final class ImportSorterImpl {
 		}
 	}
 
-	private static class SemanticOrderingComparator implements Comparator<String>, Serializable {
+	private static final class SemanticOrderingComparator implements Comparator<String>, Serializable {
 		private static final long serialVersionUID = 1;
 
 		private final boolean wildcardsLast;
@@ -322,8 +322,9 @@ final class ImportSorterImpl {
 				String member2 = split[1];
 
 				int result = compareFullyQualifiedClassName(fqcn1, fqcn2);
-				if (result != 0)
+				if (result != 0) {
 					return result;
+				}
 
 				return compareWithWildcare(member1, member2, wildcardsLast);
 			} else {
@@ -345,8 +346,9 @@ final class ImportSorterImpl {
 			String c2 = split[1];
 
 			int result = p1.compareTo(p2);
-			if (result != 0)
+			if (result != 0) {
 				return result;
+			}
 
 			return compareWithWildcare(c1, c2, wildcardsLast);
 		}

@@ -26,7 +26,7 @@ import java.util.stream.Stream;
 
 import javax.annotation.Nullable;
 
-class TestEnvVars {
+final class TestEnvVars {
 
 	private final Map<String, String> envVars;
 

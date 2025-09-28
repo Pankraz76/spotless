@@ -23,14 +23,14 @@ import org.junit.jupiter.api.Test;
 import com.diffplug.common.base.StringPrinter;
 
 class MultiProjectTest extends GradleIntegrationHarness {
-	private static int N = 100;
+	private static final int N = 100;
 
 	private void createNSubprojects() throws IOException {
-		for (int i = 0; i < N; ++i) {
+		for (int i = 0;i < N;++i) {
 			createSubproject(Integer.toString(i));
 		}
 		String settings = StringPrinter.buildString(printer -> {
-			for (int i = 0; i < N; ++i) {
+			for (int i = 0;i < N;++i) {
 				printer.println("include '" + i + "'");
 			}
 		});

@@ -133,7 +133,7 @@ public final class IdeaStep {
 		}
 	}
 
-	private static class State implements Serializable {
+	private static final class State implements Serializable {
 
 		private static final long serialVersionUID = -1426311255869303398L;
 
@@ -232,9 +232,8 @@ public final class IdeaStep {
 
 		private Map<String, String> createEnv() {
 			File ideaProps = createIdeaPropertiesFile();
-			Map<String, String> env = Map.ofEntries(
+			return Map.ofEntries(
 					Map.entry("IDEA_PROPERTIES", ThrowingEx.get(ideaProps::getCanonicalPath)));
-			return env;
 		}
 
 		private File createIdeaPropertiesFile() {
@@ -269,7 +268,7 @@ public final class IdeaStep {
 
 		private List<String> getParams(File file) {
 			/* https://www.jetbrains.com/help/idea/command-line-formatter.html */
-			var builder = Stream.<String> builder();
+			var builder = Stream.<String>builder();
 			builder.add(binaryPath);
 			builder.add("format");
 			if (withDefaults) {

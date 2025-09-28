@@ -130,7 +130,7 @@ public class GrEclipseFormatterStepImpl {
 			synchronized (GroovyLogManager.manager) {
 				GroovyLogManager.manager.removeLogger(this);
 			}
-			return 0 != errors.size();
+			return !errors.isEmpty();
 		}
 
 		@Override
@@ -138,7 +138,7 @@ public class GrEclipseFormatterStepImpl {
 			StringBuilder string = new StringBuilder();
 			if (1 < errors.size()) {
 				string.append("Multiple problems detected during step execution:");
-			} else if (0 == errors.size()) {
+			} else if (errors.isEmpty()) {
 				string.append("Step sucesfully executed.");
 			}
 			for (Throwable error : errors) {

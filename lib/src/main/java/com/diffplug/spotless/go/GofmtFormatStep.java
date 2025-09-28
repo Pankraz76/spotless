@@ -37,7 +37,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
  * Note: gofmt doesn't have a version flag, because it's part of standard Go distribution.
  * So `go` executable can be used to determine base path and version, and path to gofmt can be built from it.
  */
-public class GofmtFormatStep {
+public final class GofmtFormatStep {
 	public static String name() {
 		return "gofmt";
 	}
