@@ -1,5 +1,5 @@
 /*
- * Copyright 2021-2024 DiffPlug
+ * Copyright 2021-2025 DiffPlug
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@
 package com.diffplug.spotless.glue.diktat;
 
 import java.io.File;
-import java.util.stream.Collectors;
 
 import com.diffplug.spotless.FormatterFunc;
 import com.diffplug.spotless.Lint;
@@ -46,7 +45,7 @@ public class DiktatFormatterFunc implements FormatterFunc.NeedsFile {
 		try {
 			return adapter.format(file, unix, isScript);
 		} catch (DiktatReporting.LintException e) {
-			throw Lint.shortcut(e.lints.stream().map(lint -> Lint.atLine(lint.line, lint.ruleId, lint.detail)).collect(Collectors.toList()));
+			throw Lint.shortcut(e.lints.stream().map(lint -> Lint.atLine(lint.line, lint.ruleId, lint.detail)).toList());
 		}
 	}
 }

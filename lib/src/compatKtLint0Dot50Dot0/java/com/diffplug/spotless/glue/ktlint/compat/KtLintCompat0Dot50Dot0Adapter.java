@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 DiffPlug
+ * Copyright 2023-2025 DiffPlug
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -99,7 +99,7 @@ public class KtLintCompat0Dot50Dot0Adapter implements KtLintCompatAdapter {
 			editorConfigOverride = EditorConfigOverride.Companion.getEMPTY_EDITOR_CONFIG_OVERRIDE();
 		} else {
 			editorConfigOverride = createEditorConfigOverride(allRuleProviders.stream().map(
-					RuleProvider::createNewRuleInstance).collect(Collectors.toList()),
+					RuleProvider::createNewRuleInstance).toList(),
 					editorConfigOverrideMap);
 		}
 		EditorConfigDefaults editorConfig;

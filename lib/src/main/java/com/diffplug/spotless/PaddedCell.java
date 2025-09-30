@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2024 DiffPlug
+ * Copyright 2016-2025 DiffPlug
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -152,10 +152,10 @@ public final class PaddedCell {
 	public String canonical() {
 		// @formatter:off
 		switch (type) {
-		case CONVERGE:	return steps.get(steps.size() - 1);
-		case CYCLE:		return Collections.min(steps, Comparator.comparing(String::length).thenComparing(Function.identity()));
-		case DIVERGE:	throw new IllegalArgumentException("No canonical form for a diverging result");
-		default:	throw new IllegalArgumentException("Unknown type: " + type);
+			case CONVERGE:	return steps.get(steps.size() - 1);
+			case CYCLE:		return Collections.min(steps, Comparator.comparing(String::length).thenComparing(Function.identity()));
+			case DIVERGE:	throw new IllegalArgumentException("No canonical form for a diverging result");
+			default:	throw new IllegalArgumentException("Unknown type: " + type);
 		}
 		// @formatter:on
 	}
@@ -164,10 +164,10 @@ public final class PaddedCell {
 	public String userMessage() {
 		// @formatter:off
 		switch (type) {
-		case CONVERGE:	return "converges after " + steps.size() + " steps";
-		case CYCLE:		return "cycles between " + steps.size() + " steps";
-		case DIVERGE:	return "diverges after " + steps.size() + " steps";
-		default:	throw new IllegalArgumentException("Unknown type: " + type);
+			case CONVERGE:	return "converges after " + steps.size() + " steps";
+			case CYCLE:		return "cycles between " + steps.size() + " steps";
+			case DIVERGE:	return "diverges after " + steps.size() + " steps";
+			default:	throw new IllegalArgumentException("Unknown type: " + type);
 		}
 		// @formatter:on
 	}

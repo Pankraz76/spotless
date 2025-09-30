@@ -63,14 +63,14 @@ public final class KtfmtFormatterFunc implements FormatterFunc {
 
 		if (ktfmtFormattingOptions != null) {
 			formattingOptions = formattingOptions.copy(
-				ktfmtFormattingOptions.getMaxWidth().orElse(formattingOptions.getMaxWidth()),
-				ktfmtFormattingOptions.getBlockIndent().orElse(formattingOptions.getBlockIndent()),
-				ktfmtFormattingOptions.getContinuationIndent().orElse(formattingOptions.getContinuationIndent()),
-				ktfmtFormattingOptions.getTrailingCommaManagementStrategy()
-					.map(KtfmtTrailingCommaManagementStrategy::toFormatterTrailingCommaManagementStrategy)
-					.orElse(formattingOptions.getTrailingCommaManagementStrategy()),
-				ktfmtFormattingOptions.getRemoveUnusedImports().orElse(formattingOptions.getRemoveUnusedImports()),
-				formattingOptions.getDebuggingPrintOpsAfterFormatting());
+					ktfmtFormattingOptions.getMaxWidth().orElse(formattingOptions.getMaxWidth()),
+					ktfmtFormattingOptions.getBlockIndent().orElse(formattingOptions.getBlockIndent()),
+					ktfmtFormattingOptions.getContinuationIndent().orElse(formattingOptions.getContinuationIndent()),
+					ktfmtFormattingOptions.getTrailingCommaManagementStrategy()
+							.map(KtfmtTrailingCommaManagementStrategy::toFormatterTrailingCommaManagementStrategy)
+							.orElse(formattingOptions.getTrailingCommaManagementStrategy()),
+					ktfmtFormattingOptions.getRemoveUnusedImports().orElse(formattingOptions.getRemoveUnusedImports()),
+					formattingOptions.getDebuggingPrintOpsAfterFormatting());
 		}
 
 		return formattingOptions;

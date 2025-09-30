@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Test;
@@ -92,16 +91,16 @@ public class RdfFormatterTest extends ResourceHarness {
 		List<Path> inputs = listTestResources(beforeDir)
 				.stream()
 				.map(s -> Path.of(beforeDir, s))
-				.collect(Collectors.toList());
+				.toList();
 		List<Path> outputs = listTestResources(afterDir)
 				.stream()
 				.map(s -> Path.of(afterDir, s))
-				.collect(Collectors.toList());
+				.toList();
 		List<Path> missingOutputs = inputs
 				.stream()
 				.filter(in -> outputs
 						.stream().noneMatch(out -> out.getFileName().equals(in.getFileName())))
-				.collect(Collectors.toList());
+				.toList();
 		if (!missingOutputs.isEmpty()) {
 			throw new IllegalStateException("'after' directory %s is missing files corresponding to these 'before' files: %s".formatted(beforeDir, missingOutputs));
 		}
@@ -109,7 +108,7 @@ public class RdfFormatterTest extends ResourceHarness {
 				.stream()
 				.filter(o -> inputs
 						.stream().noneMatch(in -> in.getFileName().equals(o.getFileName())))
-				.collect(Collectors.toList());
+				.toList();
 		if (!missingInputs.isEmpty()) {
 			throw new IllegalStateException("'before' directory %s is missing files corresponding to these 'after' files: %s".formatted(afterDir, missingInputs));
 		}
@@ -119,7 +118,7 @@ public class RdfFormatterTest extends ResourceHarness {
 			if (output.isEmpty()) {
 				throw new IllegalStateException("'after' directory %s is missing file %s corresponding to 'before' file %s".formatted(afterDir, input.getFileName(), input));
 			}
-			arguments.add(Arguments.of(unixRelative(input), unixRelative(output.get())));
+			arguments.add(Arguments.of(unixRelative(input), unixRelative(output.orElseThrow())));
 		}
 		return arguments;
 	}

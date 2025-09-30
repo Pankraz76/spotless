@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 DiffPlug
+ * Copyright 2023-2025 DiffPlug
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,6 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -157,7 +156,7 @@ class ShadowCopyTest extends ResourceHarness {
 		}
 		return Arrays.stream(folder.listFiles())
 				.sorted(Comparator.comparing(File::getName).thenComparing(File::getAbsolutePath))
-				.collect(Collectors.toList());
+				.toList();
 	}
 
 	private void assertFileIsEqualButNotSameAbsolutePath(File expected, File actual) {

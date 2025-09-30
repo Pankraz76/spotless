@@ -100,8 +100,8 @@ class ReflectionHelper {
 		this.TurtleFormatFormattingStyleClass = classLoader.loadClass("de.atextor.turtle.formatter.FormattingStyle");
 		Class<?>[] innerClasses = TurtleFormatFormattingStyleClass.getDeclaredClasses();
 		this.TurtleFormatFormattingStyleBuilderClass = Arrays.stream(innerClasses)
-				.filter(c -> "FormattingStyleBuilder".equals(c.getSimpleName())).findFirst().get();
-		this.TurtleFormatKnownPrefix = Arrays.stream(innerClasses).filter(c -> "KnownPrefix".equals(c.getSimpleName())).findFirst().get();
+				.filter(c -> "FormattingStyleBuilder".equals(c.getSimpleName())).findFirst().orElseThrow();
+		this.TurtleFormatKnownPrefix = Arrays.stream(innerClasses).filter(c -> "KnownPrefix".equals(c.getSimpleName())).findFirst().orElseThrow();
 		this.getSubject = JenaStatementClass.getMethod("getSubject");
 		this.getPredicate = JenaStatementClass.getMethod("getPredicate");
 		this.getObject = JenaStatementClass.getMethod("getObject");
@@ -350,7 +350,7 @@ class ReflectionHelper {
 			} catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException ex) {
 				throw new RuntimeException(ex);
 			}
-		}).collect(Collectors.toList());
+		}).toList();
 	}
 
 	private Object makeSetOf(Type type, String parameterValueAsString) {

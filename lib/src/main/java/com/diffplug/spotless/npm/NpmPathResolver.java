@@ -15,12 +15,13 @@
  */
 package com.diffplug.spotless.npm;
 
+import static java.util.Objects.requireNonNullElseGet;
+
 import java.io.File;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class NpmPathResolver implements Serializable {
 	@Serial
@@ -85,9 +86,8 @@ public class NpmPathResolver implements Serializable {
 	}
 
 	public String resolveNpmrcContent() {
-		File npmrcFile = Optional.ofNullable(this.explicitNpmrcFile)
-				.orElseGet(() -> new NpmrcResolver(additionalNpmrcLocations).tryFind()
-						.orElse(null));
+		File npmrcFile = requireNonNullElseGet(this.explicitNpmrcFile, () -> new NpmrcResolver(additionalNpmrcLocations).tryFind()
+				.orElse(null));
 		if (npmrcFile != null) {
 			return NpmResourceHelper.readUtf8StringFromFile(npmrcFile);
 		}

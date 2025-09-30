@@ -22,7 +22,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Objects;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.Nullable;
@@ -123,7 +122,7 @@ public final class ShfmtStep {
 
 			// This will ensure that the next file name is retrieved on every format
 			final List<String> finalArgs = Stream.concat(args.stream(), Stream.of(file.getAbsolutePath()))
-					.collect(Collectors.toList());
+					.toList();
 
 			return runner.exec(input.getBytes(StandardCharsets.UTF_8), finalArgs).assertExitZero(StandardCharsets.UTF_8);
 		}

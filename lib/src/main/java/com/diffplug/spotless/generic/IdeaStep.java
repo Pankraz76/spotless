@@ -31,7 +31,6 @@ import java.util.Properties;
 import java.util.TreeMap;
 import java.util.UUID;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.CheckForNull;
@@ -280,7 +279,7 @@ public final class IdeaStep {
 			}
 			builder.add("-charset").add("UTF-8");
 			builder.add(ThrowingEx.get(file::getCanonicalPath));
-			return builder.build().collect(Collectors.toList());
+			return builder.build().toList();
 		}
 
 		private FormatterFunc.Closeable toFunc() {

@@ -25,7 +25,6 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
-import java.util.stream.Collectors;
 
 import org.assertj.core.api.AbstractAssert;
 import org.assertj.core.api.Assertions;
@@ -50,15 +49,15 @@ class FormatterPropertiesTest extends ResourceHarness {
 	};
 
 	private List<String> validPropertiesResources() {
-		return List.of(VALID_SETTINGS_RESOURCES).stream().filter(it -> !it.endsWith(".xml")).collect(Collectors.toList());
+		return List.of(VALID_SETTINGS_RESOURCES).stream().filter(it -> !it.endsWith(".xml")).toList();
 	}
 
 	private List<String> validXmlResources() {
-		return List.of(VALID_SETTINGS_RESOURCES).stream().filter(it -> it.endsWith(".xml")).collect(Collectors.toList());
+		return List.of(VALID_SETTINGS_RESOURCES).stream().filter(it -> it.endsWith(".xml")).toList();
 	}
 
 	private List<String> invalidXmlResources() {
-		return List.of(INVALID_SETTINGS_RESOURCES).stream().filter(it -> it.endsWith(".xml")).collect(Collectors.toList());
+		return List.of(INVALID_SETTINGS_RESOURCES).stream().filter(it -> it.endsWith(".xml")).toList();
 	}
 
 	private static final String[] VALID_VALUES = {
@@ -208,13 +207,13 @@ class FormatterPropertiesTest extends ResourceHarness {
 			Properties settingsProps = actual.getProperties();
 			for (String expectedValue : VALID_VALUES) {
 				// A parsable (valid) file contains keys of the following format
-				String validValueName = null == expectedValue ? "null" : expectedValue;
+				String validValueName = expectedValue == null ? "null" : expectedValue;
 				String key = "%s.%s".formatted(fileName, validValueName);
 				if (!settingsProps.containsKey(key)) {
 					failWithMessage("Key <%s> not part of formatter settings.", key);
 				}
 				String value = settingsProps.getProperty(key);
-				if ((null != expectedValue) && (!expectedValue.equals(value))) {
+				if ((expectedValue != null) && (!expectedValue.equals(value))) {
 					failWithMessage("Value of key <%s> is '%s' and not '%s' as expected.", key, value, expectedValue);
 				}
 			}
