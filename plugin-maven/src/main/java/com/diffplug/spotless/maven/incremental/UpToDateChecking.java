@@ -18,9 +18,9 @@ package com.diffplug.spotless.maven.incremental;
 import java.io.File;
 import java.nio.file.Path;
 
-import org.apache.maven.plugins.annotations.Parameter;
+import javax.annotation.Nullable;
 
-import jakarta.annotation.Nullable;
+import org.apache.maven.plugins.annotations.Parameter;
 
 public class UpToDateChecking {
 
@@ -34,7 +34,7 @@ public class UpToDateChecking {
 		return enabled;
 	}
 
-	@Nullable public Path getIndexFile() {
+	public @Nullable Path getIndexFile() {
 		return indexFile == null ? null : new File(indexFile).toPath();
 	}
 

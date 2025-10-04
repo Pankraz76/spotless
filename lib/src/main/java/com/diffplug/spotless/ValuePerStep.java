@@ -61,7 +61,7 @@ class ValuePerStep<T> extends AbstractList<T> {
 	}
 
 	@Override
-	public T get(int index) {
+	public @Nullable T get(int index) {
 		if (multipleValues != null) {
 			return (T) multipleValues[index];
 		} else if (valueIdx == index) {

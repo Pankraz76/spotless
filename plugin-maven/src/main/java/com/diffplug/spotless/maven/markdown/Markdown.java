@@ -1,5 +1,5 @@
 /*
- * Copyright 2021-2023 DiffPlug
+ * Copyright 2021-2025 DiffPlug
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,8 @@ package com.diffplug.spotless.maven.markdown;
 
 import java.util.Collections;
 import java.util.Set;
+
+import javax.annotation.Nullable;
 
 import org.apache.maven.project.MavenProject;
 
@@ -36,7 +38,7 @@ public class Markdown extends FormatterFactory {
 	}
 
 	@Override
-	public String licenseHeaderDelimiter() {
+	public @Nullable String licenseHeaderDelimiter() {
 		return null;
 	}
 

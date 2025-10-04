@@ -2,9 +2,13 @@ apply plugin: 'org.openrewrite.rewrite'
 
 rewrite {
 	activeRecipe('com.diffplug.spotless.openrewrite.SanityCheck')
+	activeStyle('com.diffplug.spotless.openrewrite.SpotlessFormat')
 	exclusions.addAll(
 			'**.dirty.java',
+			'**DiffMessageFormatterTest.java',
+			'**EclipseJdtSortMembers.java',
 			'**FormatterProperties.java',
+			'**PaddedCellTaskTest.java',
 			'**_gradle_node_plugin_example_**',
 			'**gradle/changelog.gradle',
 			'**gradle/java-publish.gradle',

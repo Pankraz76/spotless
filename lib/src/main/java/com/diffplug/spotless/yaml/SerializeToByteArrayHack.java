@@ -46,8 +46,8 @@ public class SerializeToByteArrayHack implements FormatterStep {
 		return "hack to force serializing objects to byte array";
 	}
 
-	@Nullable @Override
-	public String format(String rawUnix, File file) throws Exception {
+	@Override
+	public @Nullable String format(String rawUnix, File file) throws Exception {
 		return null;
 	}
 
