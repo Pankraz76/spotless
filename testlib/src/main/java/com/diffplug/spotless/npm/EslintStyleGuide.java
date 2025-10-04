@@ -20,6 +20,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * A helper class to create dev dependencies for eslint when using one of the popular styleguides in testing.
@@ -92,7 +93,7 @@ public enum EslintStyleGuide {
 
 	public abstract @Nonnull Map<String, String> devDependencies();
 
-	public static EslintStyleGuide fromNameOrNull(String popularStyleGuideName) {
+	public static @Nullable EslintStyleGuide fromNameOrNull(String popularStyleGuideName) {
 		for (EslintStyleGuide popularStyleGuide : EslintStyleGuide.values()) {
 			if (popularStyleGuide.popularStyleGuideName.equals(popularStyleGuideName)) {
 				return popularStyleGuide;

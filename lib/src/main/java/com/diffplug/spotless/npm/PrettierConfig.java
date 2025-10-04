@@ -39,7 +39,7 @@ public class PrettierConfig implements Serializable {
 		this.options = options == null ? new TreeMap<>() : new TreeMap<>(options);
 	}
 
-	@Nullable public File getPrettierConfigPath() {
+	public @Nullable File getPrettierConfigPath() {
 		return prettierConfigPathSignature == null ? null : prettierConfigPathSignature.get().getOnlyFile();
 	}
 

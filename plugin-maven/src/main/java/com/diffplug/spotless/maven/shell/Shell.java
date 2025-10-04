@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 DiffPlug
+ * Copyright 2024-2025 DiffPlug
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,8 @@
 package com.diffplug.spotless.maven.shell;
 
 import java.util.Set;
+
+import javax.annotation.Nullable;
 
 import org.apache.maven.project.MavenProject;
 
@@ -37,7 +39,7 @@ public class Shell extends FormatterFactory {
 	}
 
 	@Override
-	public String licenseHeaderDelimiter() {
+	public @Nullable String licenseHeaderDelimiter() {
 		return null;
 	}
 

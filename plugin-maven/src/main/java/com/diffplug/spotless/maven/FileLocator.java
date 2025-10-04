@@ -27,6 +27,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.Objects;
 
+import javax.annotation.Nullable;
+
 import org.codehaus.plexus.resource.ResourceManager;
 import org.codehaus.plexus.resource.loader.FileResourceCreationException;
 import org.codehaus.plexus.resource.loader.ResourceNotFoundException;
@@ -52,7 +54,7 @@ public class FileLocator {
 	 * If the given path is a local file returns it as such unchanged, otherwise
 	 * extracts the given resource to a randomly-named file in the build folder.
 	 */
-	public File locateFile(String path) {
+	public @Nullable File locateFile(String path) {
 		if (isNullOrEmpty(path)) {
 			return null;
 		}

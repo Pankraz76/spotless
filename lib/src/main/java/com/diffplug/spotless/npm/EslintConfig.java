@@ -40,7 +40,7 @@ public class EslintConfig implements Serializable {
 		return new EslintConfig(eslintConfigPath, this.eslintConfigJs);
 	}
 
-	@Nullable public File getEslintConfigPath() {
+	public @Nullable File getEslintConfigPath() {
 		return eslintConfigPathSignature == null ? null : eslintConfigPathSignature.get().getOnlyFile();
 	}
 

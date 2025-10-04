@@ -39,7 +39,7 @@ public class EslintTypescriptConfig extends EslintConfig {
 		return new EslintTypescriptConfig(eslintConfigPath, this.getEslintConfigJs(), getTypescriptConfigPath());
 	}
 
-	@Nullable public File getTypescriptConfigPath() {
+	public @Nullable File getTypescriptConfigPath() {
 		return typescriptConfigPathSignature == null ? null : this.typescriptConfigPathSignature.get().getOnlyFile();
 	}
 }

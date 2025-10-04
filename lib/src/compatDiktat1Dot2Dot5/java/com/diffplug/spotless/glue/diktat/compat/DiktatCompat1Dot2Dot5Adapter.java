@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 DiffPlug
+ * Copyright 2023-2025 DiffPlug
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -53,7 +53,7 @@ public class DiktatCompat1Dot2Dot5Adapter implements DiktatCompatAdapter {
 		}
 
 		@Override
-		public Unit invoke(LintError lintError, Boolean corrected) {
+		public @Nullable Unit invoke(LintError lintError, Boolean corrected) {
 			if (!corrected) {
 				errors.add(lintError);
 			}
