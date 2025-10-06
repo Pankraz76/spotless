@@ -40,8 +40,8 @@ public class SpotlessDiagnoseTask extends DefaultTask {
 		return source;
 	}
 
-	@TaskAction
 	@SuppressFBWarnings("NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE")
+	@TaskAction
 	public void performAction() throws IOException {
 		Path srcRoot = getProject().getProjectDir().toPath();
 		Path diagnoseRoot = getProject().getLayout().getBuildDirectory().getAsFile().get()
@@ -49,7 +49,7 @@ public class SpotlessDiagnoseTask extends DefaultTask {
 		getProject().delete(diagnoseRoot.toFile());
 		try (Formatter formatter = source.buildFormatter()) {
 			for (File file : source.target) {
-				getLogger().debug("Running padded cell check on " + file);
+				getLogger().debug("Running padded cell check on {}", file);
 				PaddedCell padded = PaddedCell.check(formatter, file);
 				if (!padded.misbehaved()) {
 					getLogger().debug("    well-behaved.");

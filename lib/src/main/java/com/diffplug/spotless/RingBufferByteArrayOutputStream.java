@@ -15,6 +15,8 @@
  */
 package com.diffplug.spotless;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -115,13 +117,13 @@ class RingBufferByteArrayOutputStream extends ByteArrayOutputStream {
 		return result;
 	}
 
-	@SuppressFBWarnings(value = "DM_DEFAULT_ENCODING", justification = "We want to use the default encoding here since this is contract on ByteArrayOutputStream")
 	@Override
+	@SuppressFBWarnings(value = "DM_DEFAULT_ENCODING", justification = "We want to use the default encoding here since this is contract on ByteArrayOutputStream")
 	public synchronized String toString() {
 		if (!isOverLimit) {
-			return super.toString();
+			return super.toString(UTF_8);
 		}
-		return new String(buf, zeroIndexPointer, limit - zeroIndexPointer) + new String(buf, 0, zeroIndexPointer);
+		return new String(buf, zeroIndexPointer, limit - zeroIndexPointer, UTF_8) + new String(buf, 0, zeroIndexPointer, UTF_8);
 	}
 
 	@Override

@@ -1,5 +1,5 @@
 /*
- * Copyright 2021-2024 DiffPlug
+ * Copyright 2021-2025 DiffPlug
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ import java.lang.annotation.Target;
 
 import org.junit.jupiter.api.Tag;
 
-@Target({TYPE, METHOD})
 @Retention(RUNTIME)
 @Tag("npm")
+@Target({METHOD, TYPE})
 public @interface NpmTest {}

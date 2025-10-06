@@ -33,8 +33,7 @@ final class FilterByContentPatternFormatterStep extends DelegateFormatterStep {
 		this.contentPattern = Pattern.compile(Objects.requireNonNull(contentPattern));
 	}
 
-	@Override
-	public @Nullable String format(String raw, File file) throws Exception {
+	@Nullable public @Override String format(String raw, File file) throws Exception {
 		Objects.requireNonNull(raw, "raw");
 		Objects.requireNonNull(file, "file");
 		if (contentPattern.matcher(raw).find() == (onMatch == OnMatch.INCLUDE)) {
