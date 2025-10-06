@@ -45,8 +45,8 @@ final class ListableAdapter<T> implements Iterable<T> {
 		return new ListableAdapter<>(delegate);
 	}
 
-	@Override
 	@Nonnull
+	@Override
 	public Iterator<T> iterator() {
 		return delegate.iterator();
 	}

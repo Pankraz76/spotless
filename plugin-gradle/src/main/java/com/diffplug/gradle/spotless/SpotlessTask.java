@@ -137,9 +137,9 @@ public abstract class SpotlessTask extends DefaultTask {
 
 	protected FileCollection target;
 
-	@PathSensitive(PathSensitivity.RELATIVE)
 	@Incremental
 	@InputFiles
+	@PathSensitive(PathSensitivity.RELATIVE)
 	public FileCollection getTarget() {
 		return target;
 	}

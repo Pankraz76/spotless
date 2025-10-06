@@ -24,7 +24,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import javax.annotation.Nullable;
-import javax.inject.Inject;
 
 import org.gradle.api.GradleException;
 import org.gradle.api.file.DirectoryProperty;
@@ -73,7 +72,6 @@ public abstract class SpotlessTaskImpl extends SpotlessTask {
 		return taskServiceProvider;
 	}
 
-	@Inject
 	protected abstract FileSystemOperations getFs();
 
 	@TaskAction
@@ -152,7 +150,7 @@ public abstract class SpotlessTaskImpl extends SpotlessTask {
 			// Need to copy the original file to the tmp location just to remember the file attributes
 			Files.copy(input.toPath(), cleanFile.toPath(), StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.COPY_ATTRIBUTES);
 
-			getLogger().info("Writing clean file: %s".formatted(cleanFile));
+			getLogger().info("Writing clean file: {}", cleanFile);
 			lintState.getDirtyState().writeCanonicalTo(cleanFile);
 		}
 		if (!lintState.isHasLints()) {

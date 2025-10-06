@@ -202,8 +202,8 @@ public final class GitWorkarounds {
 			return new IOException("Empty 'commondir' file: " + commonDir.getAbsolutePath());
 		}
 
-		@SuppressFBWarnings("BC_UNCONFIRMED_CAST_OF_RETURN_VALUE")
 		@Override
+		@SuppressFBWarnings("BC_UNCONFIRMED_CAST_OF_RETURN_VALUE")
 		public FileRepositoryBuilder readEnvironment(SystemReader sr) {
 			super.readEnvironment(sr);
 

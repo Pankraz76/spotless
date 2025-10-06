@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 DiffPlug
+ * Copyright 2016-2025 DiffPlug
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,8 +20,6 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.inject.Inject;
 
 import org.gradle.api.DefaultTask;
 import org.gradle.api.provider.Provider;
@@ -99,6 +97,5 @@ public abstract class RegisterDependenciesTask extends DefaultTask {
 		return taskService;
 	}
 
-	@Inject
 	protected abstract BuildEventsListenerRegistry getBuildEventsListenerRegistry();
 }

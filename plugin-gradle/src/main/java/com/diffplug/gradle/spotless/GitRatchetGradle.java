@@ -121,8 +121,7 @@ public class GitRatchetGradle extends GitRatchet<File> {
 		return project;
 	}
 
-	@Override
-	protected @Nullable File getParent(File project) {
+	@Nullable protected @Override File getParent(File project) {
 		return project.getParentFile();
 	}
 

@@ -1,0 +1,287 @@
+import static java.lang.System.getenv
+
+// apply from: rootProject.file('gradle/spotless.gradle')
+apply plugin: 'net.ltgt.errorprone'
+apply plugin: 'org.openrewrite.rewrite'
+
+rewrite {
+	activeRecipe('com.diffplug.spotless.openrewrite.SanityCheck')
+	activeStyle('com.diffplug.spotless.openrewrite.SpotlessFormat')
+	exclusions.addAll(
+			'**.dirty.java',
+			'**FormatterProperties.java',
+			'**_gradle_node_plugin_example_**',
+			'**gradle/changelog.gradle',
+			'**gradle/java-publish.gradle',
+			'**idea/full.clean.java',
+			'**java-setup.gradle',
+			'**lib-extra/build.gradle',
+			'**lib/build.gradle',
+			'**package-info.java',
+			'**plugin-maven/build.gradle',
+			'**settings.gradle',
+			'**special-tests.gradle',
+			'**testlib/src/main/resources**'
+			)
+	exportDatatables = true
+	failOnDryRunResults = true
+}
+
+tasks.withType(JavaCompile).configureEach {
+	options.errorprone {
+		disableWarningsInGeneratedCode = true
+		disable(
+				// avoid
+				'StaticImport',
+				// bug
+				'AddNullMarkedToPackageInfo',
+				'Slf4jLogStatement',
+				'Slf4jLogStatement',
+				)
+		// dev opt-in
+		if (!getenv().containsKey('CI') && getenv('IN_PLACE')?.toBoolean()) {
+			// apply
+			errorproneArgs.addAll(
+					'-XepPatchLocation:IN_PLACE',
+					'-XepPatchChecks:' +
+					'AddNullMarkedToPackageInfo,' +
+					'AlwaysThrows,' +
+					'AmbiguousJsonCreator,' +
+					'AndroidInjectionBeforeSuper,' +
+					'ArrayEquals,' +
+					'ArrayFillIncompatibleType,' +
+					'ArrayHashCode,' +
+					'ArrayToString,' +
+					'ArraysAsListPrimitiveArray,' +
+					'AssertJNullnessAssertion,' +
+					'AsyncCallableReturnsNull,' +
+					'AsyncFunctionReturnsNull,' +
+					'AutoValueBuilderDefaultsInConstructor,' +
+					'AutoValueConstructorOrderChecker,' +
+					'AutowiredConstructor,' +
+					'BadAnnotationImplementation,' +
+					'BadShiftAmount,' +
+					'BanJNDI,' +
+					'BoxedPrimitiveEquality,' +
+					'BundleDeserializationCast,' +
+					'CanonicalAnnotationSyntax,' +
+					'CanonicalClassNameUsage,' +
+					'ChainingConstructorIgnoresParameter,' +
+					'CheckNotNullMultipleTimes,' +
+					'CheckReturnValue,' +
+					'ClassCastLambdaUsage,' +
+					'CollectionIncompatibleType,' +
+					'CollectionToArraySafeParameter,' +
+					'CollectorMutability,' +
+					'ComparableType,' +
+					'ComparingThisWithNull,' +
+					'ComparisonOutOfRange,' +
+					'CompatibleWithAnnotationMisuse,' +
+					'CompileTimeConstant,' +
+					'ComputeIfAbsentAmbiguousReference,' +
+					'ConditionalExpressionNumericPromotion,' +
+					'ConstantNaming,' +
+					'ConstantOverflow,' +
+					'DaggerProvidesNull,' +
+					'DangerousLiteralNull,' +
+					'DeadException,' +
+					'DeadThread,' +
+					'DefaultCharset,' +
+					'DereferenceWithNullBranch,' +
+					'DirectReturn,' +
+					'DiscardedPostfixExpression,' +
+					'DoNotCall,' +
+					'DoNotMock,' +
+					'DoubleBraceInitialization,' +
+					'DuplicateMapKeys,' +
+					'DurationFrom,' +
+					'DurationGetTemporalUnit,' +
+					'DurationTemporalUnit,' +
+					'DurationToLongTimeUnit,' +
+					'EagerStringFormatting,' +
+					'EmptyMethod,' +
+					'EmptyMonoZip,' +
+					'EqualsHashCode,' +
+					'EqualsNaN,' +
+					'EqualsNull,' +
+					'EqualsReference,' +
+					'EqualsWrongThing,' +
+					'ExplicitArgumentEnumeration,' +
+					'ExplicitEnumOrdering,' +
+					'FloggerFormatString,' +
+					'FloggerLogString,' +
+					'FloggerLogVarargs,' +
+					'FloggerSplitLogStatement,' +
+					'FluxFlatMapUsage,' +
+					'FluxImplicitBlock,' +
+					'ForOverride,' +
+					'FormatString,' +
+					'FormatStringAnnotation,' +
+					'FormatStringConcatenation,' +
+					'FromTemporalAccessor,' +
+					'FunctionalInterfaceMethodChanged,' +
+					'FunctionalInterfaceMethodChanged,' +
+					'FuturesGetCheckedIllegalExceptionType,' +
+					'FuzzyEqualsShouldNotBeUsedInEqualsMethod,' +
+					'GetClassOnAnnotation,' +
+					'GetClassOnClass,' +
+					'GuardedBy,' +
+					'GuiceAssistedInjectScoping,' +
+					'GuiceAssistedParameters,' +
+					'GuiceInjectOnFinalField,' +
+					'HashtableContains,' +
+					'IdentityBinaryExpression,' +
+					'IdentityConversion,' +
+					'IdentityHashMapBoxing,' +
+					'Immutable,' +
+					'ImmutableEnumChecker,' +
+					'ImmutablesSortedSetComparator,' +
+					'ImpossibleNullComparison,' +
+					'Incomparable,' +
+					'IncompatibleArgumentType,' +
+					'IncompatibleModifiers,' +
+					'IndexOfChar,' +
+					'InexactVarargsConditional,' +
+					'InfiniteRecursion,' +
+					'InjectMoreThanOneScopeAnnotationOnClass,' +
+					'InjectOnMemberAndConstructor,' +
+					'InlineMeValidator,' +
+					'InstantTemporalUnit,' +
+					'InvalidJavaTimeConstant,' +
+					'InvalidPatternSyntax,' +
+					'InvalidTimeZoneID,' +
+					'InvalidZoneId,' +
+					'IsInstanceIncompatibleType,' +
+					'IsInstanceLambdaUsage,' +
+					'IsInstanceOfClass,' +
+					'IsLoggableTagLength,' +
+					'JUnit3TestNotRun,' +
+					'JUnit4ClassAnnotationNonStatic,' +
+					'JUnit4SetUpNotRun,' +
+					'JUnit4TearDownNotRun,' +
+					'JUnit4TestNotRun,' +
+					'JUnit4TestsNotRunWithinEnclosed,' +
+					'JUnitAssertSameCheck,' +
+					'JUnitClassModifiers,' +
+					'JUnitMethodDeclaration,' +
+					'JUnitNullaryParameterizedTestDeclaration,' +
+					'JUnitParameterMethodNotFound,' +
+					'JUnitValueSource,' +
+					'JavaxInjectOnAbstractMethod,' +
+					'JodaToSelf,' +
+					'LenientFormatStringValidation,' +
+					'LexicographicalAnnotationAttributeListing,' +
+					'LexicographicalAnnotationListing,' +
+					'LiteByteStringUtf8,' +
+					'LocalDateTemporalAmount,' +
+					'LockOnBoxedPrimitive,' +
+					'LoopConditionChecker,' +
+					'LossyPrimitiveCompare,' +
+					'MathRoundIntLong,' +
+					'MislabeledAndroidString,' +
+					'MisleadingEmptyVarargs,' +
+					'MisleadingEscapedSpace,' +
+					'MisplacedScopeAnnotations,' +
+					'MissingOverride,' +
+					'MissingSuperCall,' +
+					'MissingTestCall,' +
+					'MisusedDayOfYear,' +
+					'MisusedWeekYear,' +
+					'MixedDescriptors,' +
+					'MockitoMockClassReference,' +
+					'MockitoStubbing,' +
+					'MockitoUsage,' +
+					'ModifyingCollectionWithItself,' +
+					'MongoDBTextFilterUsage,' +
+					'MoreThanOneInjectableConstructor,' +
+					'MustBeClosedChecker,' +
+					'NCopiesOfChar,' +
+					'NestedOptionals,' +
+					'NestedPublishers,' +
+					'NoCanIgnoreReturnValueOnClasses,' +
+					'NonCanonicalStaticImport,' +
+					'NonEmptyMono,' +
+					'NonFinalCompileTimeConstant,' +
+					'NonRuntimeAnnotation,' +
+					'NonStaticImport,' +
+					'NullArgumentForNonNullParameter,' +
+					'NullTernary,' +
+					'NullableOnContainingClass,' +
+					'OptionalEquality,' +
+					'OptionalMapUnusedValue,' +
+					'OptionalOfRedundantMethod,' +
+					'OptionalOrElseGet,' +
+					'OverlappingQualifierAndScopeAnnotation,' +
+					'OverridesJavaxInjectableMethod,' +
+					'PackageInfo,' +
+					'ParametersButNotParameterized,' +
+					'ParcelableCreator,' +
+					'PeriodFrom,' +
+					'PeriodGetTemporalUnit,' +
+					'PeriodTimeMath,' +
+					'PreconditionsInvalidPlaceholder,' +
+					'PrimitiveComparison,' +
+					'PrivateSecurityContractProtoAccess,' +
+					'ProtoBuilderReturnValueIgnored,' +
+					'ProtoStringFieldReferenceEquality,' +
+					'ProtoTruthMixedDescriptors,' +
+					'ProtocolBufferOrdinal,' +
+					'ProvidesMethodOutsideOfModule,' +
+					'RandomCast,' +
+					'RandomModInteger,' +
+					'RectIntersectReturnValueIgnored,' +
+					'RedundantSetterCall,' +
+					'RedundantStringConversion,' +
+					'RedundantStringEscape,' +
+					'RefasterAnyOfUsage,' +
+					'RequestMappingAnnotation,' +
+					'RequestParamType,' +
+					'RequiredModifiers,' +
+					'RestrictedApi,' +
+					'ReturnValueIgnored,' +
+					'SelfAssertion,' +
+					'SelfAssignment,' +
+					'SelfComparison,' +
+					'SelfEquals,' +
+					'SetUnrecognized,' +
+					'ShouldHaveEvenArgs,' +
+					'SizeGreaterThanOrEqualsZero,' +
+					'Slf4jLogStatement,' +
+					'Slf4jLoggerDeclarationSlf4jLoggerDeclaration,' +
+					'SpringMvcAnnotation,' +
+					'StreamToString,' +
+					'StringBuilderInitWithChar,' +
+					'StringJoin,' +
+					'SubstringOfZero,' +
+					'SuppressWarningsDeprecated,' +
+					'TemporalAccessorGetChronoField,' +
+					'TestParametersNotInitialized,' +
+					'TheoryButNoTheories,' +
+					'ThreadBuilderNameWithPlaceholder,' +
+					'ThrowIfUncheckedKnownChecked,' +
+					'ThrowNull,' +
+					'TimeZoneUsage,' +
+					'TreeToString,' +
+					'TryFailThrowable,' +
+					'TypeParameterQualifier,' +
+					'UnicodeDirectionalityCharacters,' +
+					'UnicodeInCode,' +
+					'UnnecessaryCheckNotNull,' +
+					'UnnecessaryTypeArgument,' +
+					'UnsafeWildcard,' +
+					'UnusedAnonymousClass,' +
+					'UnusedCollectionModifiedInPlace,' +
+					'VarTypeName,' +
+					'WrongOneof,' +
+					'XorPower,' +
+					'ZoneIdOfZ,'
+					)
+		}
+	}
+}
+
+dependencies {
+	errorprone('com.google.errorprone:error_prone_core:2.42.0')
+	errorprone('tech.picnic.error-prone-support:error-prone-contrib:0.25.0')
+	errorprone('tech.picnic.error-prone-support:refaster-runner:0.25.0')
+}

@@ -63,13 +63,13 @@ public final class KtfmtFormatterFunc implements FormatterFunc {
 
 		if (ktfmtFormattingOptions != null) {
 			formattingOptions = formattingOptions.copy(
-				ktfmtFormattingOptions.getMaxWidth().orElse(formattingOptions.getMaxWidth()),
-				ktfmtFormattingOptions.getBlockIndent().orElse(formattingOptions.getBlockIndent()),
-				ktfmtFormattingOptions.getContinuationIndent().orElse(formattingOptions.getContinuationIndent()),
+				ktfmtFormattingOptions.getMaxWidth().orElseGet(formattingOptions::getMaxWidth),
+				ktfmtFormattingOptions.getBlockIndent().orElseGet(formattingOptions::getBlockIndent),
+				ktfmtFormattingOptions.getContinuationIndent().orElseGet(formattingOptions::getContinuationIndent),
 				ktfmtFormattingOptions.getTrailingCommaManagementStrategy()
 					.map(KtfmtTrailingCommaManagementStrategy::toFormatterTrailingCommaManagementStrategy)
-					.orElse(formattingOptions.getTrailingCommaManagementStrategy()),
-				ktfmtFormattingOptions.getRemoveUnusedImports().orElse(formattingOptions.getRemoveUnusedImports()),
+					.orElseGet(formattingOptions::getTrailingCommaManagementStrategy),
+				ktfmtFormattingOptions.getRemoveUnusedImports().orElseGet(formattingOptions::getRemoveUnusedImports),
 				formattingOptions.getDebuggingPrintOpsAfterFormatting());
 		}
 

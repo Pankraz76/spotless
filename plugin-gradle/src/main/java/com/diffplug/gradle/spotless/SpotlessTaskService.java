@@ -25,7 +25,6 @@ import java.util.TreeMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.annotation.Nullable;
-import javax.inject.Inject;
 
 import org.gradle.api.DefaultTask;
 import org.gradle.api.file.ConfigurableFileTree;
@@ -122,7 +121,6 @@ public abstract class SpotlessTaskService implements BuildService<BuildServicePa
 		@Internal
 		abstract DirectoryProperty getProjectDir();
 
-		@Inject
 		protected abstract ObjectFactory getConfigCacheWorkaround();
 
 		void init(SpotlessTaskImpl impl) {
@@ -178,7 +176,7 @@ public abstract class SpotlessTaskService implements BuildService<BuildServicePa
 				@Override
 				public void visitFile(FileVisitDetails fileVisitDetails) {
 					String path = fileVisitDetails.getPath();
-					getLogger().debug("Reading lints for " + path);
+					getLogger().debug("Reading lints for {}", path);
 					LinkedHashMap<String, List<Lint>> lints = SerializableMisc.fromFile(LinkedHashMap.class, fileVisitDetails.getFile());
 					allLints.put(path, lints);
 					lints.values().forEach(list -> total.addAndGet(list.size()));

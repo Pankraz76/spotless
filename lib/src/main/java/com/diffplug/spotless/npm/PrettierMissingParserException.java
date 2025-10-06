@@ -114,7 +114,7 @@ class PrettierMissingParserException extends RuntimeException implements Lint.Ha
 				.filter(entry -> file.getName().endsWith(entry.getKey()))
 				.findFirst()
 				.map(Map.Entry::getValue)
-				.orElse("prettier-plugin-" + extension(file));
+				.orElseGet(() -> "prettier-plugin-" + extension(file));
 	}
 
 	public String fileType() {

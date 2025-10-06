@@ -30,8 +30,7 @@ final class FilterByFileFormatterStep extends DelegateFormatterStep {
 		this.filter = Objects.requireNonNull(filter);
 	}
 
-	@Override
-	public @Nullable String format(String raw, File file) throws Exception {
+	@Nullable public @Override String format(String raw, File file) throws Exception {
 		Objects.requireNonNull(raw, "raw");
 		Objects.requireNonNull(file, "file");
 		if (filter.accept(file)) {

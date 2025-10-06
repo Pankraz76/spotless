@@ -15,6 +15,8 @@
  */
 package com.diffplug.spotless.generic;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -482,7 +484,7 @@ public final class LicenseHeaderStep {
 			while ((numRead = stream.read(buf)) != -1) {
 				output.write(buf, 0, numRead);
 			}
-			return new String(output.toByteArray());
+			return new String(output.toByteArray(), UTF_8);
 		}
 	}
 }
