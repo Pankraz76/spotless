@@ -43,8 +43,7 @@ class PrettierFormatStepTest extends MavenIntegrationHarness {
 		return path;
 	}
 
-	private ProcessRunner.Result runExpectingError(String kind, String suffix) throws IOException, InterruptedException {
-		String path = prepareRun(kind, suffix);
+	private ProcessRunner.Result runExpectingError() throws IOException, InterruptedException {
 		return mavenRunner().withArguments("spotless:apply").runHasError();
 	}
 
@@ -258,8 +257,7 @@ class PrettierFormatStepTest extends MavenIntegrationHarness {
 				"  <prettierVersion>1.16.4</prettierVersion>",
 				"  <configFile>.prettierrc.yml</configFile>",
 				"</prettier>");
-		ProcessRunner.Result result = runExpectingError("typescript", suffix);
-		assertThat(result.stdOutUtf8()).containsPattern("Running npm command.*npm install.* failed with exit code: 1");
+		assertThat(runExpectingError().stdOutUtf8()).containsPattern("Running npm command.*npm install.* failed with exit code: 1");
 	}
 
 	@Test
@@ -276,7 +274,6 @@ class PrettierFormatStepTest extends MavenIntegrationHarness {
 				"  <configFile>.prettierrc.yml</configFile>",
 				"  <npmrc>${basedir}/.custom_npmrc</npmrc>",
 				"</prettier>");
-		ProcessRunner.Result result = runExpectingError("typescript", suffix);
-		assertThat(result.stdOutUtf8()).containsPattern("Running npm command.*npm install.* failed with exit code: 1");
+		assertThat(runExpectingError().stdOutUtf8()).containsPattern("Running npm command.*npm install.* failed with exit code: 1");
 	}
 }

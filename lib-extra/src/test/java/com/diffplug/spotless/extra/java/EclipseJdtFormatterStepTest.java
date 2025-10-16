@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2024 DiffPlug
+ * Copyright 2016-2025 DiffPlug
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 package com.diffplug.spotless.extra.java;
-
-import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -41,10 +39,6 @@ class EclipseJdtFormatterStepTest extends EquoResourceHarness {
 		harnessFor(version).test("test.java",
 				"package p; class C{}",
 				"package p;\nclass C {\n}");
-	}
-
-	private static Stream<String> formatWithVersion() {
-		return Stream.of("4.9", EclipseJdtFormatterStep.defaultVersion());
 	}
 
 	/** New format interface requires source file information to distinguish module-info from compilation unit */

@@ -22,7 +22,6 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.util.Properties;
 import java.util.function.Consumer;
-import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -34,7 +33,7 @@ import com.diffplug.spotless.TestProvisioner;
 import com.diffplug.spotless.extra.eclipse.EclipseResourceHarness;
 
 public class EclipseWtpFormatterStepTest {
-	private static final Jvm.Support<String> JVM_SUPPORT = Jvm.<String> support("Oldest Version").add(8, "4.8.0");
+	
 
 	private static class NestedTests extends EclipseResourceHarness {
 		private final String unformatted;
@@ -50,10 +49,6 @@ public class EclipseWtpFormatterStepTest {
 		@MethodSource
 		void formatWithVersion(String version) throws Exception {
 			harnessFor(version).test("someFilename", unformatted, formatted);
-		}
-
-		private static Stream<String> formatWithVersion() {
-			return Stream.of(JVM_SUPPORT.getRecommendedFormatterVersion(), EclipseWtpFormatterStep.defaultVersion());
 		}
 
 		/**

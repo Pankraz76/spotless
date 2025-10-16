@@ -19,11 +19,63 @@ dependencies {
 tasks.withType(JavaCompile).configureEach {
 	options.errorprone {
 		disableAllChecks = true // consider removal to avoid error prone error´s, following convention over configuration.
-		error('RedundantStringConversion')
+		error(
+				'AmbiguousJsonCreator',
+				'AssertJNullnessAssertion',
+				'AutowiredConstructor',
+				'CollectorMutability',
+				'ConstantNaming',
+				'DirectReturn',
+				'EmptyMethod',
+				'ExplicitEnumOrdering',
+				'IdentityConversion',
+				'ImmutablesSortedSetComparator',
+				'MockitoStubbing',
+				'NestedOptionals',
+				'RedundantStringConversion',
+				'RedundantStringEscape',
+				'SelfAssignment',
+				'StringJoin',
+				'StringJoining',
+				'Unused',
+				'UnusedMethod',
+				'UnusedVariable',
+				// failing:
+				//'CanonicalAnnotationSyntax',
+				//'ExplicitArgumentEnumeration',
+				//'FormatStringConcatenation',
+				//'IsInstanceLambdaUsage',
+				//'LexicographicalAnnotation',
+				//'LexicographicalAnnotationListing',
+				//'MockitoMockClassReference',
+				//'PrimitiveComparison',
+				//'Slf4jLogStatement',
+				//'TimeZoneUsage',
+				)
 		if (!getenv().containsKey('CI') && getenv('IN_PLACE')?.toBoolean()) {
 			errorproneArgs.addAll(
 					'-XepPatchLocation:IN_PLACE',
-					'-XepPatchChecks:RedundantStringConversion'
+					'-XepPatchChecks:' +
+					'AmbiguousJsonCreator,' +
+					'AssertJNullnessAssertion,' +
+					'AutowiredConstructor,' +
+					'CollectorMutability,' +
+					'ConstantNaming,' +
+					'DirectReturn,' +
+					'EmptyMethod,' +
+					'ExplicitEnumOrdering,' +
+					'IdentityConversion,' +
+					'ImmutablesSortedSetComparator,' +
+					'MockitoStubbing,' +
+					'NestedOptionals,' +
+					'RedundantStringConversion,' +
+					'RedundantStringEscape,' +
+					'SelfAssignment,' +
+					'StringJoin,' +
+					'StringJoining,' +
+					'Unused,' +
+					'UnusedMethod,' +
+					'UnusedVariable,'
 					)
 		}
 	}

@@ -43,7 +43,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 class ReflectionHelper {
-	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+	private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 	private final RdfFormatterStep.State state;
 	private final ClassLoader classLoader;
 	private final Class<?> JenaRdfDataMgrClass;
@@ -202,10 +202,10 @@ class ReflectionHelper {
 			long col = (long) args[2];
 			String severity = method.getName();
 			if ("warning".equals(severity) && !state.getConfig().isFailOnWarning()) {
-				logger.warn("{}({},{}): {}", this.filePath, line, col, message);
+				LOGGER.warn("{}({},{}): {}", this.filePath, line, col, message);
 			} else {
 				if ("warning".equals(severity)) {
-					logger.error("Formatter fails because of a parser warning. To make the formatter succeed in"
+					LOGGER.error("Formatter fails because of a parser warning. To make the formatter succeed in"
 							+ "the presence of warnings, set the configuration parameter 'failOnWarning' to 'false' (default: 'true')");
 				}
 				throw new RuntimeException(
@@ -465,10 +465,6 @@ class ReflectionHelper {
 		return method;
 	}
 
-	public Object getRDFFormat(String rdfFormat) throws NoSuchFieldException, IllegalAccessException {
-		return JenaRDFFormatClass.getDeclaredField(rdfFormat).get(JenaRDFFormatClass);
-	}
-
 	public Object parseToModel(String rawUnix, File file, Object lang)
 			throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
 		Object model = getModel();
@@ -480,65 +476,11 @@ class ReflectionHelper {
 
 	public boolean areModelsIsomorphic(Object leftModel, Object rightModel)
 			throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-		Method isIsomorphicWith = JenaModelClass.getMethod("isIsomorphicWith", JenaModelClass);
-		return (boolean) isIsomorphicWith.invoke(leftModel, rightModel);
+		return (boolean) JenaModelClass.getMethod("isIsomorphicWith", JenaModelClass).invoke(leftModel, rightModel);
 	}
 
 	public long modelSize(Object model) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
-		Method size = JenaModelClass.getMethod("size");
-		return (long) size.invoke(model);
+		return (long) JenaModelClass.getMethod("size").invoke(model);
 	}
 
-	private static class SortedModelInvocationHandler implements InvocationHandler {
-		private final ReflectionHelper reflectionHelper;
-		private final Object jenaModel;
-
-		public SortedModelInvocationHandler(ReflectionHelper reflectionHelper, Object jenaModel) {
-			this.reflectionHelper = reflectionHelper;
-			this.jenaModel = jenaModel;
-		}
-
-		@Override
-		public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-			if ("listSubjects".equals(method.getName()) && method.getParameterCount() == 0) {
-				Object resIterator = method.invoke(jenaModel);
-				List<Object> resources = new ArrayList<>();
-				while (hasNext(resIterator)) {
-					resources.add(next(resIterator));
-				}
-				resources.sort(Comparator.comparing(x -> {
-					try {
-						return (String) x.getClass().getMethod("getURI").invoke(x);
-					} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-						throw new RuntimeException(e);
-					}
-				}).thenComparing(x -> {
-					Object anonId;
-					try {
-						anonId = x.getClass().getMethod("getAnonId").invoke(x);
-					} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-						throw new RuntimeException(e);
-					}
-					if (anonId != null) {
-						return anonId.toString();
-					}
-					return null;
-				}));
-				return reflectionHelper.classLoader.loadClass("org.apache.jena.rdf.model.impl.ResIteratorImpl")
-						.getConstructor(
-								Iterator.class, Object.class)
-						.newInstance(resources.iterator(), null);
-			}
-			return method.invoke(jenaModel);
-		}
-
-		boolean hasNext(Object it) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-			return (boolean) it.getClass().getMethod("hasNext").invoke(it);
-		}
-
-		Object next(Object it) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-			return it.getClass().getMethod("next").invoke(it);
-		}
-
-	}
 }
