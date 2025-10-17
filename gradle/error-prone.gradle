@@ -68,8 +68,8 @@ tasks.withType(JavaCompile).configureEach {
 					'IdentityConversion,' +
 					'ImmutablesSortedSetComparator,' +
 					'IsInstanceLambdaUsage,' +
-					'LexicographicalAnnotationListing,' +
 					'LexicographicalAnnotationAttributeListing,' +
+					'LexicographicalAnnotationListing,' +
 					'MockitoMockClassReference,' +
 					'MockitoStubbing,' +
 					'NestedOptionals,' +
