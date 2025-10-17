@@ -178,7 +178,7 @@ public abstract class SpotlessTaskService implements BuildService<BuildServicePa
 				@Override
 				public void visitFile(FileVisitDetails fileVisitDetails) {
 					String path = fileVisitDetails.getPath();
-					getLogger().debug("Reading lints for " + path);
+					getLogger().debug("Reading lints for {}", path);
 					LinkedHashMap<String, List<Lint>> lints = SerializableMisc.fromFile(LinkedHashMap.class, fileVisitDetails.getFile());
 					allLints.put(path, lints);
 					lints.values().forEach(list -> total.addAndGet(list.size()));

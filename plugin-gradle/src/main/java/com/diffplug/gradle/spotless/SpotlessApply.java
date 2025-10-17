@@ -48,7 +48,7 @@ public abstract class SpotlessApply extends SpotlessTaskService.ClientTask {
 					String path = fileVisitDetails.getPath();
 					File originalSource = new File(getProjectDir().get().getAsFile(), path);
 					try {
-						getLogger().debug("Copying " + fileVisitDetails.getFile() + " to " + originalSource);
+						getLogger().debug("Copying {} to {}", fileVisitDetails.getFile(), originalSource);
 						Files.copy(fileVisitDetails.getFile().toPath(), originalSource.toPath(), StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.COPY_ATTRIBUTES);
 					} catch (IOException e) {
 						throw new RuntimeException(e);

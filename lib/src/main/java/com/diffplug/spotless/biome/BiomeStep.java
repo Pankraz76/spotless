@@ -299,7 +299,7 @@ public final class BiomeStep {
 		validateBiomeExecutable(resolvedPathToExe);
 		validateBiomeConfigPath(configPath, version);
 		LOGGER.debug("Using Biome executable located at  '{}'", resolvedPathToExe);
-		var exeSignature = FileSignature.signAsList(Set.of(new File(resolvedPathToExe)));
+		var exeSignature = FileSignature.signAsList(new File(resolvedPathToExe));
 		makeExecutable(resolvedPathToExe);
 		return new State(resolvedPathToExe, exeSignature, configPath, language);
 	}

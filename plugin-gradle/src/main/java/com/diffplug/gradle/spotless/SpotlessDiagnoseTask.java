@@ -49,7 +49,7 @@ public class SpotlessDiagnoseTask extends DefaultTask {
 		getProject().delete(diagnoseRoot.toFile());
 		try (Formatter formatter = source.buildFormatter()) {
 			for (File file : source.target) {
-				getLogger().debug("Running padded cell check on " + file);
+				getLogger().debug("Running padded cell check on {}", file);
 				PaddedCell padded = PaddedCell.check(formatter, file);
 				if (!padded.misbehaved()) {
 					getLogger().debug("    well-behaved.");

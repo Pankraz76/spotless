@@ -114,9 +114,7 @@ class JvmTest {
 			String proposal = assertThrows(Exception.class, () -> testSupport.suggestLaterVersionOnError(fmtVersion, unused -> {
 				throw new Exception("Some test exception");
 			}).apply("")).getMessage();
-			assertThat(proposal.replace("\r", "")).isEqualTo("My Test Formatter " + fmtVersion + " is currently being used, but outdated.\n" +
-					"My Test Formatter 2 is the recommended version, which may have fixed this problem.\n" +
-					"My Test Formatter 2 requires JVM " + requiredJvm + "+.");
+			assertThat(proposal.replace("\r", "")).isEqualTo("My Test Formatter %s is currently being used, but outdated.\nMy Test Formatter 2 is the recommended version, which may have fixed this problem.\nMy Test Formatter 2 requires JVM %s+.", fmtVersion, requiredJvm);
 		}
 	}
 
