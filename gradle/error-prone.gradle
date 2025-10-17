@@ -34,36 +34,28 @@ tasks.withType(JavaCompile).configureEach {
 				'IdentityConversion',
 				'ImmutablesSortedSetComparator',
 				'IsInstanceLambdaUsage',
-				'MockitoStubbing',
-				'NestedOptionals',
-				'RedundantStringConversion',
-				'RedundantStringEscape',
-				'SelfAssignment',
-				'StringJoin',
-				'StringJoining',
-				'Unused',
-				'UnusedMethod',
-				'UnusedVariable',
-				// failing:
 				'LexicographicalAnnotation',
 				'LexicographicalAnnotationListing',
 				'MockitoMockClassReference',
+				'MockitoStubbing',
+				'NestedOptionals',
 				'PrimitiveComparison',
+				'RedundantStringConversion',
+				'RedundantStringEscape',
+				'SelfAssignment',
 				'Slf4jLogStatement',
+				'StringJoin',
+				'StringJoining',
 				'TimeZoneUsage',
+				'Unused',
+				'UnusedMethod',
+				'UnusedVariable',
 				)
 		if (!getenv().containsKey('CI') && getenv('IN_PLACE')?.toBoolean()) {
 			errorproneArgs.addAll(
 					'-XepPatchLocation:IN_PLACE',
 					'-XepPatchChecks:' +
 					'AmbiguousJsonCreator,' +
-
-						'LexicographicalAnnotation,' +
-				'LexicographicalAnnotationListing,' +
-				'MockitoMockClassReference,' +
-				'PrimitiveComparison,' +
-				'Slf4jLogStatement,' +
-				'TimeZoneUsage,' +
 					'AssertJNullnessAssertion,' +
 					'AutowiredConstructor,' +
 					'CanonicalAnnotationSyntax,' +
@@ -76,17 +68,23 @@ tasks.withType(JavaCompile).configureEach {
 					'IdentityConversion,' +
 					'ImmutablesSortedSetComparator,' +
 					'IsInstanceLambdaUsage,' +
+					'LexicographicalAnnotation,' +
+					'LexicographicalAnnotationListing,' +
+					'MockitoMockClassReference,' +
 					'MockitoStubbing,' +
 					'NestedOptionals,' +
+					'PrimitiveComparison,' +
 					'RedundantStringConversion,' +
 					'RedundantStringEscape,' +
 					'SelfAssignment,' +
+					'Slf4jLogStatement,' +
 					'StringJoin,' +
 					'StringJoining,' +
+					'TimeZoneUsage,' +
 					'Unused,' +
 					'UnusedMethod,' +
-					'UnusedVariable,'
-				    'ExplicitArgumentEnumeration,' +
+					'UnusedVariable,' +
+				    'ExplicitArgumentEnumeration,'
 					)
 		}
 	}
