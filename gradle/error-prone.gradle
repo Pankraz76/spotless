@@ -42,9 +42,9 @@ tasks.withType(JavaCompile).configureEach {
 				'UnusedMethod',
 				'UnusedVariable',
 				// failing:
-				//'CanonicalAnnotationSyntax',
-				//'ExplicitArgumentEnumeration',
-				//'FormatStringConcatenation',
+				'CanonicalAnnotationSyntax',
+				'ExplicitArgumentEnumeration',
+				'FormatStringConcatenation',
 				//'LexicographicalAnnotation',
 				//'LexicographicalAnnotationListing',
 				//'MockitoMockClassReference',
@@ -57,6 +57,9 @@ tasks.withType(JavaCompile).configureEach {
 					'-XepPatchLocation:IN_PLACE',
 					'-XepPatchChecks:' +
 					'AmbiguousJsonCreator,' +
+					'CanonicalAnnotationSyntax,' +
+				    'ExplicitArgumentEnumeration,' +
+					'FormatStringConcatenation,' +
 					'AssertJNullnessAssertion,' +
 					'AutowiredConstructor,' +
 					'CollectorMutability,' +
