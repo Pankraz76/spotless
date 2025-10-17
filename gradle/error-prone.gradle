@@ -30,6 +30,7 @@ tasks.withType(JavaCompile).configureEach {
 				'ExplicitEnumOrdering',
 				'IdentityConversion',
 				'ImmutablesSortedSetComparator',
+				'IsInstanceLambdaUsage',
 				'MockitoStubbing',
 				'NestedOptionals',
 				'RedundantStringConversion',
@@ -44,7 +45,6 @@ tasks.withType(JavaCompile).configureEach {
 				//'CanonicalAnnotationSyntax',
 				//'ExplicitArgumentEnumeration',
 				//'FormatStringConcatenation',
-				'IsInstanceLambdaUsage',
 				//'LexicographicalAnnotation',
 				//'LexicographicalAnnotationListing',
 				//'MockitoMockClassReference',
@@ -65,8 +65,8 @@ tasks.withType(JavaCompile).configureEach {
 					'EmptyMethod,' +
 					'ExplicitEnumOrdering,' +
 					'IdentityConversion,' +
-					'IsInstanceLambdaUsage,' +
 					'ImmutablesSortedSetComparator,' +
+					'IsInstanceLambdaUsage,' +
 					'MockitoStubbing,' +
 					'NestedOptionals,' +
 					'RedundantStringConversion,' +
