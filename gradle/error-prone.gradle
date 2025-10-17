@@ -34,7 +34,7 @@ tasks.withType(JavaCompile).configureEach {
 				'IdentityConversion',
 				'ImmutablesSortedSetComparator',
 				'IsInstanceLambdaUsage',
-				'LexicographicalAnnotation',
+				'LexicographicalAnnotationAttributeListing',
 				'LexicographicalAnnotationListing',
 				'MockitoMockClassReference',
 				'MockitoStubbing',
@@ -68,8 +68,8 @@ tasks.withType(JavaCompile).configureEach {
 					'IdentityConversion,' +
 					'ImmutablesSortedSetComparator,' +
 					'IsInstanceLambdaUsage,' +
-					'LexicographicalAnnotation,' +
 					'LexicographicalAnnotationListing,' +
+					'LexicographicalAnnotationAttributeListing,' +
 					'MockitoMockClassReference,' +
 					'MockitoStubbing,' +
 					'NestedOptionals,' +
