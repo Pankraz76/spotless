@@ -45,18 +45,25 @@ tasks.withType(JavaCompile).configureEach {
 				'UnusedMethod',
 				'UnusedVariable',
 				// failing:
-				//'LexicographicalAnnotation',
-				//'LexicographicalAnnotationListing',
-				//'MockitoMockClassReference',
-				//'PrimitiveComparison',
-				//'Slf4jLogStatement',
-				//'TimeZoneUsage',
+				'LexicographicalAnnotation',
+				'LexicographicalAnnotationListing',
+				'MockitoMockClassReference',
+				'PrimitiveComparison',
+				'Slf4jLogStatement',
+				'TimeZoneUsage',
 				)
 		if (!getenv().containsKey('CI') && getenv('IN_PLACE')?.toBoolean()) {
 			errorproneArgs.addAll(
 					'-XepPatchLocation:IN_PLACE',
 					'-XepPatchChecks:' +
 					'AmbiguousJsonCreator,' +
+
+						'LexicographicalAnnotation,' +
+				'LexicographicalAnnotationListing,' +
+				'MockitoMockClassReference,' +
+				'PrimitiveComparison,' +
+				'Slf4jLogStatement,' +
+				'TimeZoneUsage,' +
 					'AssertJNullnessAssertion,' +
 					'AutowiredConstructor,' +
 					'CanonicalAnnotationSyntax,' +
