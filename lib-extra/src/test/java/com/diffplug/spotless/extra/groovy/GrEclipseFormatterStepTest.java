@@ -29,8 +29,8 @@ public class GrEclipseFormatterStepTest extends EquoResourceHarness {
 		super(GrEclipseFormatterStep.createBuilder(TestProvisioner.mavenCentral()));
 	}
 
-	@ParameterizedTest
 	@MethodSource
+	@ParameterizedTest
 	void formatWithVersion(String version) throws Exception {
 		harnessFor(version).test("test.groovy",
 				"class F{ def m(){} }", "class F{\n\tdef m(){}\n}");

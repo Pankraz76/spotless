@@ -210,8 +210,8 @@ class TypescriptFormatStepTest extends MavenIntegrationHarness {
 		assertFile(TEST_FILE_PATH).sameAsResource("npm/eslint/typescript/styleguide/standard_with_typescript/typescript.clean");
 	}
 
-	@Test
 	@Disabled
+	@Test
 	void eslintStyleguideXo() throws Exception {
 		writePomWithTypescriptSteps(
 				TEST_FILE_PATH,

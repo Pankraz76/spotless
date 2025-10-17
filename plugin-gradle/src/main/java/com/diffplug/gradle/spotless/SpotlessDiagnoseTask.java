@@ -40,8 +40,8 @@ public class SpotlessDiagnoseTask extends DefaultTask {
 		return source;
 	}
 
-	@TaskAction
 	@SuppressFBWarnings("NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE")
+	@TaskAction
 	public void performAction() throws IOException {
 		Path srcRoot = getProject().getProjectDir().toPath();
 		Path diagnoseRoot = getProject().getLayout().getBuildDirectory().getAsFile().get()

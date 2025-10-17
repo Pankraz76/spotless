@@ -30,10 +30,10 @@ import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.parallel.ResourceAccessMode;
 import org.junit.jupiter.api.parallel.ResourceLock;
 
-@Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.TYPE, ElementType.METHOD})
 @ExtendWith(ClearGitConfig.GitConfigExtension.class)
 @ResourceLock(value = "GIT", mode = ResourceAccessMode.READ_WRITE)
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.TYPE, ElementType.METHOD})
 public @interface ClearGitConfig {
 
 	class GitConfigExtension implements BeforeEachCallback, AfterEachCallback {

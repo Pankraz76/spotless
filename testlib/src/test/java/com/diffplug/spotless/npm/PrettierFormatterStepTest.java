@@ -39,18 +39,18 @@ class PrettierFormatterStepTest extends NpmFormatterStepCommonTests {
 
 	private static final String PRETTIER_VERSION_3 = "3.0.0";
 
-	@NpmTest
 	@Nested
+	@NpmTest
 	class PrettierFormattingOfFileTypesIsWorking extends NpmFormatterStepCommonTests {
 
 		@ParameterizedTest(name = "{index}: prettier 2.x can be applied to {0}")
-		@ValueSource(strings = {"html", "typescript", "json", "javascript-es5", "javascript-es6", "css", "scss", "markdown", "yaml"})
+		@ValueSource(strings = {"css", "html", "javascript-es5", "javascript-es6", "json", "markdown", "scss", "typescript", "yaml"})
 		void formattingUsingPrettier2WithConfigFile(String fileType) throws Exception {
 			runTestUsingPrettier(fileType, PrettierFormatterStep.defaultDevDependencies());
 		}
 
 		@ParameterizedTest(name = "{index}: prettier 3.x can be applied to {0}")
-		@ValueSource(strings = {"html_prettier3", "typescript", "json", "javascript-es5", "javascript-es6", "css", "scss", "markdown", "yaml"})
+		@ValueSource(strings = {"css", "html_prettier3", "javascript-es5", "javascript-es6", "json", "markdown", "scss", "typescript", "yaml"})
 		void formattingUsingPrettier3WithConfigFile(String fileType) throws Exception {
 			runTestUsingPrettier(fileType, ImmutableMap.of("prettier", "3.0.0"));
 		}
@@ -77,8 +77,8 @@ class PrettierFormatterStepTest extends NpmFormatterStepCommonTests {
 		}
 	}
 
-	@NpmTest
 	@Nested
+	@NpmTest
 	class SpecificPrettierFormatterStepTests extends NpmFormatterStepCommonTests {
 
 		@ParameterizedTest(name = "{index}: parser inference based on explicit filepath is working with prettier {0}")
@@ -142,8 +142,8 @@ class PrettierFormatterStepTest extends NpmFormatterStepCommonTests {
 		}
 	}
 
-	@NpmTest
 	@Nested
+	@NpmTest
 	class PrettierFormattingOptionsAreWorking extends NpmFormatterStepCommonTests {
 
 		private static final String FILEDIR = "npm/prettier/config/";

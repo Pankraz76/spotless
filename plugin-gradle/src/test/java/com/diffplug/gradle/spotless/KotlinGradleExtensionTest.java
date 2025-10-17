@@ -26,7 +26,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 class KotlinGradleExtensionTest extends KotlinExtensionTest {
 
 	@ParameterizedTest
-	@ValueSource(booleans = {true, false})
+	@ValueSource(booleans = {false, true})
 	void testTarget(boolean useDefaultTarget) throws IOException {
 		setFile("build.gradle").toLines(
 				"plugins {",

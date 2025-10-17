@@ -45,8 +45,8 @@ public class EclipseWtpFormatterStepTest {
 			this.formatted = formatted;
 		}
 
-		@ParameterizedTest
 		@MethodSource
+		@ParameterizedTest
 		void formatWithVersion(String version) throws Exception {
 			harnessFor(version).test("someFilename", unformatted, formatted);
 		}

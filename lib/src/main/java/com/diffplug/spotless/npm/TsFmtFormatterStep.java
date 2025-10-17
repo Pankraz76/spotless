@@ -90,8 +90,8 @@ public final class TsFmtFormatterStep {
 			this.inlineTsFmtSettings = inlineTsFmtSettings == null ? new TreeMap<>() : new TreeMap<>(inlineTsFmtSettings);
 		}
 
-		@Override
 		@Nonnull
+		@Override
 		public FormatterFunc createFormatterFunc() {
 			try {
 				Map<String, Object> tsFmtOptions = unifyOptions();

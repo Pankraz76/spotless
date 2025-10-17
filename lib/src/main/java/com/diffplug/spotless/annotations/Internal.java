@@ -28,6 +28,7 @@ import java.lang.annotation.Target;
  * The user of the API should be warned that it may unexpectedly disappear in future versions of
  * Spotless. Usually the best place to put this warning is in the API's class JavaDoc.
  */
+@Documented
 @Retention(RetentionPolicy.CLASS)
 @Target({
 		ElementType.ANNOTATION_TYPE,
@@ -36,7 +37,6 @@ import java.lang.annotation.Target;
 		ElementType.METHOD,
 		ElementType.TYPE
 })
-@Documented
 public @interface Internal {
 
 }

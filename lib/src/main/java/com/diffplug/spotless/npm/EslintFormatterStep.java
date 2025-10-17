@@ -115,8 +115,8 @@ public final class EslintFormatterStep {
 			}
 		}
 
-		@Override
 		@Nonnull
+		@Override
 		public FormatterFunc createFormatterFunc() {
 			try {
 				LOGGER.info("Creating formatter function (starting server)");

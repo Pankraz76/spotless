@@ -23,8 +23,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledForJreRange;
 
 class FreshMarkExtensionTest extends GradleIntegrationHarness {
-	@Test
 	@EnabledForJreRange(max = JAVA_14)
+	@Test
 	void integration() throws IOException {
 		setFile("build.gradle").toLines(
 				"plugins {",

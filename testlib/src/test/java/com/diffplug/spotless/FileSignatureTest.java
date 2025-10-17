@@ -83,8 +83,8 @@ class FileSignatureTest extends ResourceHarness {
 		assertThat(FileSignature.subpath("root/", "root/child")).isEqualTo("child");
 	}
 
-	@Test
 	@EnabledOnOs(WINDOWS)
+	@Test
 	void windowsRoot() {
 		String subpath = FileSignature.subpath("S://", "S:/build.gradle");
 		Assertions.assertThat(subpath).isEqualTo("build.gradle");

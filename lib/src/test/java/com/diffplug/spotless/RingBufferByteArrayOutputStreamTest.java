@@ -29,16 +29,16 @@ class RingBufferByteArrayOutputStreamTest {
 
 	private final byte[] bytes = new byte[]{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
-	@ParameterizedTest(name = "{index} writeStrategy: {0}")
 	@MethodSource("writeStrategies")
+	@ParameterizedTest(name = "{index} writeStrategy: {0}")
 	void toStringBehavesNormallyWithinLimit(String name, ByteWriteStrategy writeStrategy) {
 		RingBufferByteArrayOutputStream stream = new RingBufferByteArrayOutputStream(12, 1);
 		writeStrategy.write(stream, bytes);
 		Assertions.assertThat(stream.toString()).isEqualTo("0123456789");
 	}
 
-	@ParameterizedTest(name = "{index} writeStrategy: {0}")
 	@MethodSource("writeStrategies")
+	@ParameterizedTest(name = "{index} writeStrategy: {0}")
 	void toStringBehavesOverwritingOverLimit(String name, ByteWriteStrategy writeStrategy) {
 		RingBufferByteArrayOutputStream stream = new RingBufferByteArrayOutputStream(4, 1);
 		writeStrategy.write(stream, bytes);
@@ -46,24 +46,24 @@ class RingBufferByteArrayOutputStreamTest {
 		Assertions.assertThat(stream.toString()).isEqualTo("6789");
 	}
 
-	@ParameterizedTest(name = "{index} writeStrategy: {0}")
 	@MethodSource("writeStrategies")
+	@ParameterizedTest(name = "{index} writeStrategy: {0}")
 	void toStringBehavesNormallyAtExactlyLimit(String name, ByteWriteStrategy writeStrategy) {
 		RingBufferByteArrayOutputStream stream = new RingBufferByteArrayOutputStream(bytes.length, 1);
 		writeStrategy.write(stream, bytes);
 		Assertions.assertThat(stream.toString()).isEqualTo("0123456789");
 	}
 
-	@ParameterizedTest(name = "{index} writeStrategy: {0}")
 	@MethodSource("writeStrategies")
+	@ParameterizedTest(name = "{index} writeStrategy: {0}")
 	void toByteArrayBehavesNormallyWithinLimit(String name, ByteWriteStrategy writeStrategy) {
 		RingBufferByteArrayOutputStream stream = new RingBufferByteArrayOutputStream(12, 1);
 		writeStrategy.write(stream, bytes);
 		Assertions.assertThat(stream.toByteArray()).isEqualTo(bytes);
 	}
 
-	@ParameterizedTest(name = "{index} writeStrategy: {0}")
 	@MethodSource("writeStrategies")
+	@ParameterizedTest(name = "{index} writeStrategy: {0}")
 	void toByteArrayBehavesOverwritingOverLimit(String name, ByteWriteStrategy writeStrategy) {
 		RingBufferByteArrayOutputStream stream = new RingBufferByteArrayOutputStream(4, 1);
 		writeStrategy.write(stream, bytes);
@@ -71,16 +71,16 @@ class RingBufferByteArrayOutputStreamTest {
 		Assertions.assertThat(stream.toByteArray()).isEqualTo(new byte[]{'6', '7', '8', '9'});
 	}
 
-	@ParameterizedTest(name = "{index} writeStrategy: {0}")
 	@MethodSource("writeStrategies")
+	@ParameterizedTest(name = "{index} writeStrategy: {0}")
 	void toByteArrayBehavesOverwritingAtExactlyLimit(String name, ByteWriteStrategy writeStrategy) {
 		RingBufferByteArrayOutputStream stream = new RingBufferByteArrayOutputStream(bytes.length, 1);
 		writeStrategy.write(stream, bytes);
 		Assertions.assertThat(stream.toByteArray()).isEqualTo(bytes);
 	}
 
-	@ParameterizedTest(name = "{index} writeStrategy: {0}")
 	@MethodSource("writeStrategies")
+	@ParameterizedTest(name = "{index} writeStrategy: {0}")
 	void writeToBehavesNormallyWithinLimit(String name, ByteWriteStrategy writeStrategy) throws IOException {
 		RingBufferByteArrayOutputStream stream = new RingBufferByteArrayOutputStream(12, 1);
 		writeStrategy.write(stream, bytes);
@@ -89,8 +89,8 @@ class RingBufferByteArrayOutputStreamTest {
 		Assertions.assertThat(target.toByteArray()).isEqualTo(bytes);
 	}
 
-	@ParameterizedTest(name = "{index} writeStrategy: {0}")
 	@MethodSource("writeStrategies")
+	@ParameterizedTest(name = "{index} writeStrategy: {0}")
 	void writeToBehavesOverwritingOverLimit(String name, ByteWriteStrategy writeStrategy) throws IOException {
 		RingBufferByteArrayOutputStream stream = new RingBufferByteArrayOutputStream(4, 1);
 		writeStrategy.write(stream, bytes);
@@ -100,8 +100,8 @@ class RingBufferByteArrayOutputStreamTest {
 		Assertions.assertThat(target.toByteArray()).isEqualTo(new byte[]{'6', '7', '8', '9'});
 	}
 
-	@ParameterizedTest(name = "{index} writeStrategy: {0}")
 	@MethodSource("writeStrategies")
+	@ParameterizedTest(name = "{index} writeStrategy: {0}")
 	void writeToBehavesNormallyAtExactlyLimit(String name, ByteWriteStrategy writeStrategy) throws IOException {
 		RingBufferByteArrayOutputStream stream = new RingBufferByteArrayOutputStream(bytes.length, 1);
 		writeStrategy.write(stream, bytes);

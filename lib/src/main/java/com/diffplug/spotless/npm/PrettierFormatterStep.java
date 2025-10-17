@@ -82,8 +82,8 @@ public final class PrettierFormatterStep {
 			this.prettierConfig = requireNonNull(prettierConfig);
 		}
 
-		@Override
 		@Nonnull
+		@Override
 		public FormatterFunc createFormatterFunc() {
 			try {
 				LOGGER.info("creating formatter function (starting server)");

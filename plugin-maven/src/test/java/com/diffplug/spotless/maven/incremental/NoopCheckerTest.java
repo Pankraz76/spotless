@@ -59,7 +59,7 @@ class NoopCheckerTest extends ResourceHarness {
 
 	@Test
 	void deletesExistingIndexFileWhenCreated() {
-		Log log = mock(Log.class);
+		Log log = mock();
 		try (UpToDateChecker realChecker = UpToDateChecker.forProject(project, indexFile, singletonList(dummyFormatter()), log)) {
 			realChecker.setUpToDate(existingSourceFile);
 		}
@@ -76,7 +76,7 @@ class NoopCheckerTest extends ResourceHarness {
 	void doesNothingWhenIndexFileDoesNotExist() {
 		assertThat(indexFile).doesNotExist();
 
-		Log log = mock(Log.class);
+		Log log = mock();
 		try (UpToDateChecker noopChecker = UpToDateChecker.noop(project, indexFile, log)) {
 			assertThat(noopChecker).isNotNull();
 		}

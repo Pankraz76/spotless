@@ -33,8 +33,8 @@ class EclipseJdtFormatterStepTest extends EquoResourceHarness {
 		super(createBuilder());
 	}
 
-	@ParameterizedTest
 	@MethodSource
+	@ParameterizedTest
 	void formatWithVersion(String version) throws Exception {
 		harnessFor(version).test("test.java",
 				"package p; class C{}",

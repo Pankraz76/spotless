@@ -35,8 +35,8 @@ abstract class FileIndexHarness {
 
 	protected static final PluginFingerprint FINGERPRINT = PluginFingerprint.from("foo");
 
-	protected final FileIndexConfig config = mock(FileIndexConfig.class);
-	protected final Log log = mock(Log.class);
+	protected final FileIndexConfig config = mock();
+	protected final Log log = mock();
 
 	protected Path tempDir;
 

@@ -26,8 +26,8 @@ class EclipseCdtFormatterStepTest extends EquoResourceHarness {
 		super(EclipseCdtFormatterStep.createBuilder(TestProvisioner.mavenCentral()));
 	}
 
-	@ParameterizedTest
 	@MethodSource
+	@ParameterizedTest
 	void formatWithVersion(String version) throws Exception {
 		harnessFor(version).test("main.c",
 				"#include <a.h>;\nint main(int argc,   \nchar *argv[]) {}",

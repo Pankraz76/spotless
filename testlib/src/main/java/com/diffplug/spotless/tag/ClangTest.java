@@ -24,7 +24,7 @@ import java.lang.annotation.Target;
 
 import org.junit.jupiter.api.Tag;
 
-@Target({TYPE, METHOD})
 @Retention(RUNTIME)
 @Tag("clang")
+@Target({TYPE, METHOD})
 public @interface ClangTest {}

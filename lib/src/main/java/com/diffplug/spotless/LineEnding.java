@@ -34,7 +34,7 @@ public enum LineEnding {
 	/** Uses the same line endings as Git, using {@code .gitattributes} and the {@code core.eol} property. */
 	GIT_ATTRIBUTES {
 		/** .gitattributes is path-specific, so you must use {@link LineEnding#createPolicy(File, Supplier)}. */
-		@Override @Deprecated
+		@Deprecated @Override
 		public Policy createPolicy() {
 			return super.createPolicy();
 		}
@@ -42,7 +42,7 @@ public enum LineEnding {
 	/** Uses the same line endings as Git, and assumes that every single file being formatted will have the same line ending. */
 	GIT_ATTRIBUTES_FAST_ALLSAME {
 		/** .gitattributes is path-specific, so you must use {@link LineEnding#createPolicy(File, Supplier)}. */
-		@Override @Deprecated
+		@Deprecated @Override
 		public Policy createPolicy() {
 			return super.createPolicy();
 		}

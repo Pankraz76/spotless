@@ -34,12 +34,12 @@ import com.diffplug.spotless.tag.NpmTest;
 @NpmTest
 class TsFmtFormatterStepTest {
 
-	@NpmTest
 	@Nested
+	@NpmTest
 	class TsFmtUsingVariousFormattingFilesTest extends NpmFormatterStepCommonTests {
 
 		@ParameterizedTest(name = "{index}: formatting using {0} is working")
-		@ValueSource(strings = {"vscode/vscode.json", "tslint/tslint.json", "tsfmt/tsfmt.json", "tsconfig/tsconfig.json"})
+		@ValueSource(strings = {"tsconfig/tsconfig.json", "tsfmt/tsfmt.json", "tslint/tslint.json", "vscode/vscode.json"})
 		void formattingUsingConfigFile(String formattingConfigFile) throws Exception {
 			String configFileName = formattingConfigFile.substring(formattingConfigFile.lastIndexOf('/') >= 0 ? formattingConfigFile.lastIndexOf('/') + 1 : 0);
 			String configFileNameWithoutExtension = configFileName.substring(0, configFileName.lastIndexOf('.'));
@@ -70,8 +70,8 @@ class TsFmtFormatterStepTest {
 		}
 	}
 
-	@NpmTest
 	@Nested
+	@NpmTest
 	class TsFmtUsingInlineConfigTest extends NpmFormatterStepCommonTests {
 		@Test
 		void formattingUsingInlineConfigWorks() throws Exception {

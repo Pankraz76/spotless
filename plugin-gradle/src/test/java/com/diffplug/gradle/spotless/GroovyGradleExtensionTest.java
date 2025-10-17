@@ -29,7 +29,7 @@ class GroovyGradleExtensionTest extends GroovyExtensionTest {
 	private static final String HEADER = "//My tests header";
 
 	@ParameterizedTest
-	@ValueSource(booleans = {true, false})
+	@ValueSource(booleans = {false, true})
 	void testTarget(boolean useDefaultTarget) throws IOException {
 		String target = useDefaultTarget ? "" : "target 'other.gradle'";
 		String buildContent = StringPrinter.buildStringFromLines(

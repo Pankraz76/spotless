@@ -33,8 +33,8 @@ class ValuePerStep<T> extends AbstractList<T> {
 		this.size = formatter.getSteps().size();
 	}
 
-	@Override
-	public @Nullable T set(int index, T newValue) {
+	@Nullable
+	public @Override T set(int index, T newValue) {
 		if (index < 0 || index >= size) {
 			throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
 		}

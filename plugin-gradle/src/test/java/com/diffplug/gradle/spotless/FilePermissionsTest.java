@@ -28,8 +28,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledOnOs;
 
 class FilePermissionsTest extends GradleIntegrationHarness {
-	@Test
 	@DisabledOnOs(WINDOWS)
+	@Test
 	void spotlessApplyShouldPreservePermissions() throws IOException {
 		setFile("build.gradle").toLines(
 				"plugins {",

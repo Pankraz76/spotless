@@ -35,8 +35,8 @@ class JavascriptExtensionTest extends GradleIntegrationHarness {
 		return EslintStyleGuide.fromNameOrNull(styleGuideName).asGradleMapStringMergedWith(EslintFormatterStep.defaultDevDependencies());
 	}
 
-	@NpmTest
 	@Nested
+	@NpmTest
 	class EslintGeneralJavascriptTests extends GradleIntegrationHarness {
 		@Test
 		void supportsEslintFormattingForJavascript() throws IOException {
@@ -156,8 +156,8 @@ class JavascriptExtensionTest extends GradleIntegrationHarness {
 
 	}
 
-	@NpmTest
 	@Nested
+	@NpmTest
 	class EslintPopularJsStyleGuideTests extends GradleIntegrationHarness {
 		@ParameterizedTest(name = "{index}: eslint can be applied using styleguide {0}")
 		@ValueSource(strings = {"airbnb", "google", "standard", "xo"})
@@ -183,8 +183,8 @@ class JavascriptExtensionTest extends GradleIntegrationHarness {
 		}
 	}
 
-	@NpmTest
 	@Nested
+	@NpmTest
 	class JavascriptPrettierTests extends GradleIntegrationHarness {
 		@Test
 		void supportsPrettierFormattingForJavascript() throws IOException {

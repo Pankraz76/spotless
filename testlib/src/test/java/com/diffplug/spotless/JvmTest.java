@@ -47,8 +47,8 @@ class JvmTest {
 		assertThat(testSupport.toString()).contains("%s alternatives".formatted(TEST_NAME));
 	}
 
-	@ParameterizedTest(name = "{index} {1}")
 	@MethodSource
+	@ParameterizedTest(name = "{index} {1}")
 	void supportAddFailsFor(Consumer<Jvm.Support<String>> configuration, String nameNotUsed) {
 		assertThrows(IllegalArgumentException.class, () -> configuration.accept(testSupport));
 	}

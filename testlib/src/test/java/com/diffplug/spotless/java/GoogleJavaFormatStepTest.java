@@ -38,8 +38,8 @@ class GoogleJavaFormatStepTest extends ResourceHarness {
 		}
 	}
 
-	@Test
-	@EnabledForJreRange(max = JAVA_15) // google-java-format requires JRE 11+
+	@EnabledForJreRange(max = JAVA_15)
+	@Test // google-java-format requires JRE 11+
 	void behavior18() throws Exception {
 		FormatterStep step = GoogleJavaFormatStep.create("1.8", TestProvisioner.mavenCentral());
 		StepHarness.forStep(step)
@@ -59,8 +59,8 @@ class GoogleJavaFormatStepTest extends ResourceHarness {
 				.testResource("java/googlejavaformat/JavaCodeWithPackageUnformatted.test", "java/googlejavaformat/JavaCodeWithPackageFormatted.test");
 	}
 
-	@Test
 	@EnabledForJreRange(min = JAVA_21, max = JAVA_21)
+	@Test
 	void versionBelowMinimumRequiredVersionIsNotAllowed() throws Exception {
 		FormatterStep step = GoogleJavaFormatStep.create("1.2", "AOSP", TestProvisioner.mavenCentral());
 		StepHarness.forStepNoRoundtrip(step)
@@ -68,8 +68,8 @@ class GoogleJavaFormatStepTest extends ResourceHarness {
 				.toBe("LINE_UNDEFINED google-java-format(jvm-version) You are running Spotless on JVM 21. This requires google-java-format of at least 1.17.0 (you are using 1.2). (...)");
 	}
 
-	@Test
 	@EnabledForJreRange(min = JAVA_21, max = JAVA_21)
+	@Test
 	void versionBelowOneDotTenIsNotAllowed() throws Exception {
 		FormatterStep step = GoogleJavaFormatStep.create("1.9", "AOSP", TestProvisioner.mavenCentral());
 		StepHarness.forStepNoRoundtrip(step)
@@ -132,8 +132,8 @@ class GoogleJavaFormatStepTest extends ResourceHarness {
 		}
 	}
 
-	@Test
 	@EnabledForJreRange(max = JAVA_20)
+	@Test
 	void equality() throws Exception {
 		new SerializableEqualityTester() {
 			String version = "1.10.0";
@@ -163,8 +163,8 @@ class GoogleJavaFormatStepTest extends ResourceHarness {
 		}.testEquals();
 	}
 
-	@Test
 	@EnabledForJreRange(max = JAVA_20)
+	@Test
 	void equalityGroupArtifact() throws Exception {
 		new SerializableEqualityTester() {
 			String groupArtifact = GoogleJavaFormatStep.defaultGroupArtifact();

@@ -36,8 +36,8 @@ class JavascriptFormatStepTest extends MavenIntegrationHarness {
 		return EslintStyleGuide.fromNameOrNull(styleGuideName).asMavenXmlStringMergedWith(EslintFormatterStep.defaultDevDependencies());
 	}
 
-	@NpmTest
 	@Nested
+	@NpmTest
 	class EslintCustomRulesTest extends MavenIntegrationHarness {
 
 		@Test
@@ -71,8 +71,8 @@ class JavascriptFormatStepTest extends MavenIntegrationHarness {
 
 	}
 
-	@NpmTest
 	@Nested
+	@NpmTest
 	class EslintStyleguidesTest extends MavenIntegrationHarness {
 
 		@ParameterizedTest(name = "{index}: eslint js formatting with configFile using styleguide {0}")

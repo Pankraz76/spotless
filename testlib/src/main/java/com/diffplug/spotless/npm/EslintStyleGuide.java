@@ -26,8 +26,8 @@ import javax.annotation.Nonnull;
  */
 public enum EslintStyleGuide {
 	TS_STANDARD_WITH_TYPESCRIPT("standard-with-typescript") {
-		@Override
-		public @Nonnull Map<String, String> devDependencies() {
+		@Nonnull
+		public @Override Map<String, String> devDependencies() {
 			Map<String, String> dependencies = new LinkedHashMap<>();
 			dependencies.put("@typescript-eslint/eslint-plugin", "^5.62.0");
 			dependencies.put("@typescript-eslint/parser", "^5.62.0");
@@ -39,8 +39,8 @@ public enum EslintStyleGuide {
 		}
 	},
 	TS_XO_TYPESCRIPT("xo-typescript") {
-		@Override
-		public @Nonnull Map<String, String> devDependencies() {
+		@Nonnull
+		public @Override Map<String, String> devDependencies() {
 			Map<String, String> dependencies = new LinkedHashMap<>();
 			dependencies.put("eslint-config-xo", "^0.43.1");
 			dependencies.put("eslint-config-xo-typescript", "^1.0.0");
@@ -48,8 +48,8 @@ public enum EslintStyleGuide {
 		}
 	},
 	JS_AIRBNB("airbnb") {
-		@Override
-		public @Nonnull Map<String, String> devDependencies() {
+		@Nonnull
+		public @Override Map<String, String> devDependencies() {
 			Map<String, String> dependencies = new LinkedHashMap<>();
 			dependencies.put("eslint-config-airbnb-base", "^15.0.0");
 			dependencies.put("eslint-plugin-import", "^2.27.5");
@@ -57,16 +57,16 @@ public enum EslintStyleGuide {
 		}
 	},
 	JS_GOOGLE("google") {
-		@Override
-		public @Nonnull Map<String, String> devDependencies() {
+		@Nonnull
+		public @Override Map<String, String> devDependencies() {
 			Map<String, String> dependencies = new LinkedHashMap<>();
 			dependencies.put("eslint-config-google", "^0.14.0");
 			return dependencies;
 		}
 	},
 	JS_STANDARD("standard") {
-		@Override
-		public @Nonnull Map<String, String> devDependencies() {
+		@Nonnull
+		public @Override Map<String, String> devDependencies() {
 			Map<String, String> dependencies = new LinkedHashMap<>();
 			dependencies.put("eslint-config-standard", "^17.1.0");
 			dependencies.put("eslint-plugin-import", "^2.27.5");
@@ -76,8 +76,8 @@ public enum EslintStyleGuide {
 		}
 	},
 	JS_XO("xo") {
-		@Override
-		public @Nonnull Map<String, String> devDependencies() {
+		@Nonnull
+		public @Override Map<String, String> devDependencies() {
 			Map<String, String> dependencies = new LinkedHashMap<>();
 			dependencies.put("eslint-config-xo", "^0.43.1");
 			return dependencies;

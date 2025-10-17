@@ -169,8 +169,8 @@ class TypescriptExtensionTest extends GradleIntegrationHarness {
 		assertFile("test.ts").sameAsResource("npm/eslint/typescript/custom_rules/typescript.clean");
 	}
 
-	@Test
 	@Disabled
+	@Test
 	void useEslintXoStandardRules() throws IOException {
 		setFile(".eslintrc.js").toResource("npm/eslint/typescript/styleguide/xo/.eslintrc.js");
 		setFile("tsconfig.json").toResource("npm/eslint/typescript/styleguide/xo/tsconfig.json");

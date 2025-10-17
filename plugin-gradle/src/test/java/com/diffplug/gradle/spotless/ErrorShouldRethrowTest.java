@@ -59,8 +59,8 @@ class ErrorShouldRethrowTest extends GradleIntegrationHarness {
 		expectSuccess();
 	}
 
-	@Test
-	@EnabledForJreRange(max = JAVA_23) // `[Incubating] Problems report is available at` presents in the output from Java 24 or above.
+	@EnabledForJreRange(max = JAVA_23)
+	@Test // `[Incubating] Problems report is available at` presents in the output from Java 24 or above.
 	void anyExceptionShouldFail() throws Exception {
 		writeBuild(
 				"    } // format",
@@ -108,8 +108,8 @@ class ErrorShouldRethrowTest extends GradleIntegrationHarness {
 		expectSuccess();
 	}
 
-	@Test
-	@EnabledForJreRange(max = JAVA_23) // `[Incubating] Problems report is available at` presents in the output from Java 24 or above.
+	@EnabledForJreRange(max = JAVA_23)
+	@Test // `[Incubating] Problems report is available at` presents in the output from Java 24 or above.
 	void failsIfNeitherStepNorFileExempted() throws Exception {
 		writeBuild(
 				"        ignoreErrorForStep 'nope'",

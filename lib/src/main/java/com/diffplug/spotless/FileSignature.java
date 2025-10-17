@@ -103,8 +103,8 @@ public final class FileSignature implements Serializable {
 		@Serial
 		private static final long serialVersionUID = 1L;
 		private final List<File> files;
-		@SuppressFBWarnings("SE_TRANSIENT_FIELD_NOT_RESTORED")
-		private transient @Nullable FileSignature cached;
+		@Nullable
+		private transient @SuppressFBWarnings("SE_TRANSIENT_FIELD_NOT_RESTORED") FileSignature cached;
 
 		private Promised(List<File> files, @Nullable FileSignature cached) {
 			this.files = files;

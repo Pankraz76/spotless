@@ -23,8 +23,8 @@ import com.diffplug.spotless.tag.ClangTest;
 @ClangTest
 class ClangMavenIntegrationTest extends MavenIntegrationHarness {
 
-	@Test
 	@ClangTest
+	@Test
 	void csharp() throws Exception {
 		writePomWithCppSteps("<includes>", "<include>", "src/**/*.cs", "</include>", "</includes>",
 				"<clangFormat>", "<version>", "14.0.0-1ubuntu1.1", "</version>", "</clangFormat>");
@@ -33,8 +33,8 @@ class ClangMavenIntegrationTest extends MavenIntegrationHarness {
 		assertFile("src/test.cs").sameAsResource("clang/example.cs.clean");
 	}
 
-	@Test
 	@ClangTest
+	@Test
 	void proto() throws Exception {
 		writePomWithCppSteps("<includes>", "<include>", "**/*.proto", "</include>", "</includes>",
 				"<clangFormat>", "<version>", "14.0.0-1ubuntu1.1", "</version>", "</clangFormat>");

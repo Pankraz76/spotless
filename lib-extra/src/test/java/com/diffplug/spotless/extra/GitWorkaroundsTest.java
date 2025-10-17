@@ -52,8 +52,8 @@ class GitWorkaroundsTest extends ResourceHarness {
 		Assertions.assertThat(repositorySpecificResolver.getGitDir()).isEqualTo(gitDir);
 	}
 
-	@Nested
 	@DisplayName("Worktrees")
+	@Nested
 	class Worktrees {
 		private File project1Tree;
 		private File project1GitDir;

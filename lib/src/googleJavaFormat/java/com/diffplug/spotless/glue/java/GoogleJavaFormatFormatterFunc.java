@@ -59,8 +59,8 @@ public class GoogleJavaFormatFormatterFunc implements FormatterFunc {
 		this.formatter = new Formatter(builder.build());
 	}
 
-	@Override
 	@Nonnull
+	@Override
 	public String apply(@Nonnull String input) throws Exception {
 		String formatted = formatter.formatSource(input);
 		String removedUnused = RemoveUnusedImports.removeUnusedImports(formatted);

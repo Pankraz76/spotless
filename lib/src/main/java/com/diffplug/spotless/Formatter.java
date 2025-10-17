@@ -220,8 +220,8 @@ public final class Formatter implements Serializable, AutoCloseable {
 				&& steps.equals(other.steps);
 	}
 
-	@SuppressWarnings("rawtypes")
 	@Override
+	@SuppressWarnings("rawtypes")
 	public void close() {
 		for (FormatterStep step : steps) {
 			try {

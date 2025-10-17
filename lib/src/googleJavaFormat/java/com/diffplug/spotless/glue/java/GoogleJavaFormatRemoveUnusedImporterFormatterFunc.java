@@ -31,8 +31,8 @@ public class GoogleJavaFormatRemoveUnusedImporterFormatterFunc implements Format
 		
 	}
 
-	@Override
 	@Nonnull
+	@Override
 	public String apply(@Nonnull String input) throws Exception {
 		return RemoveUnusedImports.removeUnusedImports(input);
 	}

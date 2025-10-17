@@ -33,8 +33,8 @@ import com.diffplug.spotless.tag.NpmTest;
 @NpmTest
 class EslintFormatterStepTest {
 
-	@NpmTest
 	@Nested
+	@NpmTest
 	class EslintJavascriptFormattingStepTest extends NpmFormatterStepCommonTests {
 
 		private final Map<String, Map<String, String>> devDependenciesForRuleset = ImmutableMap.of(
@@ -72,8 +72,8 @@ class EslintFormatterStepTest {
 		}
 	}
 
-	@NpmTest
 	@Nested
+	@NpmTest
 	class EslintTypescriptFormattingStepTest extends NpmFormatterStepCommonTests {
 
 		private final Map<String, Map<String, String>> devDependenciesForRuleset = ImmutableMap.of(
@@ -114,8 +114,8 @@ class EslintFormatterStepTest {
 		}
 	}
 
-	@NpmTest
 	@Nested
+	@NpmTest
 	class EslintInlineConfigTypescriptFormattingStepTest extends NpmFormatterStepCommonTests {
 
 		@Test

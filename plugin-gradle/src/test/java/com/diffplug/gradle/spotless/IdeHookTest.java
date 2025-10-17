@@ -103,40 +103,40 @@ class IdeHookTest extends GradleIntegrationHarness {
 		}
 	}
 
-	@ParameterizedTest
 	@MethodSource("configurationCacheProvider")
+	@ParameterizedTest
 	void dirty(boolean configurationCache) throws IOException {
 		runWith(configurationCache, "spotlessApply", "--quiet", "-PspotlessIdeHook=" + dirty.getAbsolutePath(), "-PspotlessIdeHookUseStdOut");
 		Assertions.assertThat(output).isEqualTo("abc");
 		Assertions.assertThat(error).startsWith("IS DIRTY");
 	}
 
-	@ParameterizedTest
 	@MethodSource("configurationCacheProvider")
+	@ParameterizedTest
 	void clean(boolean configurationCache) throws IOException {
 		runWith(configurationCache, "spotlessApply", "--quiet", "-PspotlessIdeHook=" + clean.getAbsolutePath(), "-PspotlessIdeHookUseStdOut");
 		Assertions.assertThat(output).isEmpty();
 		Assertions.assertThat(error).startsWith("IS CLEAN");
 	}
 
-	@ParameterizedTest
 	@MethodSource("configurationCacheProvider")
+	@ParameterizedTest
 	void diverge(boolean configurationCache) throws IOException {
 		runWith(configurationCache, "spotlessApply", "--quiet", "-PspotlessIdeHook=" + diverge.getAbsolutePath(), "-PspotlessIdeHookUseStdOut");
 		Assertions.assertThat(output).isEmpty();
 		Assertions.assertThat(error).startsWith("DID NOT CONVERGE");
 	}
 
-	@ParameterizedTest
 	@MethodSource("configurationCacheProvider")
+	@ParameterizedTest
 	void outofbounds(boolean configurationCache) throws IOException {
 		runWith(configurationCache, "spotlessApply", "--quiet", "-PspotlessIdeHook=" + outofbounds.getAbsolutePath(), "-PspotlessIdeHookUseStdOut");
 		Assertions.assertThat(output).isEmpty();
 		Assertions.assertThat(error).isEmpty();
 	}
 
-	@ParameterizedTest
 	@MethodSource("configurationCacheProvider")
+	@ParameterizedTest
 	void notAbsolute(boolean configurationCache) throws IOException {
 		runWith(configurationCache, "spotlessApply", "--quiet", "-PspotlessIdeHook=build.gradle", "-PspotlessIdeHookUseStdOut");
 		Assertions.assertThat(output).isEmpty();

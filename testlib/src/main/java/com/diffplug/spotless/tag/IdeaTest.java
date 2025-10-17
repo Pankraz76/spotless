@@ -24,7 +24,7 @@ import java.lang.annotation.Target;
 
 import org.junit.jupiter.api.Tag;
 
-@Target({TYPE, METHOD})
 @Retention(RUNTIME)
 @Tag("idea")
+@Target({TYPE, METHOD})
 public @interface IdeaTest {}
