@@ -158,10 +158,12 @@ public final class IdeaStep {
 					.pathToExe(pathToExe(binaryPath))
 					.versionRegex(Pattern.compile("(IntelliJ IDEA) .*"))
 					.fixCantFind(
-							"IDEA executable cannot be found on your machine, "
-									+ "please install it and put idea binary to PATH, provide a valid path to the executable or report the problem")
-					.fixWrongVersion("Provided binary is not IDEA, "
-							+ "please check it and fix the problem; or report the problem");
+							"""
+							IDEA executable cannot be found on your machine, \
+							please install it and put idea binary to PATH, provide a valid path to the executable or report the problem""")
+					.fixWrongVersion("""
+							Provided binary is not IDEA, \
+							please check it and fix the problem; or report the problem""");
 			try {
 				return exe.confirmVersionAndGetAbsolutePath();
 			} catch (IOException e) {
