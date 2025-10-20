@@ -205,8 +205,9 @@ class ReflectionHelper {
 				logger.warn("{}({},{}): {}", this.filePath, line, col, message);
 			} else {
 				if ("warning".equals(severity)) {
-					logger.error("Formatter fails because of a parser warning. To make the formatter succeed in"
-							+ "the presence of warnings, set the configuration parameter 'failOnWarning' to 'false' (default: 'true')");
+					logger.error("""
+							Formatter fails because of a parser warning. To make the formatter succeed in\
+							the presence of warnings, set the configuration parameter 'failOnWarning' to 'false' (default: 'true')""");
 				}
 				throw new RuntimeException(
 						"line %d, col %d: %s (severity: %s)".formatted(line, col, message, severity));
