@@ -16,6 +16,7 @@
 package com.diffplug.gradle.spotless;
 
 import static com.diffplug.gradle.spotless.PluginGradlePreconditions.requireElementsNonNull;
+import static java.util.Objects.requireNonNull;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -24,7 +25,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
 import javax.inject.Inject;
@@ -68,7 +68,7 @@ public class JavaExtension extends FormatExtension implements HasBuiltinDelimite
 	}
 
 	public ImportOrderConfig importOrderFile(Object importOrderFile) {
-		Objects.requireNonNull(importOrderFile);
+		requireNonNull(importOrderFile);
 		return new ImportOrderConfig(getProject().file(importOrderFile));
 	}
 
@@ -174,7 +174,7 @@ public class JavaExtension extends FormatExtension implements HasBuiltinDelimite
 	 * for a workaround for using snapshot versions.
 	 */
 	public GoogleJavaFormatConfig googleJavaFormat(String version) {
-		Objects.requireNonNull(version);
+		requireNonNull(version);
 		return new GoogleJavaFormatConfig(version);
 	}
 
@@ -187,20 +187,20 @@ public class JavaExtension extends FormatExtension implements HasBuiltinDelimite
 		boolean formatJavadoc = true;
 
 		GoogleJavaFormatConfig(String version) {
-			this.version = Objects.requireNonNull(version);
+			this.version = requireNonNull(version);
 			this.groupArtifact = GoogleJavaFormatStep.defaultGroupArtifact();
 			this.style = GoogleJavaFormatStep.defaultStyle();
 			addStep(createStep());
 		}
 
 		public GoogleJavaFormatConfig groupArtifact(String groupArtifact) {
-			this.groupArtifact = Objects.requireNonNull(groupArtifact);
+			this.groupArtifact = requireNonNull(groupArtifact);
 			replaceStep(createStep());
 			return this;
 		}
 
 		public GoogleJavaFormatConfig style(String style) {
-			this.style = Objects.requireNonNull(style);
+			this.style = requireNonNull(style);
 			replaceStep(createStep());
 			return this;
 		}
@@ -259,7 +259,7 @@ public class JavaExtension extends FormatExtension implements HasBuiltinDelimite
 	 * for a workaround for using snapshot versions.
 	 */
 	public PalantirJavaFormatConfig palantirJavaFormat(String version) {
-		Objects.requireNonNull(version);
+		requireNonNull(version);
 		return new PalantirJavaFormatConfig(version);
 	}
 
@@ -269,13 +269,13 @@ public class JavaExtension extends FormatExtension implements HasBuiltinDelimite
 		boolean formatJavadoc;
 
 		PalantirJavaFormatConfig(String version) {
-			this.version = Objects.requireNonNull(version);
+			this.version = requireNonNull(version);
 			this.style = PalantirJavaFormatStep.defaultStyle();
 			addStep(createStep());
 		}
 
 		public PalantirJavaFormatConfig style(String style) {
-			this.style = Objects.requireNonNull(style);
+			this.style = requireNonNull(style);
 			replaceStep(createStep());
 			return this;
 		}
@@ -386,14 +386,14 @@ public class JavaExtension extends FormatExtension implements HasBuiltinDelimite
 		}
 
 		public FormatAnnotationsConfig addTypeAnnotation(String simpleName) {
-			Objects.requireNonNull(simpleName);
+			requireNonNull(simpleName);
 			addedTypeAnnotations.add(simpleName);
 			replaceStep(createStep());
 			return this;
 		}
 
 		public FormatAnnotationsConfig removeTypeAnnotation(String simpleName) {
-			Objects.requireNonNull(simpleName);
+			requireNonNull(simpleName);
 			removedTypeAnnotations.add(simpleName);
 			replaceStep(createStep());
 			return this;
@@ -429,21 +429,21 @@ public class JavaExtension extends FormatExtension implements HasBuiltinDelimite
 		}
 
 		public CleanthatJavaConfig groupArtifact(String groupArtifact) {
-			Objects.requireNonNull(groupArtifact);
+			requireNonNull(groupArtifact);
 			this.groupArtifact = groupArtifact;
 			replaceStep(createStep());
 			return this;
 		}
 
 		public CleanthatJavaConfig version(String version) {
-			Objects.requireNonNull(version);
+			requireNonNull(version);
 			this.version = version;
 			replaceStep(createStep());
 			return this;
 		}
 
 		public CleanthatJavaConfig sourceCompatibility(String jdkVersion) {
-			Objects.requireNonNull(jdkVersion);
+			requireNonNull(jdkVersion);
 			this.sourceJdk = jdkVersion;
 			replaceStep(createStep());
 			return this;

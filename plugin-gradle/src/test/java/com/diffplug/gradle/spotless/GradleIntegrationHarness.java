@@ -16,6 +16,7 @@
 package com.diffplug.gradle.spotless;
 
 import static com.diffplug.common.base.Strings.isNullOrEmpty;
+import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
@@ -24,7 +25,6 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.function.BiConsumer;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import org.gradle.api.provider.Provider;
 import org.gradle.testkit.runner.BuildResult;
@@ -160,7 +160,7 @@ public class GradleIntegrationHarness extends ResourceHarness {
 		TreeDef<File> treeDef = TreeDef.forFile(Errors.rethrow());
 		List<File> files = TreeStream.depthFirst(treeDef, rootFolder())
 				.filter(File::isFile)
-				.collect(Collectors.toList());
+				.collect(toList());
 
 		ListIterator<File> iterator = files.listIterator(files.size());
 		int rootLength = rootFolder().getAbsolutePath().length() + 1;
@@ -211,13 +211,13 @@ public class GradleIntegrationHarness extends ResourceHarness {
 	public static List<String> outcomes(BuildResult build, TaskOutcome outcome) {
 		return build.taskPaths(outcome).stream()
 				.filter(s -> !s.equals(":spotlessInternalRegisterDependencies"))
-				.collect(Collectors.toList());
+				.collect(toList());
 	}
 
 	public static List<BuildTask> outcomes(BuildResult build) {
 		return build.getTasks().stream()
 				.filter(t -> !t.getPath().equals(":spotlessInternalRegisterDependencies"))
-				.collect(Collectors.toList());
+				.collect(toList());
 	}
 
 	static String buildResultToString(BuildResult result) {

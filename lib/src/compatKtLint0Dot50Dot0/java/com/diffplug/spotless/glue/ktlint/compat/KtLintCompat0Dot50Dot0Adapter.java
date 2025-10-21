@@ -15,6 +15,10 @@
  */
 package com.diffplug.spotless.glue.ktlint.compat;
 
+import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toMap;
+import static java.util.stream.Collectors.toUnmodifiableSet;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
@@ -22,7 +26,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.ServiceLoader;
 import java.util.Set;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.slf4j.Logger;
@@ -92,14 +95,14 @@ public class KtLintCompat0Dot50Dot0Adapter implements KtLintCompatAdapter {
 		Set<RuleProvider> allRuleProviders = ServiceLoader.load(RuleSetProviderV3.class, RuleSetProviderV3.class.getClassLoader())
 				.stream()
 				.flatMap(loader -> loader.get().getRuleProviders().stream())
-				.collect(Collectors.toUnmodifiableSet());
+				.collect(toUnmodifiableSet());
 
 		EditorConfigOverride editorConfigOverride;
 		if (editorConfigOverrideMap.isEmpty()) {
 			editorConfigOverride = EditorConfigOverride.Companion.getEMPTY_EDITOR_CONFIG_OVERRIDE();
 		} else {
 			editorConfigOverride = createEditorConfigOverride(allRuleProviders.stream().map(
-					RuleProvider::createNewRuleInstance).collect(Collectors.toList()),
+					RuleProvider::createNewRuleInstance).collect(toList()),
 					editorConfigOverrideMap);
 		}
 		EditorConfigDefaults editorConfig;
@@ -134,7 +137,7 @@ public class KtLintCompat0Dot50Dot0Adapter implements KtLintCompatAdapter {
 		Map<String, EditorConfigProperty<?>> supportedProperties = Stream
 				.concat(ruleProperties, DEFAULT_EDITOR_CONFIG_PROPERTIES.stream())
 				.distinct()
-				.collect(Collectors.toMap(EditorConfigProperty::getName, property -> property));
+				.collect(toMap(EditorConfigProperty::getName, property -> property));
 
 		// Create config properties based on provided property names and values
 		@SuppressWarnings("unchecked")
