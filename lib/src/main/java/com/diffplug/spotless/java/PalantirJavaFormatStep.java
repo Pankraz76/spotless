@@ -40,17 +40,15 @@ public final class PalantirJavaFormatStep implements Serializable {
 	private final JarState.Promised jarState;
 	/** Version of the formatter jar. */
 	private final String formatterVersion;
-	private final String style;
+
 	/** Whether to format Java docs. */
 	private final boolean formatJavadoc;
 
 	private PalantirJavaFormatStep(JarState.Promised jarState,
 			String formatterVersion,
-			String style,
 			boolean formatJavadoc) {
 		this.jarState = jarState;
 		this.formatterVersion = formatterVersion;
-		this.style = style;
 		this.formatJavadoc = formatJavadoc;
 	}
 
@@ -61,28 +59,19 @@ public final class PalantirJavaFormatStep implements Serializable {
 
 	/** Creates a step which formats everything - code, import order, and unused imports. */
 	public static FormatterStep create(String version, Provisioner provisioner) {
-		return create(version, defaultStyle(), provisioner);
-	}
-
-	/**
-	 * Creates a step which formats code, import order, and unused imports, but not Java docs. And with the given format
-	 * style.
-	 */
-	public static FormatterStep create(String version, String style, Provisioner provisioner) {
-		return create(version, style, DEFAULT_FORMAT_JAVADOC, provisioner);
+		return create(version, defaultStyle(), DEFAULT_FORMAT_JAVADOC, provisioner);
 	}
 
 	/**
 	 * Creates a step which formats everything - code, import order, unused imports, and Java docs. And with the given
 	 * format style.
 	 */
-	public static FormatterStep create(String version, String style, boolean formatJavadoc, Provisioner provisioner) {
+	public static FormatterStep create(String version, String ignore, boolean formatJavadoc, Provisioner provisioner) {
 		Objects.requireNonNull(version, "version");
-		Objects.requireNonNull(style, "style");
 		Objects.requireNonNull(provisioner, "provisioner");
 
 		return FormatterStep.create(NAME,
-				new PalantirJavaFormatStep(JarState.promise(() -> JarState.from(MAVEN_COORDINATE + version, provisioner)), version, style, formatJavadoc),
+				new PalantirJavaFormatStep(JarState.promise(() -> JarState.from(MAVEN_COORDINATE + version, provisioner)), version, formatJavadoc),
 				PalantirJavaFormatStep::equalityState,
 				State::createFormat);
 	}
@@ -103,7 +92,7 @@ public final class PalantirJavaFormatStep implements Serializable {
 	}
 
 	private State equalityState() {
-		return new State(jarState.get(), formatterVersion, style, formatJavadoc);
+		return new State(jarState.get(), formatterVersion, formatJavadoc);
 	}
 
 	private static final class State implements Serializable {
@@ -111,14 +100,13 @@ public final class PalantirJavaFormatStep implements Serializable {
 		private static final long serialVersionUID = 1L;
 
 		private final JarState jarState;
-		private final String formatterVersion;
+
 		private final String style;
 		private final boolean formatJavadoc;
 
-		State(JarState jarState, String formatterVersion, String style, boolean formatJavadoc) {
+		State(JarState jarState, String style, boolean formatJavadoc) {
 			ModuleHelper.doOpenInternalPackagesIfRequired();
 			this.jarState = jarState;
-			this.formatterVersion = formatterVersion;
 			this.style = style;
 			this.formatJavadoc = formatJavadoc;
 		}

@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 DiffPlug
+ * Copyright 2016-2025 DiffPlug
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,8 +43,7 @@ class PrettierFormatStepTest extends MavenIntegrationHarness {
 		return path;
 	}
 
-	private ProcessRunner.Result runExpectingError(String kind, String suffix) throws IOException, InterruptedException {
-		String path = prepareRun(kind, suffix);
+	private ProcessRunner.Result runExpectingError() throws IOException, InterruptedException {
 		return mavenRunner().withArguments("spotless:apply").runHasError();
 	}
 
@@ -258,7 +257,7 @@ class PrettierFormatStepTest extends MavenIntegrationHarness {
 				"  <prettierVersion>1.16.4</prettierVersion>",
 				"  <configFile>.prettierrc.yml</configFile>",
 				"</prettier>");
-		ProcessRunner.Result result = runExpectingError("typescript", suffix);
+		ProcessRunner.Result result = runExpectingError();
 		assertThat(result.stdOutUtf8()).containsPattern("Running npm command.*npm install.* failed with exit code: 1");
 	}
 
@@ -276,7 +275,7 @@ class PrettierFormatStepTest extends MavenIntegrationHarness {
 				"  <configFile>.prettierrc.yml</configFile>",
 				"  <npmrc>${basedir}/.custom_npmrc</npmrc>",
 				"</prettier>");
-		ProcessRunner.Result result = runExpectingError("typescript", suffix);
+		ProcessRunner.Result result = runExpectingError();
 		assertThat(result.stdOutUtf8()).containsPattern("Running npm command.*npm install.* failed with exit code: 1");
 	}
 }

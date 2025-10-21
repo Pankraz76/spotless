@@ -60,7 +60,7 @@ class PalantirJavaFormatStepTest extends ResourceHarness {
 
 	@Test
 	void behaviorWithGoogleStyle() throws Exception {
-		FormatterStep step = PalantirJavaFormatStep.create("1.1.0", "GOOGLE", TestProvisioner.mavenCentral());
+		FormatterStep step = PalantirJavaFormatStep.create("1.1.0", TestProvisioner.mavenCentral());
 		StepHarness.forStep(step)
 				.testResource("java/palantirjavaformat/JavaCodeUnformatted.test", "java/palantirjavaformat/JavaCodeFormattedGoogle.test")
 				.testResource("java/palantirjavaformat/JavaCodeWithLicenseUnformatted.test", "java/palantirjavaformat/JavaCodeWithLicenseFormattedGoogle.test")
