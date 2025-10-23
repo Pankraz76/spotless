@@ -4,6 +4,8 @@ apply plugin: 'net.ltgt.errorprone'
 
 dependencies {
 	errorprone('com.google.errorprone:error_prone_core:2.42.0')
+//	bug https://github.com/google/error-prone/issues/5293
+//	errorprone('com.google.errorprone:error_prone_core:2.43.0')
 	errorprone('tech.picnic.error-prone-support:error-prone-contrib:0.25.0')
 }
 
@@ -31,6 +33,7 @@ tasks.withType(JavaCompile).configureEach {
 				)
 		error(
 				'AmbiguousJsonCreator',
+				'UnnecessarilyFullyQualified',
 				'AssertJNullnessAssertion',
 				'AutowiredConstructor',
 				'CanonicalAnnotationSyntax',
@@ -61,32 +64,33 @@ tasks.withType(JavaCompile).configureEach {
 			errorproneArgs.addAll(
 					'-XepPatchLocation:IN_PLACE',
 					'-XepPatchChecks:' +
-					'AmbiguousJsonCreator,' +
-					'ArrayEquals,' +
-					'AssertJNullnessAssertion,' +
-					'AutowiredConstructor,' +
-					'CanonicalAnnotationSyntax,' +
-					'CollectorMutability,' +
-					'ConstantNaming,' +
-					'DirectReturn,' +
-					'EmptyMethod,' +
-					'ExplicitArgumentEnumeration,' +
-					'ExplicitEnumOrdering,' +
-					'FormatStringConcatenation,' +
-					'IdentityConversion,' +
-					'ImmutablesSortedSetComparator,' +
-					'IsInstanceLambdaUsage,' +
-					'MockitoMockClassReference,' +
-					'MockitoStubbing,' +
-					'NestedOptionals,' +
-					'PrimitiveComparison,' +
-					'RedundantStringConversion,' +
-					'RedundantStringEscape,' +
-					'SelfAssignment,' +
-					'Slf4jLogStatement,' +
-					'StringJoin,' +
-					'StringJoining,' +
-					'TimeZoneUsage,'
+					'UnnecessarilyFullyQualified,'
+//					'AmbiguousJsonCreator,' +
+//					'ArrayEquals,' +
+//					'AssertJNullnessAssertion,' +
+//					'AutowiredConstructor,' +
+//					'CanonicalAnnotationSyntax,' +
+//					'CollectorMutability,' +
+//					'ConstantNaming,' +
+//					'DirectReturn,' +
+//					'EmptyMethod,' +
+//					'ExplicitArgumentEnumeration,' +
+//					'ExplicitEnumOrdering,' +
+//					'FormatStringConcatenation,' +
+//					'IdentityConversion,' +
+//					'ImmutablesSortedSetComparator,' +
+//					'IsInstanceLambdaUsage,' +
+//					'MockitoMockClassReference,' +
+//					'MockitoStubbing,' +
+//					'NestedOptionals,' +
+//					'PrimitiveComparison,' +
+//					'RedundantStringConversion,' +
+//					'RedundantStringEscape,' +
+//					'SelfAssignment,' +
+//					'Slf4jLogStatement,' +
+//					'StringJoin,' +
+//					'StringJoining,' +
+//					'TimeZoneUsage,'
 					)
 		}
 	}

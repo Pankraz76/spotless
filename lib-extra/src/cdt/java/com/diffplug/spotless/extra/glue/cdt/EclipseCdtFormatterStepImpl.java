@@ -20,7 +20,7 @@ import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
+import org.eclipse.cdt.core.ToolFactory;
 import org.eclipse.cdt.core.formatter.CodeFormatter;
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
@@ -35,7 +35,7 @@ public class EclipseCdtFormatterStepImpl {
 		Map<String, String> settingsMap = stream.collect(Collectors.toMap(
 				e -> String.valueOf(e.getKey()),
 				e -> String.valueOf(e.getValue())));
-		codeFormatter = org.eclipse.cdt.core.ToolFactory.createDefaultCodeFormatter(settingsMap);
+		codeFormatter = ToolFactory.createDefaultCodeFormatter(settingsMap);
 	}
 
 	/** Formatting C/C++ string */
