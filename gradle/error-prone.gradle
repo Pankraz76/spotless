@@ -11,13 +11,19 @@ tasks.withType(JavaCompile).configureEach {
 				'FunctionalInterfaceMethodChanged',
 				'JavaxInjectOnAbstractMethod',
 				'OverridesJavaxInjectableMethod',
+				// breaks patching.
+				'Slf4jLoggerDeclaration',
+				'Varifier',
+				'Var',
+				'DoNotCallSuggester',
+				'InlineMeSuggester',
+				'ImmutableEnumChecker',
 				)
 		error(
 				'AmbiguousJsonCreator',
 				'AssertJNullnessAssertion',
 				'AutowiredConstructor',
 				'CanonicalAnnotationSyntax',
-				'UnnecessarilyFullyQualified',
 				'CollectorMutability',
 				'ConstantNaming',
 				'DirectReturn',
@@ -37,6 +43,8 @@ tasks.withType(JavaCompile).configureEach {
 				'SelfAssignment',
 				'StringJoin',
 				'StringJoining',
+				'UnnecessarilyFullyQualified',
+				'UnnecessarilyFullyQualified',
 				'UnnecessaryLambda',
 				)
 		// bug: this only happens when the file is dirty.
