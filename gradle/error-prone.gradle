@@ -1,3 +1,5 @@
+import static java.lang.System.getenv
+
 apply plugin: 'net.ltgt.errorprone'
 
 dependencies {
@@ -50,5 +52,12 @@ tasks.withType(JavaCompile).configureEach {
 		// bug: this only happens when the file is dirty.
 		// might be an up2date (caching) issue, as file is currently in corrupt state.
 		errorproneArgs.add('-XepExcludedPaths:.*/SelfTest.java') // fix: SelfTest.java:L22 ForbidGradleInternal(import org.gradle.api.internal.project.ProjectInternal;)
+		if (!getenv().containsKey('CI') && getenv('IN_PLACE')?.toBoolean()) {
+			errorproneArgs.addAll(
+				'-XepPatchLocation:IN_PLACE',
+//				'-XepPatchChecks:' +
+//					'UnnecessarilyFullyQualified,'
+			)
+		}
 	}
 }
