@@ -24,6 +24,7 @@ tasks.withType(JavaCompile).configureEach {
 				'ExplicitArgumentEnumeration',
 				'ExplicitEnumOrdering',
 				'IdentityConversion',
+				'WildcardImport',
 				'ImmutablesSortedSetComparator',
 				'IsInstanceLambdaUsage',
 				'MockitoMockClassReference',
