@@ -17,6 +17,7 @@ tasks.withType(JavaCompile).configureEach {
 				'AssertJNullnessAssertion',
 				'AutowiredConstructor',
 				'CanonicalAnnotationSyntax',
+				'UnnecessarilyFullyQualified',
 				'CollectorMutability',
 				'ConstantNaming',
 				'DirectReturn',
