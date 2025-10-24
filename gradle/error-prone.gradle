@@ -24,7 +24,6 @@ tasks.withType(JavaCompile).configureEach {
 				'ExplicitArgumentEnumeration',
 				'ExplicitEnumOrdering',
 				'IdentityConversion',
-				'WildcardImport',
 				'ImmutablesSortedSetComparator',
 				'IsInstanceLambdaUsage',
 				'MockitoMockClassReference',
@@ -39,6 +38,7 @@ tasks.withType(JavaCompile).configureEach {
 				'StringJoining',
 				'UnnecessarilyFullyQualified',
 				'UnnecessaryLambda',
+				'WildcardImport',
 				)
 		// bug: this only happens when the file is dirty.
 		// might be an up2date (caching) issue, as file is currently in corrupt state.
