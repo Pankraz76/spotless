@@ -149,6 +149,7 @@ public final class PaddedCell {
 	}
 
 	/** Returns the "canonical" form for this particular result (only possible if isResolvable). */
+	@SuppressWarnings("UnnecessaryDefaultInEnumSwitch")
 	public String canonical() {
 		// @formatter:off
 		switch (type) {
@@ -160,6 +161,7 @@ public final class PaddedCell {
 		// @formatter:on
 	}
 
+	@SuppressWarnings("UnnecessaryDefaultInEnumSwitch")
 	/** Returns a string which describes this result. */
 	public String userMessage() {
 		// @formatter:off
