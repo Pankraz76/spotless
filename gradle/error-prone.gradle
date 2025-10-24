@@ -70,33 +70,8 @@ tasks.withType(JavaCompile).configureEach {
 		if (!getenv().containsKey('CI') && getenv('IN_PLACE')?.toBoolean()) {
 			errorproneArgs.addAll(
 				'-XepPatchLocation:IN_PLACE',
-				'-XepPatchChecks:' +
-					'AmbiguousJsonCreator,' +
-					'ArrayEquals,' +
-					'AssertJNullnessAssertion,' +
-					'AutowiredConstructor,' +
-					'CanonicalAnnotationSyntax,' +
-					'CollectorMutability,' +
-					'ConstantNaming,' +
-					'DirectReturn,' +
-					'EmptyMethod,' +
-					'ExplicitArgumentEnumeration,' +
-					'ExplicitEnumOrdering,' +
-					'FormatStringConcatenation,' +
-					'IdentityConversion,' +
-					'ImmutablesSortedSetComparator,' +
-					'IsInstanceLambdaUsage,' +
-					'MockitoMockClassReference,' +
-					'MockitoStubbing,' +
-					'NestedOptionals,' +
-					'PrimitiveComparison,' +
-					'RedundantStringConversion,' +
-					'RedundantStringEscape,' +
-					'SelfAssignment,' +
-					'Slf4jLogStatement,' +
-					'StringJoin,' +
-					'StringJoining,' +
-					'TimeZoneUsage,'
+//				'-XepPatchChecks:' +
+//					'UnnecessaryParentheses'
 			)
 		}
 	}
