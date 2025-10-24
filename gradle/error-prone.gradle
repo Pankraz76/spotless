@@ -43,7 +43,7 @@ tasks.withType(JavaCompile).configureEach {
 				'UnnecessaryBreakInSwitch',
 				'UnnecessaryCheckNotNull',
 				'UnnecessaryCopy',
-				'UnnecessaryDefaultInEnumSwitch',
+				// 'UnnecessaryDefaultInEnumSwitch',
 				// 'UnnecessaryFinal',
 				'UnnecessaryLambda',
 				'UnnecessaryLongToIntConversion',
