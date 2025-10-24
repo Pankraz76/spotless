@@ -80,15 +80,15 @@ public class RdfFormatterFunc implements FormatterFunc {
 		}
 	}
 
-	private String formatNQuads(String rawUnix) {
+	private String formatNQuads(String ignored) {
 		throw new UnsupportedOperationException("NQUADS formatting not supported yet");
 	}
 
-	private String formatNTriples(String rawUnix) {
+	private String formatNTriples(String ignored) {
 		throw new UnsupportedOperationException("NTRIPLES formatting not supported yet");
 	}
 
-	private String formatTrig(File file) {
+	private String formatTrig(File ignored) {
 		throw new UnsupportedOperationException("TRIG formatting not supported yet");
 	}
 

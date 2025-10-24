@@ -225,9 +225,8 @@ public final class FenceStep {
 				}
 				String formatted = formatter.compute(unix, file);
 				return assembleGroups(formatted);
-			default:
-				throw new Error();
 			}
+			throw new Error();
 		}
 
 		@Override
