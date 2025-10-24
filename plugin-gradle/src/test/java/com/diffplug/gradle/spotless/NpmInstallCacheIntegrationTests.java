@@ -121,7 +121,7 @@ class NpmInstallCacheIntegrationTests extends GradleIntegrationHarness {
 				"    }",
 				"}");
 		setFile(baseDir + "/php-example.php").toResource("npm/prettier/plugins/php.dirty");
-		final BuildResult spotlessApply = gradleRunner().withProjectDir(projDir).withArguments("--stacktrace", "--info", "spotlessApply").build();
+		 BuildResult spotlessApply = gradleRunner().withProjectDir(projDir).withArguments("--stacktrace", "--info", "spotlessApply").build();
 		Assertions.assertThat(spotlessApply.getOutput()).contains("BUILD SUCCESSFUL");
 		assertFile(baseDir + "/php-example.php").sameAsResource("npm/prettier/plugins/php.clean");
 		return spotlessApply;
@@ -176,7 +176,7 @@ class NpmInstallCacheIntegrationTests extends GradleIntegrationHarness {
 				"    }",
 				"}");
 		setFile(baseDir + "/test.ts").toResource("npm/tsfmt/tsfmt/tsfmt.dirty");
-		final BuildResult spotlessApply = gradleRunner().withProjectDir(projDir).withArguments("--stacktrace", "--info", "spotlessApply").build();
+		 BuildResult spotlessApply = gradleRunner().withProjectDir(projDir).withArguments("--stacktrace", "--info", "spotlessApply").build();
 		assertFile(baseDir + "/test.ts").sameAsResource("npm/tsfmt/tsfmt/tsfmt.clean");
 		return spotlessApply;
 	}

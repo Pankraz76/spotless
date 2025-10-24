@@ -30,9 +30,9 @@ class CppDefaultsTest extends ResourceHarness {
 
 	@Test
 	void testDelimiterExpr() throws Exception {
-		final String header = "/*My tests header*/";
+		 String header = "/*My tests header*/";
 		FormatterStep step = LicenseHeaderStep.headerDelimiter(header, CppDefaults.DELIMITER_EXPR).build();
-		final File dummyFile = setFile("src/main/cpp/file1.dummy").toContent("");
+		 File dummyFile = setFile("src/main/cpp/file1.dummy").toContent("");
 		for (String testSource : Arrays.asList(
 				"//Accpet multiple spaces between composed term.@using  namespace std;",
 				"//Accpet line delimiters between composed term.@using\n namespace std;",

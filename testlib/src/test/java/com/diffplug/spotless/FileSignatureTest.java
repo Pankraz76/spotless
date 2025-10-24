@@ -70,8 +70,8 @@ class FileSignatureTest extends ResourceHarness {
 				.isInstanceOf(IllegalArgumentException.class);
 	}
 
-	private List<File> getTestFiles(final String[] paths) throws IOException {
-		final List<File> result = new ArrayList<>(paths.length);
+	private List<File> getTestFiles( String[] paths) throws IOException {
+		 List<File> result = new ArrayList<>(paths.length);
 		for (String path : paths) {
 			result.add(setFile(path).toContent(""));
 		}

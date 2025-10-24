@@ -180,7 +180,7 @@ class TypescriptFormatStepTest extends MavenIntegrationHarness {
 
 	@Test
 	void eslintConfigJs() throws Exception {
-		final String configJs = ResourceHarness.getTestResource("npm/eslint/typescript/custom_rules/.eslintrc.js")
+		 String configJs = ResourceHarness.getTestResource("npm/eslint/typescript/custom_rules/.eslintrc.js")
 				.replace("module.exports = ", "");
 		writePomWithTypescriptSteps(
 				TEST_FILE_PATH,

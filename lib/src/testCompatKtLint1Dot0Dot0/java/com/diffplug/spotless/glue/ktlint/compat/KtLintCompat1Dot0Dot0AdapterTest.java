@@ -32,7 +32,7 @@ public class KtLintCompat1Dot0Dot0AdapterTest {
 	public void testDefaults(@TempDir Path path) throws IOException {
 		KtLintCompat1Dot0Dot0Adapter KtLintCompat1Dot0Dot0Adapter = new KtLintCompat1Dot0Dot0Adapter();
 		var content = loadAndWriteText(path, "EmptyClassBody.kt");
-		final Path filePath = Path.of(path.toString(), "EmptyClassBody.kt");
+		 Path filePath = Path.of(path.toString(), "EmptyClassBody.kt");
 
 		Map<String, Object> editorConfigOverrideMap = new HashMap<>();
 
@@ -44,7 +44,7 @@ public class KtLintCompat1Dot0Dot0AdapterTest {
 	public void testEditorConfigCanDisable(@TempDir Path path) throws IOException {
 		KtLintCompat1Dot0Dot0Adapter KtLintCompat1Dot0Dot0Adapter = new KtLintCompat1Dot0Dot0Adapter();
 		var content = loadAndWriteText(path, "FailsNoSemicolons.kt");
-		final Path filePath = Path.of(path.toString(), "FailsNoSemicolons.kt");
+		 Path filePath = Path.of(path.toString(), "FailsNoSemicolons.kt");
 
 		Map<String, Object> editorConfigOverrideMap = new HashMap<>();
 		editorConfigOverrideMap.put("indent_style", "tab");

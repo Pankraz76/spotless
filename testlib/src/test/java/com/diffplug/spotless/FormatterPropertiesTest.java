@@ -221,7 +221,7 @@ class FormatterPropertiesTest extends ResourceHarness {
 			return this;
 		}
 
-		public FormatterSettingsAssert containsCommonValueOf(final File file) {
+		public FormatterSettingsAssert containsCommonValueOf( File file) {
 			isNotNull();
 
 			String fileName = file.getName();
