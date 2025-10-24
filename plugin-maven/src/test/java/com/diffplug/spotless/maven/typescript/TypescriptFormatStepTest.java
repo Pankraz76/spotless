@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2024 DiffPlug
+ * Copyright 2016-2025 DiffPlug
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -180,7 +180,7 @@ class TypescriptFormatStepTest extends MavenIntegrationHarness {
 
 	@Test
 	void eslintConfigJs() throws Exception {
-		 String configJs = ResourceHarness.getTestResource("npm/eslint/typescript/custom_rules/.eslintrc.js")
+		String configJs = ResourceHarness.getTestResource("npm/eslint/typescript/custom_rules/.eslintrc.js")
 				.replace("module.exports = ", "");
 		writePomWithTypescriptSteps(
 				TEST_FILE_PATH,

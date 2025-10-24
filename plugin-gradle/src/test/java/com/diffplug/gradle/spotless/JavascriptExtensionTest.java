@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 DiffPlug
+ * Copyright 2016-2025 DiffPlug
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -78,7 +78,7 @@ class JavascriptExtensionTest extends GradleIntegrationHarness {
 
 		@Test
 		void esllintAllowsToSpecifyInlineConfig() throws IOException {
-			 String eslintConfigJs = String.join("\n",
+			String eslintConfigJs = String.join("\n",
 					"{",
 					"	env: {",
 					"		browser: true,",
@@ -163,7 +163,7 @@ class JavascriptExtensionTest extends GradleIntegrationHarness {
 		@ValueSource(strings = {"airbnb", "google", "standard", "xo"})
 		void formattingUsingStyleguide(String styleguide) throws Exception {
 
-			 String styleguidePath = "npm/eslint/javascript/styleguide/" + styleguide + "/";
+			String styleguidePath = "npm/eslint/javascript/styleguide/" + styleguide + "/";
 
 			setFile(".eslintrc.js").toResource(styleguidePath + ".eslintrc.js");
 			setFile("build.gradle").toLines(

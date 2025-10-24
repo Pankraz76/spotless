@@ -55,7 +55,7 @@ class GitPrePushHookInstallerTest extends ResourceHarness {
 	public void beforeEach() {
 		System.setProperty("os.name", "linux");
 
-		 var hookFile = newFile(".git/hooks/pre-push");
+		var hookFile = newFile(".git/hooks/pre-push");
 		if (hookFile.exists()) {
 			hookFile.delete();
 		}
@@ -69,7 +69,7 @@ class GitPrePushHookInstallerTest extends ResourceHarness {
 	@Test
 	public void should_not_create_pre_hook_file_when_git_is_not_installed() throws Exception {
 		// given
-		 var gradle = new GitPrePushHookInstallerGradle(logger, rootFolder());
+		var gradle = new GitPrePushHookInstallerGradle(logger, rootFolder());
 
 		// when
 		gradle.install();
@@ -84,7 +84,7 @@ class GitPrePushHookInstallerTest extends ResourceHarness {
 	@Test
 	public void should_use_global_gradle_when_gradlew_is_not_installed() throws Exception {
 		// given
-		 var gradle = new GitPrePushHookInstallerGradle(logger, rootFolder());
+		var gradle = new GitPrePushHookInstallerGradle(logger, rootFolder());
 		setFile(".git/config").toContent("");
 
 		// when
@@ -97,16 +97,16 @@ class GitPrePushHookInstallerTest extends ResourceHarness {
 				"Local gradle wrapper (gradlew) not found, falling back to global command 'gradle'",
 				"Git pre-push hook installed successfully to the file " + newFile(".git/hooks/pre-push").getAbsolutePath());
 
-		 var content = gradleHookContent("git_pre_hook/pre-push.created-tpl", ExecutorType.GLOBAL);
+		var content = gradleHookContent("git_pre_hook/pre-push.created-tpl", ExecutorType.GLOBAL);
 		assertFile(".git/hooks/pre-push").hasContent(content);
 	}
 
 	@Test
 	public void should_reinstall_pre_hook_file_when_hook_already_installed() throws Exception {
 		// given
-		 var gradle = new GitPrePushHookInstallerGradle(logger, rootFolder());
-		 var installedGlobally = gradleHookContent("git_pre_hook/pre-push.existing-installed-end-tpl", ExecutorType.GLOBAL);
-		 var hookFile = setFile(".git/hooks/pre-push").toContent(installedGlobally);
+		var gradle = new GitPrePushHookInstallerGradle(logger, rootFolder());
+		var installedGlobally = gradleHookContent("git_pre_hook/pre-push.existing-installed-end-tpl", ExecutorType.GLOBAL);
+		var hookFile = setFile(".git/hooks/pre-push").toContent(installedGlobally);
 
 		setFile("gradlew").toContent("");
 		setFile(".git/config").toContent("");
@@ -120,16 +120,16 @@ class GitPrePushHookInstallerTest extends ResourceHarness {
 				"Git pre-push hook already installed, reinstalling it",
 				"Git pre-push hook installed successfully to the file " + hookFile.getAbsolutePath());
 
-		 var content = gradleHookContent("git_pre_hook/pre-push.existing-installed-end-tpl", ExecutorType.WRAPPER);
+		var content = gradleHookContent("git_pre_hook/pre-push.existing-installed-end-tpl", ExecutorType.WRAPPER);
 		assertFile(".git/hooks/pre-push").hasContent(content);
 	}
 
 	@Test
 	public void should_reinstall_pre_hook_file_when_hook_already_installed_in_the_middle_of_file() throws Exception {
 		// given
-		 var gradle = new GitPrePushHookInstallerGradle(logger, rootFolder());
-		 var installedGlobally = gradleHookContent("git_pre_hook/pre-push.existing-installed-middle-tpl", ExecutorType.GLOBAL);
-		 var hookFile = setFile(".git/hooks/pre-push").toContent(installedGlobally);
+		var gradle = new GitPrePushHookInstallerGradle(logger, rootFolder());
+		var installedGlobally = gradleHookContent("git_pre_hook/pre-push.existing-installed-middle-tpl", ExecutorType.GLOBAL);
+		var hookFile = setFile(".git/hooks/pre-push").toContent(installedGlobally);
 
 		setFile("gradlew").toContent("");
 		setFile(".git/config").toContent("");
@@ -143,15 +143,15 @@ class GitPrePushHookInstallerTest extends ResourceHarness {
 				"Git pre-push hook already installed, reinstalling it",
 				"Git pre-push hook installed successfully to the file " + hookFile.getAbsolutePath());
 
-		 var content = gradleHookContent("git_pre_hook/pre-push.existing-reinstalled-middle-tpl", ExecutorType.WRAPPER);
+		var content = gradleHookContent("git_pre_hook/pre-push.existing-reinstalled-middle-tpl", ExecutorType.WRAPPER);
 		assertFile(".git/hooks/pre-push").hasContent(content);
 	}
 
 	@Test
 	public void should_reinstall_a_few_times_pre_hook_file_when_hook_already_installed_in_the_middle_of_file() throws Exception {
 		// given
-		 var gradle = new GitPrePushHookInstallerGradle(logger, rootFolder());
-		 var installedGlobally = gradleHookContent("git_pre_hook/pre-push.existing-installed-middle-tpl", ExecutorType.GLOBAL);
+		var gradle = new GitPrePushHookInstallerGradle(logger, rootFolder());
+		var installedGlobally = gradleHookContent("git_pre_hook/pre-push.existing-installed-middle-tpl", ExecutorType.GLOBAL);
 		setFile(".git/hooks/pre-push").toContent(installedGlobally);
 
 		setFile("gradlew").toContent("");
@@ -163,14 +163,14 @@ class GitPrePushHookInstallerTest extends ResourceHarness {
 		gradle.install();
 
 		// then
-		 var content = gradleHookContent("git_pre_hook/pre-push.existing-reinstalled-middle-tpl", ExecutorType.WRAPPER);
+		var content = gradleHookContent("git_pre_hook/pre-push.existing-reinstalled-middle-tpl", ExecutorType.WRAPPER);
 		assertFile(".git/hooks/pre-push").hasContent(content);
 	}
 
 	@Test
 	public void should_create_pre_hook_file_when_hook_file_does_not_exists() throws Exception {
 		// given
-		 var gradle = new GitPrePushHookInstallerGradle(logger, rootFolder());
+		var gradle = new GitPrePushHookInstallerGradle(logger, rootFolder());
 		setFile("gradlew").toContent("");
 		setFile(".git/config").toContent("");
 
@@ -183,14 +183,14 @@ class GitPrePushHookInstallerTest extends ResourceHarness {
 				"Git pre-push hook not found, creating it",
 				"Git pre-push hook installed successfully to the file " + newFile(".git/hooks/pre-push").getAbsolutePath());
 
-		 var content = gradleHookContent("git_pre_hook/pre-push.created-tpl", ExecutorType.WRAPPER);
+		var content = gradleHookContent("git_pre_hook/pre-push.created-tpl", ExecutorType.WRAPPER);
 		assertFile(".git/hooks/pre-push").hasContent(content);
 	}
 
 	@Test
 	public void should_append_to_existing_pre_hook_file_when_hook_file_exists() throws Exception {
 		// given
-		 var gradle = new GitPrePushHookInstallerGradle(logger, rootFolder());
+		var gradle = new GitPrePushHookInstallerGradle(logger, rootFolder());
 		setFile("gradlew").toContent("");
 		setFile(".git/config").toContent("");
 		setFile(".git/hooks/pre-push").toResource("git_pre_hook/pre-push.existing");
@@ -203,14 +203,14 @@ class GitPrePushHookInstallerTest extends ResourceHarness {
 				"Installing git pre-push hook",
 				"Git pre-push hook installed successfully to the file " + newFile(".git/hooks/pre-push").getAbsolutePath());
 
-		 var content = gradleHookContent("git_pre_hook/pre-push.existing-installed-end-tpl", ExecutorType.WRAPPER);
+		var content = gradleHookContent("git_pre_hook/pre-push.existing-installed-end-tpl", ExecutorType.WRAPPER);
 		assertFile(".git/hooks/pre-push").hasContent(content);
 	}
 
 	@Test
 	public void should_create_pre_hook_file_for_maven_when_hook_file_does_not_exists() throws Exception {
 		// given
-		 var gradle = new GitPrePushHookInstallerMaven(logger, rootFolder());
+		var gradle = new GitPrePushHookInstallerMaven(logger, rootFolder());
 		setFile("mvnw").toContent("");
 		setFile(".git/config").toContent("");
 
@@ -223,14 +223,14 @@ class GitPrePushHookInstallerTest extends ResourceHarness {
 				"Git pre-push hook not found, creating it",
 				"Git pre-push hook installed successfully to the file " + newFile(".git/hooks/pre-push").getAbsolutePath());
 
-		 var content = mavenHookContent("git_pre_hook/pre-push.created-tpl", ExecutorType.WRAPPER);
+		var content = mavenHookContent("git_pre_hook/pre-push.created-tpl", ExecutorType.WRAPPER);
 		assertFile(".git/hooks/pre-push").hasContent(content);
 	}
 
 	@Test
 	public void should_use_global_maven_when_maven_wrapper_is_not_installed() throws Exception {
 		// given
-		 var gradle = new GitPrePushHookInstallerMaven(logger, rootFolder());
+		var gradle = new GitPrePushHookInstallerMaven(logger, rootFolder());
 		setFile(".git/config").toContent("");
 
 		// when
@@ -243,7 +243,7 @@ class GitPrePushHookInstallerTest extends ResourceHarness {
 				"Local maven wrapper (mvnw) not found, falling back to global command 'mvn'",
 				"Git pre-push hook installed successfully to the file " + newFile(".git/hooks/pre-push").getAbsolutePath());
 
-		 var content = mavenHookContent("git_pre_hook/pre-push.created-tpl", ExecutorType.GLOBAL);
+		var content = mavenHookContent("git_pre_hook/pre-push.created-tpl", ExecutorType.GLOBAL);
 		assertFile(".git/hooks/pre-push").hasContent(content);
 	}
 
@@ -254,10 +254,10 @@ class GitPrePushHookInstallerTest extends ResourceHarness {
 		setFile("mvnw.bat").toContent("");
 		setFile("mvnw.cmd").toContent("");
 
-		 var gradle = new GitPrePushHookInstallerMaven(logger, rootFolder());
+		var gradle = new GitPrePushHookInstallerMaven(logger, rootFolder());
 
 		// when
-		 var hook = gradle.preHookTemplate(MAVEN, "spotless:check", "spotless:apply");
+		var hook = gradle.preHookTemplate(MAVEN, "spotless:check", "spotless:apply");
 
 		// then
 		assertThat(hook).contains("SPOTLESS_EXECUTOR=./mvnw.bat");
@@ -269,10 +269,10 @@ class GitPrePushHookInstallerTest extends ResourceHarness {
 		System.setProperty("os.name", "Windows 10");
 		setFile("mvnw.cmd").toContent("");
 
-		 var gradle = new GitPrePushHookInstallerMaven(logger, rootFolder());
+		var gradle = new GitPrePushHookInstallerMaven(logger, rootFolder());
 
 		// when
-		 var hook = gradle.preHookTemplate(MAVEN, "spotless:check", "spotless:apply");
+		var hook = gradle.preHookTemplate(MAVEN, "spotless:check", "spotless:apply");
 
 		// then
 		assertThat(hook).contains("SPOTLESS_EXECUTOR=./mvnw.cmd");
@@ -284,10 +284,10 @@ class GitPrePushHookInstallerTest extends ResourceHarness {
 		System.setProperty("os.name", "Windows 10");
 		setFile("mvnw").toContent("");
 
-		 var gradle = new GitPrePushHookInstallerMaven(logger, rootFolder());
+		var gradle = new GitPrePushHookInstallerMaven(logger, rootFolder());
 
 		// when
-		 var hook = gradle.preHookTemplate(MAVEN, "spotless:check", "spotless:apply");
+		var hook = gradle.preHookTemplate(MAVEN, "spotless:check", "spotless:apply");
 
 		// then
 		assertThat(hook).contains("SPOTLESS_EXECUTOR=mvn");
@@ -301,10 +301,10 @@ class GitPrePushHookInstallerTest extends ResourceHarness {
 		setFile("gradlew.cmd").toContent("");
 		setFile("gradlew").toContent("");
 
-		 var gradle = new GitPrePushHookInstallerMaven(logger, rootFolder());
+		var gradle = new GitPrePushHookInstallerMaven(logger, rootFolder());
 
 		// when
-		 var hook = gradle.preHookTemplate(GRADLE, "spotlessCheck", "spotlessApply");
+		var hook = gradle.preHookTemplate(GRADLE, "spotlessCheck", "spotlessApply");
 
 		// then
 		assertThat(hook).contains("SPOTLESS_EXECUTOR=./gradlew.bat");
@@ -317,10 +317,10 @@ class GitPrePushHookInstallerTest extends ResourceHarness {
 		setFile("gradlew.cmd").toContent("");
 		setFile("gradlew").toContent("");
 
-		 var gradle = new GitPrePushHookInstallerMaven(logger, rootFolder());
+		var gradle = new GitPrePushHookInstallerMaven(logger, rootFolder());
 
 		// when
-		 var hook = gradle.preHookTemplate(GRADLE, "spotlessCheck", "spotlessApply");
+		var hook = gradle.preHookTemplate(GRADLE, "spotlessCheck", "spotlessApply");
 
 		// then
 		assertThat(hook).contains("SPOTLESS_EXECUTOR=./gradlew.cmd");
@@ -332,10 +332,10 @@ class GitPrePushHookInstallerTest extends ResourceHarness {
 		System.setProperty("os.name", "Windows 10");
 		setFile("gradlew").toContent("");
 
-		 var gradle = new GitPrePushHookInstallerMaven(logger, rootFolder());
+		var gradle = new GitPrePushHookInstallerMaven(logger, rootFolder());
 
 		// when
-		 var hook = gradle.preHookTemplate(GRADLE, "spotlessCheck", "spotlessApply");
+		var hook = gradle.preHookTemplate(GRADLE, "spotlessCheck", "spotlessApply");
 
 		// then
 		assertThat(hook).contains("SPOTLESS_EXECUTOR=gradle");
@@ -348,7 +348,7 @@ class GitPrePushHookInstallerTest extends ResourceHarness {
 
 		// when
 		parallelRun(() -> {
-			 var gradle = new GitPrePushHookInstallerGradle(logger, rootFolder());
+			var gradle = new GitPrePushHookInstallerGradle(logger, rootFolder());
 			gradle.install();
 		});
 
@@ -360,7 +360,7 @@ class GitPrePushHookInstallerTest extends ResourceHarness {
 				"Local gradle wrapper (gradlew) not found, falling back to global command 'gradle'",
 				"Git pre-push hook installed successfully to the file " + newFile(".git/hooks/pre-push").getAbsolutePath());
 
-		 var content = gradleHookContent("git_pre_hook/pre-push.created-tpl", ExecutorType.GLOBAL);
+		var content = gradleHookContent("git_pre_hook/pre-push.created-tpl", ExecutorType.GLOBAL);
 		assertFile(".git/hooks/pre-push").hasContent(content);
 	}
 

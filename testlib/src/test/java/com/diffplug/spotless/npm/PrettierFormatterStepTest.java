@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2024 DiffPlug
+ * Copyright 2016-2025 DiffPlug
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,11 +58,11 @@ class PrettierFormatterStepTest extends NpmFormatterStepCommonTests {
 		private void runTestUsingPrettier(String fileType, Map<String, String> dependencies) throws Exception {
 			String filedir = "npm/prettier/filetypes/" + fileType + "/";
 
-			 File prettierRc = createTestFile(filedir + ".prettierrc.yml");
-			 String dirtyFile = filedir + fileType + ".dirty";
-			 String cleanFile = filedir + fileType + ".clean";
+			File prettierRc = createTestFile(filedir + ".prettierrc.yml");
+			String dirtyFile = filedir + fileType + ".dirty";
+			String cleanFile = filedir + fileType + ".clean";
 
-			 FormatterStep formatterStep = PrettierFormatterStep.create(
+			FormatterStep formatterStep = PrettierFormatterStep.create(
 					dependencies,
 					TestProvisioner.mavenCentral(),
 					projectDir(),
@@ -86,10 +86,10 @@ class PrettierFormatterStepTest extends NpmFormatterStepCommonTests {
 		void parserInferenceBasedOnExplicitFilepathIsWorking(String prettierVersion) throws Exception {
 			String filedir = "npm/prettier/filetypes/json/";
 
-			 String dirtyFile = filedir + "json.dirty";
-			 String cleanFile = filedir + "json.clean";
+			String dirtyFile = filedir + "json.dirty";
+			String cleanFile = filedir + "json.clean";
 
-			 FormatterStep formatterStep = PrettierFormatterStep.create(
+			FormatterStep formatterStep = PrettierFormatterStep.create(
 					ImmutableMap.of("prettier", prettierVersion),
 					TestProvisioner.mavenCentral(),
 					projectDir(),
@@ -108,10 +108,10 @@ class PrettierFormatterStepTest extends NpmFormatterStepCommonTests {
 		void parserInferenceBasedOnFilenameIsWorking(String prettierVersion) throws Exception {
 			String filedir = "npm/prettier/filename/";
 
-			 String dirtyFile = filedir + "dirty.json";
-			 String cleanFile = filedir + "clean.json";
+			String dirtyFile = filedir + "dirty.json";
+			String cleanFile = filedir + "clean.json";
 
-			 FormatterStep formatterStep = PrettierFormatterStep.create(
+			FormatterStep formatterStep = PrettierFormatterStep.create(
 					ImmutableMap.of("prettier", prettierVersion),
 					TestProvisioner.mavenCentral(),
 					projectDir(),
@@ -150,10 +150,10 @@ class PrettierFormatterStepTest extends NpmFormatterStepCommonTests {
 
 		void runFormatTest(String prettierVersion, PrettierConfig config, String cleanFileNameSuffix) throws Exception {
 
-			 String dirtyFile = FILEDIR + "typescript.dirty";
-			 String cleanFile = FILEDIR + "typescript." + cleanFileNameSuffix + ".clean";
+			String dirtyFile = FILEDIR + "typescript.dirty";
+			String cleanFile = FILEDIR + "typescript." + cleanFileNameSuffix + ".clean";
 
-			 FormatterStep formatterStep = PrettierFormatterStep.create(
+			FormatterStep formatterStep = PrettierFormatterStep.create(
 					ImmutableMap.of("prettier", prettierVersion),
 					TestProvisioner.mavenCentral(),
 					projectDir(),

@@ -1,5 +1,5 @@
 /*
- * Copyright 2021-2024 DiffPlug
+ * Copyright 2021-2025 DiffPlug
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -49,7 +49,7 @@ class DiktatStepTest extends ResourceHarness {
 
 	@Test
 	void notSupportedVersion() {
-		 IllegalStateException notSupportedException = Assertions.assertThrows(IllegalStateException.class,
+		IllegalStateException notSupportedException = Assertions.assertThrows(IllegalStateException.class,
 				() -> DiktatStep.create("1.1.0", TestProvisioner.mavenCentral()));
 		Assertions.assertTrue(
 				notSupportedException.getMessage().contains("Minimum required Diktat version is 1.2.1, you tried 1.1.0 which is too old"));

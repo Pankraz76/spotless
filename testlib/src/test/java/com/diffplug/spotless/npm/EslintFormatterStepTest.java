@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2024 DiffPlug
+ * Copyright 2016-2025 DiffPlug
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,13 +51,13 @@ class EslintFormatterStepTest {
 			String testDir = "formatting_ruleset_" + ruleSetName.replace('/', '_') + "/";
 			//			File testDirFile = newFolder(testDir);
 
-			 File eslintRc = createTestFile(filedir + ".eslintrc.js");
+			File eslintRc = createTestFile(filedir + ".eslintrc.js");
 			//			final File eslintRc = setFile(buildDir().getPath() + "/.eslintrc.js").toResource(filedir + ".eslintrc.js");
 
-			 String dirtyFile = filedir + "javascript-es6.dirty";
-			 String cleanFile = filedir + "javascript-es6.clean";
+			String dirtyFile = filedir + "javascript-es6.dirty";
+			String cleanFile = filedir + "javascript-es6.clean";
 
-			 FormatterStep formatterStep = EslintFormatterStep.create(
+			FormatterStep formatterStep = EslintFormatterStep.create(
 					devDependenciesForRuleset.get(ruleSetName),
 					TestProvisioner.mavenCentral(),
 					projectDir(),
@@ -88,7 +88,7 @@ class EslintFormatterStepTest {
 			String testDir = "formatting_ruleset_" + ruleSetName.replace('/', '_') + "/";
 			//			File testDirFile = newFolder(testDir);
 
-			 File eslintRc = createTestFile(filedir + ".eslintrc.js");
+			File eslintRc = createTestFile(filedir + ".eslintrc.js");
 			//			final File eslintRc = setFile(buildDir().getPath() + "/.eslintrc.js").toResource(filedir + ".eslintrc.js");
 
 			//setFile(testDir + "/test.ts").toResource(filedir + "typescript.dirty");
@@ -96,10 +96,10 @@ class EslintFormatterStepTest {
 			if (existsTestResource(filedir + "tsconfig.json")) {
 				tsconfigFile = setFile(testDir + "tsconfig.json").toResource(filedir + "tsconfig.json");
 			}
-			 String dirtyFile = filedir + "typescript.dirty";
-			 String cleanFile = filedir + "typescript.clean";
+			String dirtyFile = filedir + "typescript.dirty";
+			String cleanFile = filedir + "typescript.clean";
 
-			 FormatterStep formatterStep = EslintFormatterStep.create(
+			FormatterStep formatterStep = EslintFormatterStep.create(
 					devDependenciesForRuleset.get(ruleSetName),
 					TestProvisioner.mavenCentral(),
 					projectDir(),
@@ -124,7 +124,7 @@ class EslintFormatterStepTest {
 
 			String testDir = "formatting_ruleset_xo_inline_config/";
 
-			 String esLintConfig = String.join("\n",
+			String esLintConfig = String.join("\n",
 					"{",
 					"	env: {",
 					"		browser: true,",
@@ -153,10 +153,10 @@ class EslintFormatterStepTest {
 					"}");
 
 			File tsconfigFile = setFile(testDir + "tsconfig.json").toResource(filedir + "tsconfig.json");
-			 String dirtyFile = filedir + "typescript.dirty";
-			 String cleanFile = filedir + "typescript.clean";
+			String dirtyFile = filedir + "typescript.dirty";
+			String cleanFile = filedir + "typescript.clean";
 
-			 FormatterStep formatterStep = EslintFormatterStep.create(
+			FormatterStep formatterStep = EslintFormatterStep.create(
 					EslintStyleGuide.TS_XO_TYPESCRIPT.mergedWith(EslintFormatterStep.defaultDevDependenciesForTypescript()),
 					TestProvisioner.mavenCentral(),
 					projectDir(),
