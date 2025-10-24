@@ -38,7 +38,6 @@ tasks.withType(JavaCompile).configureEach {
 				'SelfAssignment',
 				'StringJoin',
 				'StringJoining',
-				'UnusedVariable',
 				'UnnecessarilyFullyQualified',
 				'UnnecessaryAssignment',
 				'UnnecessaryBoxedAssignment',
@@ -59,6 +58,7 @@ tasks.withType(JavaCompile).configureEach {
 				'UnnecessaryStringBuilder',
 				'UnnecessaryTestMethodPrefix',
 				'UnnecessaryTypeArgument',
+				'UnusedVariable',
 				'WildcardImport',
 				)
 		// bug: this only happens when the file is dirty.
