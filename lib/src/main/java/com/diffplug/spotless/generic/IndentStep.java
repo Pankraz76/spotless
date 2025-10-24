@@ -46,7 +46,7 @@ public final class IndentStep implements Serializable {
 
 		/** Creates a step which will indent with the given type of whitespace, converting between tabs and spaces at the default ratio. */
 		public FormatterStep create() {
-			return IndentStep.create(this, Runtime.defaultNumSpacesPerTab());
+			return IndentStep.create(this, defaultNumSpacesPerTab());
 		}
 
 		/** Synonym for {@link IndentStep#create(Type, int)}. */
@@ -112,6 +112,7 @@ public final class IndentStep implements Serializable {
 							builder.append(' ');
 						}
 						break;
+					}
 				}
 
 				// find the start of the next line
