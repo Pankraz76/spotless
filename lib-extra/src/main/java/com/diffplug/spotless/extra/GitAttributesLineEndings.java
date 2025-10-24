@@ -335,14 +335,11 @@ public final class GitAttributesLineEndings {
 
 		/** Creates a LineEnding from an EOL. */
 		private static LineEnding fromEol(EOL eol) {
-			// @formatter:off
-			switch (eol) {
-			case CRLF:    return LineEnding.WINDOWS;
-			case LF:      return LineEnding.UNIX;
-			case NATIVE:  return LineEnding.PLATFORM_NATIVE;
-			default: throw new IllegalArgumentException("Unknown eol " + eol);
-			}
-			// @formatter:on
+			return switch (eol) {
+				case CRLF -> LineEnding.WINDOWS;
+				case LF -> LineEnding.UNIX;
+				case NATIVE -> LineEnding.PLATFORM_NATIVE;
+			};
 		}
 	}
 
