@@ -149,7 +149,6 @@ public final class PaddedCell {
 	}
 
 	/** Returns the "canonical" form for this particular result (only possible if isResolvable). */
-
 	public String canonical() {
 		return switch (type) {
 			case CONVERGE -> steps.get(steps.size() - 1);
@@ -158,7 +157,6 @@ public final class PaddedCell {
 		};
 	}
 
-	@SuppressWarnings("UnnecessaryDefaultInEnumSwitch")
 	/** Returns a string which describes this result. */
 	public String userMessage() {
 		return switch (type) {
