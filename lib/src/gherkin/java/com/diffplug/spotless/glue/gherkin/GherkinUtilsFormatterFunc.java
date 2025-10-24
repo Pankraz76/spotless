@@ -30,12 +30,12 @@ import io.cucumber.messages.types.Source;
 import io.cucumber.messages.types.SourceMediaType;
 
 public class GherkinUtilsFormatterFunc implements FormatterFunc {
-	private static final Logger LOGGER = LoggerFactory.getLogger(GherkinUtilsFormatterFunc.class);
+	
 
-	private final GherkinUtilsConfig gherkinSimpleConfig;
+	
 
 	public GherkinUtilsFormatterFunc(GherkinUtilsConfig gherkinSimpleConfig) {
-		this.gherkinSimpleConfig = gherkinSimpleConfig;
+		
 	}
 
 	// Follows https://github.com/cucumber/gherkin-utils/blob/main/java/src/test/java/io/cucumber/gherkin/utils/pretty/PrettyTest.java

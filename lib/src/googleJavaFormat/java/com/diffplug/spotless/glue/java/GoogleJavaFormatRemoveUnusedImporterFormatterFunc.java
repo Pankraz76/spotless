@@ -25,11 +25,10 @@ import com.diffplug.spotless.FormatterFunc;
 
 public class GoogleJavaFormatRemoveUnusedImporterFormatterFunc implements FormatterFunc {
 
-	@Nonnull
-	private final String version;
+	
 
 	public GoogleJavaFormatRemoveUnusedImporterFormatterFunc(@Nonnull String version) {
-		this.version = Objects.requireNonNull(version);
+		
 	}
 
 	@Override
