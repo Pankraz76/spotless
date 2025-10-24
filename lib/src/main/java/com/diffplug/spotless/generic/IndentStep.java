@@ -75,6 +75,7 @@ public final class IndentStep implements Serializable {
 			this.state = state;
 		}
 
+		@SuppressWarnings("UnnecessaryDefaultInEnumSwitch")
 		String format(String raw) {
 			// reset the buffer
 			builder.setLength(0);
