@@ -46,7 +46,7 @@ tasks.withType(JavaCompile).configureEach {
 				'UnnecessaryCheckNotNull',
 				'UnnecessaryCopy',
 				'UnnecessaryDefaultInEnumSwitch',
-				'UnnecessaryFinal',
+				// 'UnnecessaryFinal',
 				'UnnecessaryLambda',
 				'UnnecessaryLongToIntConversion',
 				'UnnecessaryMethodInvocationMatcher',
