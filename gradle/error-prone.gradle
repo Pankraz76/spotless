@@ -70,8 +70,9 @@ tasks.withType(JavaCompile).configureEach {
 		if (!getenv().containsKey('CI') && getenv('IN_PLACE')?.toBoolean()) {
 			errorproneArgs.addAll(
 				'-XepPatchLocation:IN_PLACE',
-//				'-XepPatchChecks:' +
-//					'UnnecessaryParentheses'
+				// remove XepPatchChecks only
+				'-XepPatchChecks:' +
+					'UnnecessaryParentheses'
 			)
 		}
 	}
