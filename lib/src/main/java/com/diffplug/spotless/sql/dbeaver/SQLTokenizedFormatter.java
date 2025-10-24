@@ -125,7 +125,7 @@ public class SQLTokenizedFormatter {
 			// Concatenate tokens
 			if (t0.getType() == TokenType.KEYWORD && t1.getType() == TokenType.SPACE && t2.getType() == TokenType.KEYWORD) {
 				if ((("ORDER".equals(tokenString) || "GROUP".equals(tokenString) || "CONNECT".equals(tokenString)) && "BY".equals(token2String))
-						|| (("START".equals(tokenString)) && "WITH".equals(token2String))) {
+						|| ("START".equals(tokenString) && "WITH".equals(token2String))) {
 					t0.setString(t0.getString() + " " + t2.getString());
 					argList.remove(index + 1);
 					argList.remove(index + 1);
@@ -399,9 +399,7 @@ public class SQLTokenizedFormatter {
 		try {
 			final String defaultLineSeparator = getDefaultLineSeparator();
 			StringBuilder s = new StringBuilder(defaultLineSeparator);
-			for (int index = 0; index < argIndent; index++) {
-				s.append(formatterCfg.getIndentString());
-			}
+			s.append(String.valueOf(formatterCfg.getIndentString()).repeat(Math.max(0, argIndent)));
 			if (argIndex > 0) {
 				final FormatterToken token = argList.get(argIndex);
 				final FormatterToken prevToken = argList.get(argIndex - 1);
