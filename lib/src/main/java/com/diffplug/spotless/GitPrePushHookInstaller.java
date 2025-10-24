@@ -123,7 +123,7 @@ public abstract class GitPrePushHookInstaller {
 		}
 
 		var hookContent = "";
-		 var gitHookFile = root.toPath().resolve(".git/hooks/pre-push").toFile();
+		var gitHookFile = root.toPath().resolve(".git/hooks/pre-push").toFile();
 		if (!gitHookFile.exists()) {
 			logger.info("Git pre-push hook not found, creating it");
 			if (!gitHookFile.getParentFile().exists() && !gitHookFile.getParentFile().mkdirs()) {
@@ -172,9 +172,9 @@ public abstract class GitPrePushHookInstaller {
 	 *                  such as file reading or writing errors
 	 */
 	private void uninstall(File gitHookFile) throws Exception {
-		 var hook = Files.readString(gitHookFile.toPath());
-		 int hookStart = hook.indexOf(HOOK_HEADER);
-		 int hookEnd = hook.indexOf(HOOK_FOOTER) + HOOK_FOOTER.length(); // hookEnd exclusive, so must be last symbol \n
+		var hook = Files.readString(gitHookFile.toPath());
+		int hookStart = hook.indexOf(HOOK_HEADER);
+		int hookEnd = hook.indexOf(HOOK_FOOTER) + HOOK_FOOTER.length(); // hookEnd exclusive, so must be last symbol \n
 
 		/* Detailed explanation:
 		 * 1. hook.indexOf(HOOK_FOOTER) - finds the starting position of footer "##### SPOTLESS HOOK END #####"
@@ -216,7 +216,7 @@ public abstract class GitPrePushHookInstaller {
 			hookScript += "\n";
 		}
 
-		 var uninstalledHook = hook.replace(hookScript, "");
+		var uninstalledHook = hook.replace(hookScript, "");
 
 		writeFile(gitHookFile, uninstalledHook, false);
 	}
@@ -264,7 +264,7 @@ public abstract class GitPrePushHookInstaller {
 	 *         or the global command (e.g., "gradle")
 	 */
 	private String executorPath(Executor executor) {
-		 var wrapper = executorWrapperFile(executor);
+		var wrapper = executorWrapperFile(executor);
 		if (wrapper.exists()) {
 			return "./" + wrapper.getName();
 		}
@@ -285,7 +285,7 @@ public abstract class GitPrePushHookInstaller {
 	 */
 	private File executorWrapperFile(Executor executor) {
 		if (isWindows()) {
-			 var bat = root.toPath().resolve(executor.wrapper + ".bat").toFile();
+			var bat = root.toPath().resolve(executor.wrapper + ".bat").toFile();
 			if (bat.exists()) {
 				return bat;
 			}
@@ -323,7 +323,7 @@ public abstract class GitPrePushHookInstaller {
 	 * @throws Exception if an error occurs when reading the file.
 	 */
 	private boolean isGitHookInstalled(File gitHookFile) throws Exception {
-		 var hook = Files.readString(gitHookFile.toPath());
+		var hook = Files.readString(gitHookFile.toPath());
 		return hook.contains(HOOK_HEADER) && hook.contains(HOOK_FOOTER);
 	}
 
@@ -335,7 +335,7 @@ public abstract class GitPrePushHookInstaller {
 	 * @throws IOException if an error occurs while writing to the file.
 	 */
 	private void writeFile(File file, String content, boolean append) throws IOException {
-		try ( var writer = new FileWriter(file, UTF_8, append)) {
+		try (var writer = new FileWriter(file, UTF_8, append)) {
 			writer.write(content);
 		}
 	}

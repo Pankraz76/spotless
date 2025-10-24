@@ -69,7 +69,7 @@ public final class GofmtFormatStep {
 	private RoundtripState createRountrip() throws IOException, InterruptedException {
 		String howToInstall = "gofmt is a part of standard go distribution. If spotless can't discover it automatically, "
 				+ "you can point Spotless to the go binary with {@code pathToExe('/path/to/go')}";
-		 ForeignExe exe = ForeignExe.nameAndVersion("go", version)
+		ForeignExe exe = ForeignExe.nameAndVersion("go", version)
 				.pathToExe(pathToExe)
 				.versionFlag("version")
 				.fixCantFind(howToInstall)
@@ -108,7 +108,7 @@ public final class GofmtFormatStep {
 		}
 
 		String format(ProcessRunner runner, String input, File file) throws IOException, InterruptedException {
-			 List<String> processArgs = new ArrayList<>();
+			List<String> processArgs = new ArrayList<>();
 			String pathToGoBinary = exe.confirmVersionAndGetAbsolutePath();
 			Path goBasePath = Path.of(pathToGoBinary).getParent();
 			if (goBasePath == null) {

@@ -40,8 +40,8 @@ final class SimpleRestClient {
 	}
 
 	String postJson(String endpoint, Map<String, Object> jsonParams) throws SimpleRestException {
-		 JsonWriter jsonWriter = JsonWriter.of(jsonParams);
-		 String jsonString = jsonWriter.toJsonString();
+		JsonWriter jsonWriter = JsonWriter.of(jsonParams);
+		String jsonString = jsonWriter.toJsonString();
 
 		return postJson(endpoint, jsonString);
 	}

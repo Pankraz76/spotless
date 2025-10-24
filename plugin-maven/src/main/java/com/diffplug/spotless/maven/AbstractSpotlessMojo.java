@@ -303,7 +303,7 @@ public abstract class AbstractSpotlessMojo extends AbstractMojo {
 	private List<File> collectFiles(FormatterFactory formatterFactory, FormatterConfig config) {
 		Optional<String> ratchetFrom = formatterFactory.ratchetFrom(config);
 		try {
-			 List<File> files;
+			List<File> files;
 			if (ratchetFrom.isPresent()) {
 				files = collectFilesFromGit(formatterFactory, ratchetFrom.orElseThrow());
 			} else {
@@ -312,11 +312,11 @@ public abstract class AbstractSpotlessMojo extends AbstractMojo {
 			if (isNullOrEmpty(filePatterns)) {
 				return files;
 			}
-			 String[] includePatterns = this.filePatterns.split(",");
-			 List<Pattern> compiledIncludePatterns = Arrays.stream(includePatterns)
+			String[] includePatterns = this.filePatterns.split(",");
+			List<Pattern> compiledIncludePatterns = Arrays.stream(includePatterns)
 					.map(Pattern::compile)
 					.collect(Collectors.toList());
-			 Predicate<File> shouldInclude = file -> compiledIncludePatterns
+			Predicate<File> shouldInclude = file -> compiledIncludePatterns
 					.stream()
 					.anyMatch(filePattern -> filePattern.matcher(file.getAbsolutePath())
 							.matches());
@@ -395,7 +395,7 @@ public abstract class AbstractSpotlessMojo extends AbstractMojo {
 		Provisioner provisioner = MavenProvisioner.create(resolver);
 		List<FormatterStepFactory> formatterStepFactories = getFormatterStepFactories();
 		FileLocator fileLocator = getFileLocator();
-		 Optional<String> optionalRatchetFrom = Optional.ofNullable(this.ratchetFrom)
+		Optional<String> optionalRatchetFrom = Optional.ofNullable(this.ratchetFrom)
 				.filter(ratchet -> !RATCHETFROM_NONE.equals(ratchet));
 		return new FormatterConfig(baseDir, encoding, lineEndings, optionalRatchetFrom, provisioner, fileLocator, formatterStepFactories, Optional.ofNullable(setLicenseHeaderYearsFromGitHistory), lintSuppressions);
 	}
@@ -425,7 +425,7 @@ public abstract class AbstractSpotlessMojo extends AbstractMojo {
 			Path targetDir = project.getBasedir().toPath().resolve(project.getBuild().getDirectory());
 			indexFile = targetDir.resolve(DEFAULT_INDEX_FILE_NAME);
 		}
-		 UpToDateChecker checker;
+		UpToDateChecker checker;
 		if (upToDateChecking != null && upToDateChecking.isEnabled()) {
 			checker = UpToDateChecker.forProject(project, indexFile, formatters, getLog());
 		} else {

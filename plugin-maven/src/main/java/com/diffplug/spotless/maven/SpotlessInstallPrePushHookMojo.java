@@ -57,7 +57,7 @@ public class SpotlessInstallPrePushHookMojo extends AbstractMojo {
 			return;
 		}
 
-		 var logger = new GitPreHookLogger() {
+		var logger = new GitPreHookLogger() {
 			@Override
 			public void info(String format, Object... arguments) {
 				getLog().info(format.formatted(arguments));
@@ -75,7 +75,7 @@ public class SpotlessInstallPrePushHookMojo extends AbstractMojo {
 		};
 
 		try {
-			 var installer = new GitPrePushHookInstallerMaven(logger, project.getBasedir());
+			var installer = new GitPrePushHookInstallerMaven(logger, project.getBasedir());
 			installer.install();
 		} catch (Exception e) {
 			throw new MojoExecutionException("Unable to install pre-push hook", e);

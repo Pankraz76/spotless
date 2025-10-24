@@ -101,7 +101,7 @@ public class JavascriptExtension extends FormatExtension {
 
 		@Override
 		public FormatterStep createStep() {
-			 Project project = getProject();
+			Project project = getProject();
 
 			return EslintFormatterStep.create(devDependencies, provisioner(), project.getProjectDir(),
 					project.getLayout().getBuildDirectory().getAsFile().get(), npmModulesCacheOrNull(),
@@ -201,7 +201,7 @@ public class JavascriptExtension extends FormatExtension {
 			if (this.prettierConfig == null) {
 				this.prettierConfig = Map.of("parser", DEFAULT_PRETTIER_JS_PARSER);
 			} else {
-				 Object currentParser = this.prettierConfig.get("parser");
+				Object currentParser = this.prettierConfig.get("parser");
 				if (PRETTIER_JS_PARSERS.contains(String.valueOf(currentParser))) {
 					getProject().getLogger().debug("Already javascript parser set, not overriding.");
 				} else {

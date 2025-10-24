@@ -182,7 +182,7 @@ public final class GoogleJavaFormatStep implements Serializable {
 		}
 
 		FormatterFunc createFormat() throws Exception {
-			 ClassLoader classLoader = jarState.getClassLoader();
+			ClassLoader classLoader = jarState.getClassLoader();
 			Class<?> formatterFunc = classLoader.loadClass("com.diffplug.spotless.glue.java.GoogleJavaFormatFormatterFunc");
 			Constructor<?> constructor = formatterFunc.getConstructor(String.class, String.class, boolean.class, boolean.class, boolean.class);
 			FormatterFunc googleJavaFormatFormatterFunc = (FormatterFunc) constructor.newInstance(version, style, reflowLongStrings, reorderImports, formatJavadoc);

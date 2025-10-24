@@ -88,13 +88,13 @@ public final class BiomeSettings {
 	 */
 	public static boolean versionHigherThanOrEqualTo(String version, int major, int minor, int patch) {
 		try {
-			 var versionParts = version.split("\\.");
+			var versionParts = version.split("\\.");
 			if (versionParts.length < 3) {
 				return false;
 			}
-			 var actualMajor = Integer.parseInt(versionParts[0]);
-			 var actualMinor = Integer.parseInt(versionParts[1]);
-			 var actualPatch = Integer.parseInt(versionParts[2]);
+			var actualMajor = Integer.parseInt(versionParts[0]);
+			var actualMinor = Integer.parseInt(versionParts[1]);
+			var actualPatch = Integer.parseInt(versionParts[2]);
 			if (actualMajor > major) {
 				return true;
 			}
@@ -105,7 +105,7 @@ public final class BiomeSettings {
 				return true;
 			}
 			return actualMajor == major && actualMinor == minor && actualPatch == patch;
-		} catch ( Exception e) {
+		} catch (Exception e) {
 			LOGGER.warn("Failed to parse biome version string '{}'. Expected format is 'major.minor.patch'.", version, e);
 			return false;
 		}

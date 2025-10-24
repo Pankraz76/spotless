@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 DiffPlug
+ * Copyright 2021-2025 DiffPlug
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,10 +46,10 @@ public class FlexmarkFormatterFunc implements FormatterFunc {
 
 		// The emulation profile generally determines the markdown flavor. We use the same one for both the parser and
 		// the formatter, to make sure this formatter func is idempotent.
-		 ParserEmulationProfile emulationProfile = ParserEmulationProfile.valueOf(DEFAULT_EMULATION_PROFILE);
+		ParserEmulationProfile emulationProfile = ParserEmulationProfile.valueOf(DEFAULT_EMULATION_PROFILE);
 
-		 MutableDataHolder parserOptions = createParserOptions(emulationProfile);
-		 MutableDataHolder formatterOptions = createFormatterOptions(parserOptions, emulationProfile);
+		MutableDataHolder parserOptions = createParserOptions(emulationProfile);
+		MutableDataHolder formatterOptions = createFormatterOptions(parserOptions, emulationProfile);
 
 		parser = Parser.builder(parserOptions).build();
 		formatter = Formatter.builder(formatterOptions).build();
@@ -63,7 +63,7 @@ public class FlexmarkFormatterFunc implements FormatterFunc {
 	 * @return the created parser options
 	 */
 	private static MutableDataHolder createParserOptions(ParserEmulationProfile emulationProfile) {
-		 MutableDataHolder parserOptions = PegdownOptionsAdapter.flexmarkOptions(PegdownExtensions.ALL).toMutable();
+		MutableDataHolder parserOptions = PegdownOptionsAdapter.flexmarkOptions(PegdownExtensions.ALL).toMutable();
 		parserOptions.set(Parser.PARSER_EMULATION_PROFILE, emulationProfile);
 		return parserOptions;
 	}
@@ -77,7 +77,7 @@ public class FlexmarkFormatterFunc implements FormatterFunc {
 	 * @return the created formatter options
 	 */
 	private static MutableDataHolder createFormatterOptions(MutableDataHolder parserOptions, ParserEmulationProfile emulationProfile) {
-		 MutableDataHolder formatterOptions = new MutableDataSet();
+		MutableDataHolder formatterOptions = new MutableDataSet();
 		formatterOptions.set(Parser.EXTENSIONS, Parser.EXTENSIONS.get(parserOptions));
 		formatterOptions.set(Formatter.FORMATTER_EMULATION_PROFILE, emulationProfile);
 		return formatterOptions;
@@ -85,7 +85,7 @@ public class FlexmarkFormatterFunc implements FormatterFunc {
 
 	@Override
 	public String apply(String input) throws Exception {
-		 Document parsedMarkdown = parser.parse(input);
+		Document parsedMarkdown = parser.parse(input);
 		return formatter.render(parsedMarkdown);
 	}
 }

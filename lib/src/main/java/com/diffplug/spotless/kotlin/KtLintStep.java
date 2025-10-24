@@ -110,7 +110,7 @@ public final class KtLintStep implements Serializable {
 		}
 
 		FormatterFunc createFormat() throws Exception {
-			 ClassLoader classLoader = jarState.getClassLoader();
+			ClassLoader classLoader = jarState.getClassLoader();
 			Class<?> formatterFunc = classLoader.loadClass("com.diffplug.spotless.glue.ktlint.KtlintFormatterFunc");
 			Constructor<?> constructor = formatterFunc.getConstructor(
 					String.class, FileSignature.class, Map.class);

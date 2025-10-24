@@ -83,25 +83,25 @@ public class TypescriptExtension extends FormatExtension {
 			this.devDependencies = Objects.requireNonNull(devDependencies);
 		}
 
-		public TypescriptFormatExtension config( Map<String, Object> config) {
+		public TypescriptFormatExtension config(Map<String, Object> config) {
 			this.config = new TreeMap<>(requireNonNull(config));
 			replaceStep();
 			return this;
 		}
 
-		public TypescriptFormatExtension tsconfigFile( Object path) {
+		public TypescriptFormatExtension tsconfigFile(Object path) {
 			return configFile(TsConfigFileType.TSCONFIG, path);
 		}
 
-		public TypescriptFormatExtension tslintFile( Object path) {
+		public TypescriptFormatExtension tslintFile(Object path) {
 			return configFile(TsConfigFileType.TSLINT, path);
 		}
 
-		public TypescriptFormatExtension vscodeFile( Object path) {
+		public TypescriptFormatExtension vscodeFile(Object path) {
 			return configFile(TsConfigFileType.VSCODE, path);
 		}
 
-		public TypescriptFormatExtension tsfmtFile( Object path) {
+		public TypescriptFormatExtension tsfmtFile(Object path) {
 			return configFile(TsConfigFileType.TSFMT, path);
 		}
 
@@ -114,7 +114,7 @@ public class TypescriptExtension extends FormatExtension {
 
 		@Override
 		public FormatterStep createStep() {
-			 Project project = getProject();
+			Project project = getProject();
 
 			return TsFmtFormatterStep
 					.create(devDependencies, provisioner(), project.getProjectDir(),
@@ -171,7 +171,7 @@ public class TypescriptExtension extends FormatExtension {
 			if (this.prettierConfig == null) {
 				this.prettierConfig = new TreeMap<>(Map.of("parser", "typescript"));
 			} else {
-				 Object replaced = this.prettierConfig.put("parser", "typescript");
+				Object replaced = this.prettierConfig.put("parser", "typescript");
 				if (replaced != null) {
 					getProject().getLogger().warn("overriding parser option to 'typescript'. Was set to '{}'",
 							replaced);
@@ -210,7 +210,7 @@ public class TypescriptExtension extends FormatExtension {
 
 		@Override
 		public FormatterStep createStep() {
-			 Project project = getProject();
+			Project project = getProject();
 
 			return EslintFormatterStep.create(devDependencies, provisioner(), project.getProjectDir(),
 					project.getLayout().getBuildDirectory().getAsFile().get(), npmModulesCacheOrNull(),

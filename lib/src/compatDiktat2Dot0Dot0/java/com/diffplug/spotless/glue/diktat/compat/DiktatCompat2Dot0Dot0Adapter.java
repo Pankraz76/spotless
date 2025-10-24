@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 DiffPlug
+ * Copyright 2023-2025 DiffPlug
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -79,7 +79,7 @@ public class DiktatCompat2Dot0Dot0Adapter implements DiktatCompatAdapter {
 	}
 
 	private static DiktatProcessor getDiktatReporter(File configFile) {
-		 DiktatRuleSet ruleSet = DiktatFactoriesKt.getDiktatRuleSetFactory().invoke(readRuleConfigs(configFile));
+		DiktatRuleSet ruleSet = DiktatFactoriesKt.getDiktatRuleSetFactory().invoke(readRuleConfigs(configFile));
 		return DiktatFactoriesKt.getDiktatProcessorFactory().invoke(ruleSet);
 	}
 
@@ -87,7 +87,7 @@ public class DiktatCompat2Dot0Dot0Adapter implements DiktatCompatAdapter {
 		if (configFile == null) {
 			return Collections.emptyList();
 		}
-		try ( InputStream configInputStream = new FileInputStream(configFile)) {
+		try (InputStream configInputStream = new FileInputStream(configFile)) {
 			return DiktatFactoriesKt.getDiktatRuleConfigReader().invoke(configInputStream);
 		} catch (IOException e) {
 			throw new IllegalArgumentException("Fail to read configFile", e);

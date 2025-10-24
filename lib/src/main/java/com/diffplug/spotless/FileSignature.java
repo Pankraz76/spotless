@@ -87,7 +87,7 @@ public final class FileSignature implements Serializable {
 		return new FileSignature(onNameOnly);
 	}
 
-	private FileSignature( List<File> files) throws IOException {
+	private FileSignature(List<File> files) throws IOException {
 		this.files = validateInputFiles(files);
 		this.signatures = new Sig[this.files.size()];
 

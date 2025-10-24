@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 DiffPlug
+ * Copyright 2016-2025 DiffPlug
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,10 +44,8 @@ public class ScalaExtension extends FormatExtension implements JvmLang {
 
 	public class ScalaFmtConfig {
 		final String version;
-		@Nullable
-		String scalaMajorVersion;
-		@Nullable
-		Object configFile;
+		@Nullable String scalaMajorVersion;
+		@Nullable Object configFile;
 
 		ScalaFmtConfig(String version) {
 			this.version = Objects.requireNonNull(version);
@@ -80,7 +78,7 @@ public class ScalaExtension extends FormatExtension implements JvmLang {
 					"You must either specify 'target' manually or apply the 'scala' plugin.",
 					SourceSet::getAllSource,
 					file -> {
-						 String name = file.getName();
+						String name = file.getName();
 						return name.endsWith(".scala") || name.endsWith(".sc");
 					});
 		}

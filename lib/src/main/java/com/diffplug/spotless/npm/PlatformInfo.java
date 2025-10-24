@@ -25,11 +25,11 @@ final class PlatformInfo {
 	}
 
 	static OS normalizedOS() {
-		 String osNameProperty = System.getProperty("os.name");
+		String osNameProperty = System.getProperty("os.name");
 		if (osNameProperty == null) {
 			throw new RuntimeException("No info about OS available, cannot decide which implementation of j2v8 to use");
 		}
-		 String normalizedOsName = osNameProperty.toLowerCase(Locale.ROOT);
+		String normalizedOsName = osNameProperty.toLowerCase(Locale.ROOT);
 		if (normalizedOsName.contains("win")) {
 			return OS.WINDOWS;
 		}
@@ -47,11 +47,11 @@ final class PlatformInfo {
 	}
 
 	static String normalizedArchName() {
-		 String osArchProperty = System.getProperty("os.arch");
+		String osArchProperty = System.getProperty("os.arch");
 		if (osArchProperty == null) {
 			throw new RuntimeException("No info about ARCH available, cannot decide which implementation of j2v8 to use");
 		}
-		 String normalizedOsArch = osArchProperty.toLowerCase(Locale.ROOT);
+		String normalizedOsArch = osArchProperty.toLowerCase(Locale.ROOT);
 
 		if (normalizedOsArch.contains("64")) {
 			return "x86_64";

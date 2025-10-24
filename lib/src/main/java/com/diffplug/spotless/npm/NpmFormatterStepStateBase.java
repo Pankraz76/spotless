@@ -41,18 +41,15 @@ abstract class NpmFormatterStepStateBase implements Serializable {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(NpmFormatterStepStateBase.class);
 
-	
-
 	@Serial
 	private static final long serialVersionUID = 1460749955865959948L;
 
-	
 	private final NpmConfig npmConfig;
 
 	public final NpmFormatterStepLocations locations;
 
 	protected NpmFormatterStepStateBase(String stepName, NpmConfig npmConfig, NpmFormatterStepLocations locations) throws IOException {
-		
+
 		this.npmConfig = requireNonNull(npmConfig);
 		this.locations = locations;
 	}
@@ -115,10 +112,10 @@ abstract class NpmFormatterStepStateBase implements Serializable {
 			assertNodeServerDirReady();
 			LongRunningProcess server = null;
 			try {
-				 UUID nodeServerInstanceId = UUID.randomUUID();
+				UUID nodeServerInstanceId = UUID.randomUUID();
 				// The npm process will output the randomly selected port of the http server process to 'server-<id>.port' file
 				// so in order to be safe, remove such a file if it exists before starting.
-				 File serverPortFile = new File(this.nodeServerLayout.nodeModulesDir(), "server-%s.port".formatted(nodeServerInstanceId));
+				File serverPortFile = new File(this.nodeServerLayout.nodeModulesDir(), "server-%s.port".formatted(nodeServerInstanceId));
 				NpmResourceHelper.deleteFileIfExists(serverPortFile);
 				// start the http server in node
 				server = nodeServeApp.startNpmServeProcess(nodeServerInstanceId);

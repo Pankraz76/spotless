@@ -46,8 +46,8 @@ tasks.withType(JavaCompile).configureEach {
 				'UnnecessaryBreakInSwitch',
 				'UnnecessaryCheckNotNull',
 				'UnnecessaryCopy',
-				 'UnnecessaryDefaultInEnumSwitch',
-				 'UnnecessaryFinal',
+				'UnnecessaryDefaultInEnumSwitch',
+				'UnnecessaryFinal',
 				'UnnecessaryLambda',
 				'UnnecessaryLongToIntConversion',
 				'UnnecessaryMethodInvocationMatcher',
@@ -73,7 +73,7 @@ tasks.withType(JavaCompile).configureEach {
 				'-XepPatchLocation:IN_PLACE',
 				// remove XepPatchChecks once conform.
 				'-XepPatchChecks:' +
-					'UnusedVariable'
+					'UnnecessaryFinal'
 			)
 		}
 	}

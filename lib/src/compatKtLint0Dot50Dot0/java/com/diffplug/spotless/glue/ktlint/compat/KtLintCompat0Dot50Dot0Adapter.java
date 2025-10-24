@@ -25,9 +25,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.pinterest.ktlint.cli.ruleset.core.api.RuleSetProviderV3;
 import com.pinterest.ktlint.rule.engine.api.Code;
 import com.pinterest.ktlint.rule.engine.api.EditorConfigDefaults;
@@ -54,8 +51,6 @@ import kotlin.Unit;
 import kotlin.jvm.functions.Function2;
 
 public class KtLintCompat0Dot50Dot0Adapter implements KtLintCompatAdapter {
-
-	
 
 	private static final List<EditorConfigProperty<?>> DEFAULT_EDITOR_CONFIG_PROPERTIES;
 
@@ -87,7 +82,7 @@ public class KtLintCompat0Dot50Dot0Adapter implements KtLintCompatAdapter {
 			Path path,
 			Path editorConfigPath,
 			Map<String, Object> editorConfigOverrideMap) {
-		 FormatterCallback formatterCallback = new FormatterCallback();
+		FormatterCallback formatterCallback = new FormatterCallback();
 
 		Set<RuleProvider> allRuleProviders = ServiceLoader.load(RuleSetProviderV3.class, RuleSetProviderV3.class.getClassLoader())
 				.stream()
@@ -125,7 +120,7 @@ public class KtLintCompat0Dot50Dot0Adapter implements KtLintCompatAdapter {
 	/**
 	 * Create EditorConfigOverride from user provided parameters.
 	 */
-	private static EditorConfigOverride createEditorConfigOverride( List<Rule> rules, Map<String, Object> editorConfigOverrideMap) {
+	private static EditorConfigOverride createEditorConfigOverride(List<Rule> rules, Map<String, Object> editorConfigOverrideMap) {
 		// Get properties from rules in the rule sets
 		Stream<EditorConfigProperty<?>> ruleProperties = rules.stream()
 				.flatMap(rule -> rule.getUsesEditorConfigProperties().stream());

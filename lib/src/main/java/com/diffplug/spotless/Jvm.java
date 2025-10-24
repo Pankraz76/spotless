@@ -197,8 +197,8 @@ public final class Jvm {
 		public FormatterFunc suggestLaterVersionOnError(V formatterVersion, FormatterFunc originalFunc) {
 			Objects.requireNonNull(formatterVersion);
 			Objects.requireNonNull(originalFunc);
-			 String hintUnsupportedProblem = buildUnsupportedFormatterMessage(formatterVersion);
-			 String proposeDifferentFormatter = hintUnsupportedProblem.isEmpty() ? buildUpgradeFormatterMessage(formatterVersion) : hintUnsupportedProblem;
+			String hintUnsupportedProblem = buildUnsupportedFormatterMessage(formatterVersion);
+			String proposeDifferentFormatter = hintUnsupportedProblem.isEmpty() ? buildUpgradeFormatterMessage(formatterVersion) : hintUnsupportedProblem;
 			return proposeDifferentFormatter.isEmpty() ? originalFunc : new FormatterFunc() {
 
 				@Override

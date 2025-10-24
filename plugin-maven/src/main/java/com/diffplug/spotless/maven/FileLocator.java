@@ -139,9 +139,9 @@ public class FileLocator {
 			} else {
 				return findUserHome();
 			}
-		} catch ( SecurityException e) {
+		} catch (SecurityException e) {
 			return findUserHome();
-		} catch ( URISyntaxException | FileSystemNotFoundException | IllegalArgumentException e) {
+		} catch (URISyntaxException | FileSystemNotFoundException | IllegalArgumentException e) {
 			throw new RuntimeException("Unable to determine data directory in local Maven repository", e);
 		}
 	}

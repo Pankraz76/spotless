@@ -60,12 +60,12 @@ final class ModuleHelper {
 		}
 		try {
 			checkDone = true;
-			 List<String> unavailableRequiredPackages = unavailableRequiredPackages();
+			List<String> unavailableRequiredPackages = unavailableRequiredPackages();
 			if (!unavailableRequiredPackages.isEmpty()) {
 				openPackages(unavailableRequiredPackages);
-				 List<String> failedToOpen = unavailableRequiredPackages();
+				List<String> failedToOpen = unavailableRequiredPackages();
 				if (!failedToOpen.isEmpty()) {
-					 StringBuilder message = new StringBuilder();
+					StringBuilder message = new StringBuilder();
 					message.append("WARNING: Some required internal classes are unavailable. Please consider adding the following JVM arguments\n");
 					message.append("WARNING: ");
 					for (String name : failedToOpen) {
@@ -81,12 +81,12 @@ final class ModuleHelper {
 
 	@SuppressFBWarnings("REC_CATCH_EXCEPTION") // workaround JDK11
 	private static List<String> unavailableRequiredPackages() {
-		 List<String> packages = new ArrayList<>();
+		List<String> packages = new ArrayList<>();
 		for (Map.Entry<String, String> e : REQUIRED_PACKAGES_TO_TEST_CLASSES.entrySet()) {
-			 String key = e.getKey();
-			 String value = e.getValue();
+			String key = e.getKey();
+			String value = e.getValue();
 			try {
-				 Class<?> clazz = Class.forName(key + "." + value);
+				Class<?> clazz = Class.forName(key + "." + value);
 				if (clazz.isEnum()) {
 					clazz.getMethod("values").invoke(null);
 				} else {
@@ -103,22 +103,22 @@ final class ModuleHelper {
 
 	@SuppressWarnings("unchecked")
 	private static void openPackages(Collection<String> packagesToOpen) throws Throwable {
-		 Collection<?> modules = allModules();
+		Collection<?> modules = allModules();
 		if (modules == null) {
 			return;
 		}
-		 Field unsafeField = Unsafe.class.getDeclaredField("theUnsafe");
+		Field unsafeField = Unsafe.class.getDeclaredField("theUnsafe");
 		unsafeField.setAccessible(true);
-		 Unsafe unsafe = (Unsafe) unsafeField.get(null);
-		 Field implLookupField = MethodHandles.Lookup.class.getDeclaredField("IMPL_LOOKUP");
-		 MethodHandles.Lookup lookup = (MethodHandles.Lookup) unsafe.getObject(
+		Unsafe unsafe = (Unsafe) unsafeField.get(null);
+		Field implLookupField = MethodHandles.Lookup.class.getDeclaredField("IMPL_LOOKUP");
+		MethodHandles.Lookup lookup = (MethodHandles.Lookup) unsafe.getObject(
 				unsafe.staticFieldBase(implLookupField),
 				unsafe.staticFieldOffset(implLookupField));
-		 MethodHandle modifiers = lookup.findSetter(Method.class, "modifiers", Integer.TYPE);
-		 Method exportMethod = Class.forName("java.lang.Module").getDeclaredMethod("implAddOpens", String.class);
+		MethodHandle modifiers = lookup.findSetter(Method.class, "modifiers", Integer.TYPE);
+		Method exportMethod = Class.forName("java.lang.Module").getDeclaredMethod("implAddOpens", String.class);
 		modifiers.invokeExact(exportMethod, Modifier.PUBLIC);
 		for (Object module : modules) {
-			 Collection<String> packages = (Collection<String>) module.getClass().getMethod("getPackages").invoke(module);
+			Collection<String> packages = (Collection<String>) module.getClass().getMethod("getPackages").invoke(module);
 			for (String name : packages) {
 				if (packagesToOpen.contains(name)) {
 					exportMethod.invoke(module, name);
@@ -131,11 +131,11 @@ final class ModuleHelper {
 	private static Collection<?> allModules() {
 		// calling ModuleLayer.boot().modules() by reflection
 		try {
-			 Object boot = Class.forName("java.lang.ModuleLayer").getMethod("boot").invoke(null);
+			Object boot = Class.forName("java.lang.ModuleLayer").getMethod("boot").invoke(null);
 			if (boot == null) {
 				return null;
 			}
-			 Object modules = boot.getClass().getMethod("modules").invoke(boot);
+			Object modules = boot.getClass().getMethod("modules").invoke(boot);
 			return (Collection<?>) modules;
 		} catch (Exception ignore) {
 			return null;

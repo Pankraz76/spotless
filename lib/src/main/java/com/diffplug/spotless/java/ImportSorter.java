@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 DiffPlug
+ * Copyright 2016-2025 DiffPlug
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -102,14 +102,14 @@ final class ImportSorter {
 		return false;
 	}
 
-	private static String applyImportsToDocument( String document, int firstImportLine, int lastImportLine, List<String> strings) {
+	private static String applyImportsToDocument(String document, int firstImportLine, int lastImportLine, List<String> strings) {
 		if (document.isEmpty()) {
 			return document;
 		}
 		boolean importsAlreadyAppended = false;
 		Scanner scanner = new Scanner(document);
 		int curentLine = 0;
-		 StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder();
 		while (scanner.hasNext()) {
 			curentLine++;
 			String next = scanner.nextLine();
