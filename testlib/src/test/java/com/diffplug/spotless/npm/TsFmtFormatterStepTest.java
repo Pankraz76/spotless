@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 DiffPlug
+ * Copyright 2016-2025 DiffPlug
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,16 +45,16 @@ class TsFmtFormatterStepTest {
 			String configFileNameWithoutExtension = configFileName.substring(0, configFileName.lastIndexOf('.'));
 			String filedir = "npm/tsfmt/" + configFileNameWithoutExtension + "/";
 
-			 File configFile = createTestFile(filedir + configFileName);
-			 String dirtyFile = filedir + configFileNameWithoutExtension + ".dirty";
-			 String cleanFile = filedir + configFileNameWithoutExtension + ".clean";
+			File configFile = createTestFile(filedir + configFileName);
+			String dirtyFile = filedir + configFileNameWithoutExtension + ".dirty";
+			String cleanFile = filedir + configFileNameWithoutExtension + ".clean";
 
 			// some config options expect to see at least one file in the baseDir, so let's write one there
 			File srcDir = new File(rootFolder(), "src/main/typescript");
 			Files.createDirectories(srcDir.toPath());
 			Files.write(new File(srcDir, configFileNameWithoutExtension + ".ts").toPath(), getTestResource(dirtyFile).getBytes(StandardCharsets.UTF_8));
 
-			 FormatterStep formatterStep = TsFmtFormatterStep.create(
+			FormatterStep formatterStep = TsFmtFormatterStep.create(
 					TsFmtFormatterStep.defaultDevDependencies(),
 					TestProvisioner.mavenCentral(),
 					projectDir(),
@@ -76,9 +76,9 @@ class TsFmtFormatterStepTest {
 		@Test
 		void formattingUsingInlineConfigWorks() throws Exception {
 
-			 ImmutableMap<String, Object> inlineConfig = ImmutableMap.of("indentSize", 1, "convertTabsToSpaces", true);
+			ImmutableMap<String, Object> inlineConfig = ImmutableMap.of("indentSize", 1, "convertTabsToSpaces", true);
 
-			 FormatterStep formatterStep = TsFmtFormatterStep.create(
+			FormatterStep formatterStep = TsFmtFormatterStep.create(
 					TsFmtFormatterStep.defaultDevDependencies(),
 					TestProvisioner.mavenCentral(),
 					projectDir(),

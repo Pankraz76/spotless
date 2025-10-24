@@ -38,14 +38,14 @@ class SpotlessInstallPrePushHookMojoTest extends MavenIntegrationHarness {
 		writePomWithJavaLicenseHeaderStep();
 
 		// when
-		 var output = runMaven("spotless:install-git-pre-push-hook");
+		var output = runMaven("spotless:install-git-pre-push-hook");
 
 		// then
 		assertThat(output).contains("Installing git pre-push hook");
 		assertThat(output).contains("Git pre-push hook not found, creating it");
 		assertThat(output).contains("Git pre-push hook installed successfully to the file " + newFile(".git/hooks/pre-push"));
 
-		 var hookContent = getHookContent("git_pre_hook/pre-push.created-tpl");
+		var hookContent = getHookContent("git_pre_hook/pre-push.created-tpl");
 		assertFile(".git/hooks/pre-push").hasContent(hookContent);
 	}
 
@@ -59,13 +59,13 @@ class SpotlessInstallPrePushHookMojoTest extends MavenIntegrationHarness {
 		writePomWithJavaLicenseHeaderStep();
 
 		// when
-		 var output = runMaven("spotless:install-git-pre-push-hook");
+		var output = runMaven("spotless:install-git-pre-push-hook");
 
 		// then
 		assertThat(output).contains("Installing git pre-push hook");
 		assertThat(output).contains("Git pre-push hook installed successfully to the file " + newFile(".git/hooks/pre-push"));
 
-		 var hookContent = getHookContent("git_pre_hook/pre-push.existing-installed-end-tpl");
+		var hookContent = getHookContent("git_pre_hook/pre-push.existing-installed-end-tpl");
 		assertFile(".git/hooks/pre-push").hasContent(hookContent);
 	}
 
@@ -79,9 +79,9 @@ class SpotlessInstallPrePushHookMojoTest extends MavenIntegrationHarness {
 
 		// when
 		// install pre-hook
-		 var output = runMaven("spotless:install-git-pre-push-hook");
+		var output = runMaven("spotless:install-git-pre-push-hook");
 
-		 var result = executeHookScript(".git/hooks/pre-push");
+		var result = executeHookScript(".git/hooks/pre-push");
 
 		// then
 		assertThat(output).contains("Git pre-push hook installed successfully to the file " + newFile(".git/hooks/pre-push"));
@@ -89,7 +89,7 @@ class SpotlessInstallPrePushHookMojoTest extends MavenIntegrationHarness {
 		assertThat(result.stdErrUtf8()).startsWith("spotless found problems, running spotless:apply; commit the result and re-push");
 		assertThat(result.exitCode()).isEqualTo(1);
 
-		 var fileContent = read("src/main/java/com.github.youribonnaffe.gradle.format/Java8Test.java");
+		var fileContent = read("src/main/java/com.github.youribonnaffe.gradle.format/Java8Test.java");
 		assertThat(fileContent).startsWith("this is a test license!\n");
 	}
 
@@ -101,8 +101,8 @@ class SpotlessInstallPrePushHookMojoTest extends MavenIntegrationHarness {
 	}
 
 	private String getHookContent(String resourceFile) {
-		 var executorFile = executorWrapperFile();
-		 var executorPath = executorFile.exists() ? executorFile.getName() : "mvn";
+		var executorFile = executorWrapperFile();
+		var executorPath = executorFile.exists() ? executorFile.getName() : "mvn";
 		return getTestResource(resourceFile)
 				.replace("${executor}", "./" + executorPath)
 				.replace("${checkCommand}", "spotless:check")
@@ -115,7 +115,7 @@ class SpotlessInstallPrePushHookMojoTest extends MavenIntegrationHarness {
 
 	private File executorWrapperFile() {
 		if (isWindows()) {
-			 var bat = newFile("mvnw.bat");
+			var bat = newFile("mvnw.bat");
 			if (bat.exists()) {
 				return bat;
 			}
@@ -135,10 +135,10 @@ class SpotlessInstallPrePushHookMojoTest extends MavenIntegrationHarness {
 	}
 
 	private ProcessRunner.Result executeHookScript(String hookFile) throws Exception {
-		try ( var runner = new ProcessRunner()) {
+		try (var runner = new ProcessRunner()) {
 			String executor = "sh";
 			if (isWindows()) {
-				 var bashPath = findGitBashExecutable();
+				var bashPath = findGitBashExecutable();
 				if (bashPath.isEmpty()) {
 					throw new RuntimeException("Could not find git bash executable");
 				}
@@ -152,13 +152,13 @@ class SpotlessInstallPrePushHookMojoTest extends MavenIntegrationHarness {
 
 	private Optional<String> findGitBashExecutable() {
 		// 1. Check environment variable
-		 var envPath = System.getenv("GIT_BASH");
+		var envPath = System.getenv("GIT_BASH");
 		if (envPath != null && new File(envPath).exists()) {
 			return Optional.of(envPath);
 		}
 
 		// 2. Check common install paths
-		 var commonPaths = List.of(
+		var commonPaths = List.of(
 				"C:\\Program Files\\Git\\bin\\bash.exe",
 				"C:\\Program Files (x86)\\Git\\bin\\bash.exe",
 				"C:\\Program Files\\Git\\usr\\bin\\bash.exe");

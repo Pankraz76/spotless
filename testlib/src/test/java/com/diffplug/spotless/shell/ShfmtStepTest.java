@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 DiffPlug
+ * Copyright 2024-2025 DiffPlug
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,9 +26,9 @@ public class ShfmtStepTest extends ResourceHarness {
 	@Test
 	void testWithEditorconfig() throws Exception {
 		try (StepHarnessWithFile harness = StepHarnessWithFile.forStep(this, ShfmtStep.withVersion(ShfmtStep.defaultVersion()).create())) {
-			 String fileDir = "shell/shfmt/with-config/";
-			 String dirtyFile = fileDir + "shfmt.sh";
-			 String cleanFile = fileDir + "shfmt.clean";
+			String fileDir = "shell/shfmt/with-config/";
+			String dirtyFile = fileDir + "shfmt.sh";
+			String cleanFile = fileDir + "shfmt.clean";
 
 			setFile(".editorconfig").toResource(fileDir + ".editorconfig");
 
@@ -39,9 +39,9 @@ public class ShfmtStepTest extends ResourceHarness {
 	@Test
 	void testWithoutEditorconfig() throws Exception {
 		try (StepHarnessWithFile harness = StepHarnessWithFile.forStep(this, ShfmtStep.withVersion(ShfmtStep.defaultVersion()).create())) {
-			 String fileDir = "shell/shfmt/without-config/";
-			 String dirtyFile = fileDir + "shfmt.sh";
-			 String cleanFile = fileDir + "shfmt.clean";
+			String fileDir = "shell/shfmt/without-config/";
+			String dirtyFile = fileDir + "shfmt.sh";
+			String cleanFile = fileDir + "shfmt.clean";
 
 			harness.testResource(dirtyFile, cleanFile);
 		}
