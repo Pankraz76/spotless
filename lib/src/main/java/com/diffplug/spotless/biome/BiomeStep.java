@@ -134,7 +134,7 @@ public final class BiomeStep {
 			var newPermissions = new HashSet<>(Files.getPosixFilePermissions(file));
 			newPermissions.add(permission);
 			Files.setPosixFilePermissions(file, newPermissions);
-		} catch (final Exception ignore) {
+		} catch ( Exception ignore) {
 			LOGGER.debug("Unable to add POSIX permission '{}' to file '{}'", permission, file);
 		}
 	}

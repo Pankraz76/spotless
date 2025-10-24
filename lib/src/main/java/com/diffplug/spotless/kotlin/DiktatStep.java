@@ -76,7 +76,7 @@ public final class DiktatStep implements Serializable {
 		}
 		Objects.requireNonNull(versionDiktat, "versionDiktat");
 		Objects.requireNonNull(provisioner, "provisioner");
-		final String diktatCoordinate;
+		 String diktatCoordinate;
 		if (BadSemver.version(versionDiktat) >= BadSemver.version(PACKAGE_RELOCATED_VERSION)) {
 			diktatCoordinate = MAVEN_COORDINATE + versionDiktat;
 		} else {
@@ -109,7 +109,7 @@ public final class DiktatStep implements Serializable {
 		}
 
 		FormatterFunc createFormat() throws Exception {
-			final File configFile = config != null ? config.getOnlyFile() : null;
+			 File configFile = config != null ? config.getOnlyFile() : null;
 			Class<?> formatterFunc = jar.getClassLoader().loadClass("com.diffplug.spotless.glue.diktat.DiktatFormatterFunc");
 			Constructor<?> constructor = formatterFunc.getConstructor(
 					String.class,

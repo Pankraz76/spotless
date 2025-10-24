@@ -72,7 +72,7 @@ public final class ShfmtStep {
 				  mac:   brew install shfmt
 				  linux: apt install shfmt
 				    github issue to handle this better: https://github.com/diffplug/spotless/issues/673""";
-		final ForeignExe exe = ForeignExe.nameAndVersion("shfmt", version)
+		 ForeignExe exe = ForeignExe.nameAndVersion("shfmt", version)
 				.pathToExe(pathToExe)
 				.versionRegex(Pattern.compile("([\\d.]+)"))
 				.fixCantFind(howToInstall)
@@ -122,7 +122,7 @@ public final class ShfmtStep {
 			}
 
 			// This will ensure that the next file name is retrieved on every format
-			final List<String> finalArgs = Stream.concat(args.stream(), Stream.of(file.getAbsolutePath()))
+			 List<String> finalArgs = Stream.concat(args.stream(), Stream.of(file.getAbsolutePath()))
 					.collect(Collectors.toList());
 
 			return runner.exec(input.getBytes(StandardCharsets.UTF_8), finalArgs).assertExitZero(StandardCharsets.UTF_8);

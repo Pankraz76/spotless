@@ -691,26 +691,26 @@ public class FormatExtension {
 		}
 
 		@SuppressWarnings("unchecked")
-		public T npmExecutable(final Object npmFile) {
+		public T npmExecutable( Object npmFile) {
 			this.npmFile = npmFile;
 			replaceStep();
 			return (T) this;
 		}
 
 		@SuppressWarnings("unchecked")
-		public T nodeExecutable(final Object nodeFile) {
+		public T nodeExecutable( Object nodeFile) {
 			this.nodeFile = nodeFile;
 			replaceStep();
 			return (T) this;
 		}
 
-		public T npmrc(final Object npmrcFile) {
+		public T npmrc( Object npmrcFile) {
 			this.npmrcFile = npmrcFile;
 			replaceStep();
 			return (T) this;
 		}
 
-		public T npmInstallCache(final Object npmInstallCache) {
+		public T npmInstallCache( Object npmInstallCache) {
 			this.npmInstallCache = npmInstallCache;
 			replaceStep();
 			return (T) this;
@@ -764,13 +764,13 @@ public class FormatExtension {
 			this.devDependencies = requireNonNull(devDependencies);
 		}
 
-		public PrettierConfig configFile(final Object prettierConfigFile) {
+		public PrettierConfig configFile( Object prettierConfigFile) {
 			this.prettierConfigFile = prettierConfigFile;
 			replaceStep();
 			return this;
 		}
 
-		public PrettierConfig config(final Map<String, Object> prettierConfig) {
+		public PrettierConfig config( Map<String, Object> prettierConfig) {
 			this.prettierConfig = new TreeMap<>(prettierConfig);
 			replaceStep();
 			return this;
@@ -778,7 +778,7 @@ public class FormatExtension {
 
 		@Override
 		protected FormatterStep createStep() {
-			final Project project = getProject();
+			 Project project = getProject();
 			return PrettierFormatterStep.create(devDependencies, provisioner(), project.getProjectDir(),
 					project.getLayout().getBuildDirectory().getAsFile().get(), npmModulesCacheOrNull(),
 					new NpmPathResolver(npmFileOrNull(), nodeFileOrNull(), npmrcFileOrNull(),

@@ -115,10 +115,10 @@ abstract class NpmFormatterStepStateBase implements Serializable {
 			assertNodeServerDirReady();
 			LongRunningProcess server = null;
 			try {
-				final UUID nodeServerInstanceId = UUID.randomUUID();
+				 UUID nodeServerInstanceId = UUID.randomUUID();
 				// The npm process will output the randomly selected port of the http server process to 'server-<id>.port' file
 				// so in order to be safe, remove such a file if it exists before starting.
-				final File serverPortFile = new File(this.nodeServerLayout.nodeModulesDir(), "server-%s.port".formatted(nodeServerInstanceId));
+				 File serverPortFile = new File(this.nodeServerLayout.nodeModulesDir(), "server-%s.port".formatted(nodeServerInstanceId));
 				NpmResourceHelper.deleteFileIfExists(serverPortFile);
 				// start the http server in node
 				server = nodeServeApp.startNpmServeProcess(nodeServerInstanceId);

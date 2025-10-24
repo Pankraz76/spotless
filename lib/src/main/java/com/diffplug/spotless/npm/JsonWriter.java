@@ -71,7 +71,7 @@ class JsonWriter {
 	}
 
 	String toJsonString() {
-		final String valueString = valueMap.entrySet()
+		 String valueString = valueMap.entrySet()
 				.stream()
 				.map(entry -> "    " + jsonEscape(entry.getKey()) + ": " + jsonEscape(entry.getValue()))
 				.collect(Collectors.joining(",\n"));

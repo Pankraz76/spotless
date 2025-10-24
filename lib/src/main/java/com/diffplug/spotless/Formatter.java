@@ -196,7 +196,7 @@ public final class Formatter implements Serializable, AutoCloseable {
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
+		 int prime = 31;
 		int result = 1;
 		result = prime * result + encoding.hashCode();
 		result = prime * result + lineEndingsPolicy.hashCode();

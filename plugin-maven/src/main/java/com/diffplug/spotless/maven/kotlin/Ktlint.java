@@ -43,7 +43,7 @@ public class Ktlint implements FormatterStepFactory {
 	private List<String> customRuleSets;
 
 	@Override
-	public FormatterStep newFormatterStep(final FormatterStepConfig stepConfig) {
+	public FormatterStep newFormatterStep( FormatterStepConfig stepConfig) {
 		String ktlintVersion = version != null ? version : KtLintStep.defaultVersion();
 		FileSignature configPath = null;
 		if (editorConfigPath == null && DEFAULT_EDITOR_CONFIG.exists()) {

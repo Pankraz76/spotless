@@ -181,7 +181,7 @@ public abstract class AbstractBiome implements FormatterStepFactory {
 	 * @return The download directory for the Biome executable.
 	 */
 	private String resolveDownloadDir(FormatterStepConfig config) {
-		final var fileLocator = config.getFileLocator();
+		 var fileLocator = config.getFileLocator();
 		if (downloadDir != null && !downloadDir.isBlank()) {
 			return fileLocator.getBaseDir().toPath().resolve(downloadDir).toAbsolutePath().toString();
 		} else {

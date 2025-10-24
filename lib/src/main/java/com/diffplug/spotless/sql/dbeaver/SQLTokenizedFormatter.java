@@ -46,7 +46,7 @@ public class SQLTokenizedFormatter {
 		this.formatterCfg = formatterCfg;
 	}
 
-	public String format(final String argSql) {
+	public String format( String argSql) {
 
 		statementDelimiters.add(formatterCfg.getStatementDelimiter());
 		SQLTokensParser fParser = new SQLTokensParser();
@@ -73,7 +73,7 @@ public class SQLTokenizedFormatter {
 		return after.toString();
 	}
 
-	private List<FormatterToken> format(final List<FormatterToken> argList) {
+	private List<FormatterToken> format( List<FormatterToken> argList) {
 		if (argList.isEmpty()) {
 			return argList;
 		}
@@ -94,7 +94,7 @@ public class SQLTokenizedFormatter {
 			}
 		}
 
-		final KeywordCase keywordCase = formatterCfg.getKeywordCase();
+		 KeywordCase keywordCase = formatterCfg.getKeywordCase();
 		for (FormatterToken anArgList : argList) {
 			token = anArgList;
 			if (token.getType() == TokenType.KEYWORD) {
@@ -148,7 +148,7 @@ public class SQLTokenizedFormatter {
 		}
 
 		int indent = 0;
-		final List<Integer> bracketIndent = new ArrayList<>();
+		 List<Integer> bracketIndent = new ArrayList<>();
 		FormatterToken prev = new FormatterToken(TokenType.SPACE, " ");
 		boolean encounterBetween = false;
 		for (int index = 0; index < argList.size(); index++) {
@@ -392,27 +392,27 @@ public class SQLTokenizedFormatter {
 		return System.getProperty("line.separator", "\n");
 	}
 
-	private int insertReturnAndIndent(final List<FormatterToken> argList, final int argIndex, final int argIndent) {
+	private int insertReturnAndIndent( List<FormatterToken> argList,  int argIndex,  int argIndent) {
 		if (functionBracket.contains(Boolean.TRUE)) {
 			return 0;
 		}
 		try {
-			final String defaultLineSeparator = getDefaultLineSeparator();
+			 String defaultLineSeparator = getDefaultLineSeparator();
 			StringBuilder s = new StringBuilder(defaultLineSeparator);
 			for (int index = 0; index < argIndent; index++) {
 				s.append(formatterCfg.getIndentString());
 			}
 			if (argIndex > 0) {
-				final FormatterToken token = argList.get(argIndex);
-				final FormatterToken prevToken = argList.get(argIndex - 1);
+				 FormatterToken token = argList.get(argIndex);
+				 FormatterToken prevToken = argList.get(argIndex - 1);
 				if (token.getType() == TokenType.COMMENT
 						&& isCommentLine(SQL_DIALECT, token.getString())
 						&& prevToken.getType() != TokenType.END) {
 					s.setCharAt(0, ' ');
 					s.setLength(1);
 
-					final String comment = token.getString();
-					final String withoutTrailingWhitespace = comment.replaceFirst("\\s*$", "");
+					 String comment = token.getString();
+					 String withoutTrailingWhitespace = comment.replaceFirst("\\s*$", "");
 					token.setString(withoutTrailingWhitespace);
 				}
 			}

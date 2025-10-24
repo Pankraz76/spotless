@@ -93,16 +93,16 @@ public final class FormatterProperties {
 		return properties;
 	}
 
-	public static FormatterProperties fromXmlContent(final Iterable<String> content) throws IllegalArgumentException {
-		final List<String> nonNullElements = toNullHostileList(content);
-		final FormatterProperties properties = new FormatterProperties();
+	public static FormatterProperties fromXmlContent( Iterable<String> content) throws IllegalArgumentException {
+		 List<String> nonNullElements = toNullHostileList(content);
+		 FormatterProperties properties = new FormatterProperties();
 		nonNullElements.forEach(contentElement -> {
 			try {
-				final Properties newSettings = FileParser.XML.executeXmlContent(contentElement);
+				 Properties newSettings = FileParser.XML.executeXmlContent(contentElement);
 				properties.properties.putAll(newSettings);
 			} catch (IOException | IllegalArgumentException exception) {
 				String message = "Failed to add preferences from XML:%n%s%n".formatted(contentElement);
-				final String detailedMessage = exception.getMessage();
+				 String detailedMessage = exception.getMessage();
 				if (null != detailedMessage) {
 					message += " %s".formatted(detailedMessage);
 				}
@@ -127,7 +127,7 @@ public final class FormatterProperties {
 	 * @throws IllegalArgumentException
 	 *            In case the import of the file fails
 	 */
-	private void add(final File settingsFile) throws IllegalArgumentException {
+	private void add( File settingsFile) throws IllegalArgumentException {
 		Objects.requireNonNull(settingsFile);
 		if (!(settingsFile.isFile() && settingsFile.canRead())) {
 			String msg = "Settings file '%s' does not exist or can not be read.".formatted(settingsFile);
@@ -154,7 +154,7 @@ public final class FormatterProperties {
 	private enum FileParser {
 		LINE_ORIENTED("properties", "prefs") {
 			@Override
-			protected Properties execute(final File file) throws IOException, IllegalArgumentException {
+			protected Properties execute( File file) throws IOException, IllegalArgumentException {
 				Properties properties = new Properties();
 				try (InputStream inputProperties = new FileInputStream(file)) {
 					properties.load(inputProperties);
@@ -170,7 +170,7 @@ public final class FormatterProperties {
 
 		XML("xml") {
 			@Override
-			protected Properties execute(final File file) throws IOException, IllegalArgumentException {
+			protected Properties execute( File file) throws IOException, IllegalArgumentException {
 				return executeWithSupplier(() -> {
 					try {
 						return new FileInputStream(file);
@@ -199,7 +199,7 @@ public final class FormatterProperties {
 				}
 			}
 
-			private Node getRootNode(final InputStream is) throws IOException, IllegalArgumentException {
+			private Node getRootNode( InputStream is) throws IOException, IllegalArgumentException {
 				try {
 					DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 					try {
@@ -242,7 +242,7 @@ public final class FormatterProperties {
 
 		private final List<String> supportedFileNameExtensions;
 
-		FileParser(final String... supportedFileNameExtensions) {
+		FileParser( String... supportedFileNameExtensions) {
 			this.supportedFileNameExtensions = Arrays.asList(supportedFileNameExtensions);
 		}
 
@@ -250,7 +250,7 @@ public final class FormatterProperties {
 
 		protected abstract Properties executeXmlContent(String content) throws IOException, IllegalArgumentException;
 
-		public static Properties parse(final File file) throws IOException, IllegalArgumentException {
+		public static Properties parse( File file) throws IOException, IllegalArgumentException {
 			String fileNameExtension = getFileNameExtension(file);
 			for (FileParser parser : FileParser.values()) {
 				if (parser.supportedFileNameExtensions.contains(fileNameExtension)) {
@@ -274,9 +274,9 @@ public final class FormatterProperties {
 	private enum XmlParser {
 		PROPERTIES("properties") {
 			@Override
-			protected Properties execute(final InputStream xmlFile, final Node rootNode)
+			protected Properties execute( InputStream xmlFile,  Node rootNode)
 					throws IOException, IllegalArgumentException {
-				final Properties properties = new Properties();
+				 Properties properties = new Properties();
 				properties.loadFromXML(xmlFile);
 				return properties;
 			}
@@ -285,7 +285,7 @@ public final class FormatterProperties {
 		PROFILES("profiles") {
 			@Override
 			protected Properties execute(InputStream file, Node rootNode) throws IOException, IllegalArgumentException {
-				final Properties properties = new Properties();
+				 Properties properties = new Properties();
 				Node firstProfile = getSingleProfile(rootNode);
 				for (Object settingObj : getChildren(firstProfile, "setting")) {
 					Node setting = (Node) settingObj;
@@ -306,7 +306,7 @@ public final class FormatterProperties {
 				return properties;
 			}
 
-			private Node getSingleProfile(final Node rootNode) throws IllegalArgumentException {
+			private Node getSingleProfile( Node rootNode) throws IllegalArgumentException {
 				List<Node> profiles = getChildren(rootNode, "profile");
 				if (profiles.isEmpty()) {
 					throw new IllegalArgumentException("The formatter configuration profile files does not contain any 'profile' elements.");
@@ -320,7 +320,7 @@ public final class FormatterProperties {
 				return profiles.iterator().next();
 			}
 
-			private List<Node> getChildren(final Node node, final String nodeName) {
+			private List<Node> getChildren( Node node,  String nodeName) {
 				NodeList children = node.getChildNodes();
 				return IntStream.range(0, children.getLength())
 						.mapToObj(children::item)
@@ -337,7 +337,7 @@ public final class FormatterProperties {
 
 		private final String rootNodeName;
 
-		XmlParser(final String rootNodeName) {
+		XmlParser( String rootNodeName) {
 			this.rootNodeName = rootNodeName;
 		}
 
@@ -348,7 +348,7 @@ public final class FormatterProperties {
 
 		protected abstract Properties execute(InputStream is, Node rootNode) throws IOException, IllegalArgumentException;
 
-		public static Properties parse(final InputStream is, final Node rootNode)
+		public static Properties parse( InputStream is,  Node rootNode)
 				throws IOException, IllegalArgumentException {
 			String rootNodeName = rootNode.getNodeName();
 			for (XmlParser parser : XmlParser.values()) {

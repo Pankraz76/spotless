@@ -80,7 +80,7 @@ public class GrEclipseFormatterStepImpl {
 	private final FormatterPreferencesOnStore preferencesStore;
 	private final boolean ignoreFormatterProblems;
 
-	public GrEclipseFormatterStepImpl(final Properties properties) throws Exception {
+	public GrEclipseFormatterStepImpl( Properties properties) throws Exception {
 		PreferenceStore preferences = createPreferences(properties);
 		preferencesStore = new FormatterPreferencesOnStore(preferences);
 		ignoreFormatterProblems = Boolean.parseBoolean(properties.getProperty(IGNORE_FORMATTER_PROBLEMS, "false"));
@@ -120,7 +120,7 @@ public class GrEclipseFormatterStepImpl {
 		}
 
 		@Override
-		public void logging(final IStatus status, final String plugin) {
+		public void logging( IStatus status,  String plugin) {
 			errors.add(status.getException());
 		}
 
@@ -171,8 +171,8 @@ public class GrEclipseFormatterStepImpl {
 		}
 	}
 
-	private static PreferenceStore createPreferences(final Properties properties) throws IOException {
-		final PreferenceStore preferences = new PreferenceStore();
+	private static PreferenceStore createPreferences( Properties properties) throws IOException {
+		 PreferenceStore preferences = new PreferenceStore();
 		ByteArrayOutputStream output = new ByteArrayOutputStream();
 		properties.store(output, null);
 		ByteArrayInputStream input = new ByteArrayInputStream(output.toByteArray());

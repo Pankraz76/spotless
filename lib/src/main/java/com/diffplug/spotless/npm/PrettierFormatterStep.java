@@ -119,7 +119,7 @@ public final class PrettierFormatterStep {
 
 		@Override
 		public String applyWithFile(String unix, File file) throws Exception {
-			final String prettierConfigOptionsWithFilepath = assertFilepathInConfigOptions(file);
+			 String prettierConfigOptionsWithFilepath = assertFilepathInConfigOptions(file);
 			try {
 				return restService.format(unix, prettierConfigOptionsWithFilepath);
 			} catch (SimpleRestClient.SimpleRestResponseException e) {
@@ -140,9 +140,9 @@ public final class PrettierFormatterStep {
 				return prettierConfigOptions;
 			}
 			// if it is not there, we add it at the beginning of the Options
-			final int startOfConfigOption = prettierConfigOptions.indexOf('{');
-			final boolean hasAnyConfigOption = prettierConfigOptions.indexOf(':', startOfConfigOption + 1) != -1;
-			final String filePathOption = "\"filepath\":\"" + file.getName() + "\"";
+			 int startOfConfigOption = prettierConfigOptions.indexOf('{');
+			 boolean hasAnyConfigOption = prettierConfigOptions.indexOf(':', startOfConfigOption + 1) != -1;
+			 String filePathOption = "\"filepath\":\"" + file.getName() + "\"";
 			return "{" + filePathOption + (hasAnyConfigOption ? "," : "") + prettierConfigOptions.substring(startOfConfigOption + 1);
 		}
 	}

@@ -76,7 +76,7 @@ public final class ClangFormatStep {
 				  mac:   brew install clang-format (TODO: how to specify version?)
 				  linux: apt install clang-format  (try clang-format-{version} with dropped minor versions)
 				    github issue to handle this better: https://github.com/diffplug/spotless/issues/673""";
-		final ForeignExe exe = ForeignExe.nameAndVersion("clang-format", version)
+		 ForeignExe exe = ForeignExe.nameAndVersion("clang-format", version)
 				.pathToExe(pathToExe)
 				.fixCantFind(howToInstall)
 				.fixWrongVersion(
@@ -121,14 +121,14 @@ public final class ClangFormatStep {
 
 		String format(ProcessRunner runner, String input, File file) throws IOException, InterruptedException {
 			if (args == null) {
-				final List<String> tmpArgs = new ArrayList<>();
+				 List<String> tmpArgs = new ArrayList<>();
 				tmpArgs.add(exe.confirmVersionAndGetAbsolutePath());
 				if (style != null) {
 					tmpArgs.add("--style=" + style);
 				}
 				args = tmpArgs;
 			}
-			final String[] processArgs = args.toArray(new String[args.size() + 1]);
+			 String[] processArgs = args.toArray(new String[args.size() + 1]);
 			processArgs[processArgs.length - 1] = "--assume-filename=" + file.getName();
 			return runner.exec(input.getBytes(StandardCharsets.UTF_8), processArgs).assertExitZero(StandardCharsets.UTF_8);
 		}

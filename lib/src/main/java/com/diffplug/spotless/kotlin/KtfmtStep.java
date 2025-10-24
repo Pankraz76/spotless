@@ -247,42 +247,42 @@ public final class KtfmtStep implements Serializable {
 		}
 
 		FormatterFunc createFormat() throws Exception {
-			final ClassLoader classLoader = jarState.getClassLoader();
+			 ClassLoader classLoader = jarState.getClassLoader();
 
 			if (BadSemver.version(version) < BadSemver.version(0, 51)) {
 				return new KtfmtFormatterFuncCompat(version, style, options, classLoader).getFormatterFunc();
 			}
 
-			final Class<?> formatterFuncClass = classLoader.loadClass("com.diffplug.spotless.glue.ktfmt.KtfmtFormatterFunc");
-			final Class<?> ktfmtStyleClass = classLoader.loadClass("com.diffplug.spotless.glue.ktfmt.KtfmtStyle");
-			final Class<?> ktfmtFormattingOptionsClass = classLoader.loadClass("com.diffplug.spotless.glue.ktfmt.KtfmtFormattingOptions");
-			final Class<?> ktfmtTrailingCommaManagmentStrategyClass = classLoader.loadClass("com.diffplug.spotless.glue.ktfmt.KtfmtTrailingCommaManagementStrategy");
+			 Class<?> formatterFuncClass = classLoader.loadClass("com.diffplug.spotless.glue.ktfmt.KtfmtFormatterFunc");
+			 Class<?> ktfmtStyleClass = classLoader.loadClass("com.diffplug.spotless.glue.ktfmt.KtfmtStyle");
+			 Class<?> ktfmtFormattingOptionsClass = classLoader.loadClass("com.diffplug.spotless.glue.ktfmt.KtfmtFormattingOptions");
+			 Class<?> ktfmtTrailingCommaManagmentStrategyClass = classLoader.loadClass("com.diffplug.spotless.glue.ktfmt.KtfmtTrailingCommaManagementStrategy");
 
 			if (style == null && options == null) {
-				final Constructor<?> constructor = formatterFuncClass.getConstructor();
+				 Constructor<?> constructor = formatterFuncClass.getConstructor();
 				return (FormatterFunc) constructor.newInstance();
 			}
 
-			final Object ktfmtStyle = style == null ? null : Enum.valueOf((Class<? extends Enum>) ktfmtStyleClass, getKtfmtStyleOption(style));
+			 Object ktfmtStyle = style == null ? null : Enum.valueOf((Class<? extends Enum>) ktfmtStyleClass, getKtfmtStyleOption(style));
 			if (options == null) {
-				final Constructor<?> constructor = formatterFuncClass.getConstructor(ktfmtStyleClass);
+				 Constructor<?> constructor = formatterFuncClass.getConstructor(ktfmtStyleClass);
 				return (FormatterFunc) constructor.newInstance(ktfmtStyle);
 			}
 
-			final Constructor<?> optionsConstructor = ktfmtFormattingOptionsClass.getConstructor(
+			 Constructor<?> optionsConstructor = ktfmtFormattingOptionsClass.getConstructor(
 					Integer.class, Integer.class, Integer.class, Boolean.class, ktfmtTrailingCommaManagmentStrategyClass);
 
-			final Object ktfmtTrailingCommaManagementStrategy = options.trailingCommaManagementStrategy == null
+			 Object ktfmtTrailingCommaManagementStrategy = options.trailingCommaManagementStrategy == null
 					? null
 					: Enum.valueOf((Class<? extends Enum>) ktfmtTrailingCommaManagmentStrategyClass, options.trailingCommaManagementStrategy.name());
-			final Object ktfmtFormattingOptions = optionsConstructor.newInstance(
+			 Object ktfmtFormattingOptions = optionsConstructor.newInstance(
 					options.maxWidth, options.blockIndent, options.continuationIndent, options.removeUnusedImports, ktfmtTrailingCommaManagementStrategy);
 			if (style == null) {
-				final Constructor<?> constructor = formatterFuncClass.getConstructor(ktfmtFormattingOptionsClass);
+				 Constructor<?> constructor = formatterFuncClass.getConstructor(ktfmtFormattingOptionsClass);
 				return (FormatterFunc) constructor.newInstance(ktfmtFormattingOptions);
 			}
 
-			final Constructor<?> constructor = formatterFuncClass.getConstructor(ktfmtStyleClass, ktfmtFormattingOptionsClass);
+			 Constructor<?> constructor = formatterFuncClass.getConstructor(ktfmtStyleClass, ktfmtFormattingOptionsClass);
 			return (FormatterFunc) constructor.newInstance(ktfmtStyle, ktfmtFormattingOptions);
 		}
 

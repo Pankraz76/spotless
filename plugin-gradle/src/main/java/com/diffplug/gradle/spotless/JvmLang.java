@@ -31,11 +31,11 @@ interface JvmLang {
 
 	default FileCollection getSources(Project project, String message, Function<SourceSet, SourceDirectorySet> sourceSetSourceDirectory, Spec<? super File> filterSpec) {
 		FileCollection union = project.files();
-		final JavaPluginExtension javaPluginExtension = project.getExtensions().findByType(JavaPluginExtension.class);
+		 JavaPluginExtension javaPluginExtension = project.getExtensions().findByType(JavaPluginExtension.class);
 		if (javaPluginExtension == null) {
 			throw new GradleException(message);
 		}
-		final SourceSetContainer sourceSets = javaPluginExtension.getSourceSets();
+		 SourceSetContainer sourceSets = javaPluginExtension.getSourceSets();
 		for (SourceSet sourceSet : sourceSets) {
 			union = union.plus(sourceSetSourceDirectory.apply(sourceSet).filter(filterSpec));
 		}

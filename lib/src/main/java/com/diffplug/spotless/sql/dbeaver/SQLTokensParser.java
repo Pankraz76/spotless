@@ -58,19 +58,19 @@ class SQLTokensParser {
 		}
 	}
 
-	private static boolean isSpace(final char argChar) {
+	private static boolean isSpace( char argChar) {
 		return Character.isWhitespace(argChar);
 	}
 
-	private static boolean isLetter(final char argChar) {
+	private static boolean isLetter( char argChar) {
 		return !isSpace(argChar) && !isDigit(argChar) && !isSymbol(argChar);
 	}
 
-	private static boolean isDigit(final char argChar) {
+	private static boolean isDigit( char argChar) {
 		return Character.isDigit(argChar);
 	}
 
-	private static boolean isSymbol(final char argChar) {
+	private static boolean isSymbol( char argChar) {
 		switch (argChar) {
 		case '"': // double quote
 		case '?': // question mark
@@ -276,13 +276,13 @@ class SQLTokensParser {
 		return false;
 	}
 
-	List<FormatterToken> parse(final String argSql) {
+	List<FormatterToken> parse( String argSql) {
 		fPos = 0;
 		fBefore = argSql;
 
-		final List<FormatterToken> list = new ArrayList<>();
+		 List<FormatterToken> list = new ArrayList<>();
 		for (;;) {
-			final FormatterToken token = nextToken();
+			 FormatterToken token = nextToken();
 			if (token.getType() == TokenType.END) {
 				break;
 			}

@@ -124,10 +124,10 @@ public final class PalantirJavaFormatStep implements Serializable {
 		}
 
 		FormatterFunc createFormat() throws Exception {
-			final ClassLoader classLoader = jarState.getClassLoader();
-			final Class<?> formatterFunc = classLoader.loadClass("com.diffplug.spotless.glue.pjf.PalantirJavaFormatFormatterFunc");
+			 ClassLoader classLoader = jarState.getClassLoader();
+			 Class<?> formatterFunc = classLoader.loadClass("com.diffplug.spotless.glue.pjf.PalantirJavaFormatFormatterFunc");
 			// 1st arg is "style", 2nd arg is "formatJavadoc"
-			final Constructor<?> constructor = formatterFunc.getConstructor(String.class, boolean.class);
+			 Constructor<?> constructor = formatterFunc.getConstructor(String.class, boolean.class);
 			return (FormatterFunc) constructor.newInstance(style, formatJavadoc);
 		}
 	}

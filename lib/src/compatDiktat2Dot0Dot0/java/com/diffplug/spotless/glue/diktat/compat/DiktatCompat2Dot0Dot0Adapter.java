@@ -79,7 +79,7 @@ public class DiktatCompat2Dot0Dot0Adapter implements DiktatCompatAdapter {
 	}
 
 	private static DiktatProcessor getDiktatReporter(File configFile) {
-		final DiktatRuleSet ruleSet = DiktatFactoriesKt.getDiktatRuleSetFactory().invoke(readRuleConfigs(configFile));
+		 DiktatRuleSet ruleSet = DiktatFactoriesKt.getDiktatRuleSetFactory().invoke(readRuleConfigs(configFile));
 		return DiktatFactoriesKt.getDiktatProcessorFactory().invoke(ruleSet);
 	}
 
@@ -87,7 +87,7 @@ public class DiktatCompat2Dot0Dot0Adapter implements DiktatCompatAdapter {
 		if (configFile == null) {
 			return Collections.emptyList();
 		}
-		try (final InputStream configInputStream = new FileInputStream(configFile)) {
+		try ( InputStream configInputStream = new FileInputStream(configFile)) {
 			return DiktatFactoriesKt.getDiktatRuleConfigReader().invoke(configInputStream);
 		} catch (IOException e) {
 			throw new IllegalArgumentException("Fail to read configFile", e);

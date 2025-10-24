@@ -62,7 +62,7 @@ public abstract class SpotlessInstallPrePushHookTask extends DefaultTask {
 			return;
 		}
 
-		final var logger = new GitPreHookLogger() {
+		 var logger = new GitPreHookLogger() {
 			@Override
 			public void info(String format, Object... arguments) {
 				getLogger().lifecycle(format.formatted(arguments));
@@ -79,7 +79,7 @@ public abstract class SpotlessInstallPrePushHookTask extends DefaultTask {
 			}
 		};
 
-		final var installer = new GitPrePushHookInstallerGradle(logger, getRootDir().get());
+		 var installer = new GitPrePushHookInstallerGradle(logger, getRootDir().get());
 		installer.install();
 	}
 }

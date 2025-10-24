@@ -47,7 +47,7 @@ final class NpmResourceHelper {
 	}
 
 	static void writeUtf8StringToOutputStream(String stringToWrite, OutputStream outputStream) throws IOException {
-		final byte[] bytes = stringToWrite.getBytes(StandardCharsets.UTF_8);
+		 byte[] bytes = stringToWrite.getBytes(StandardCharsets.UTF_8);
 		outputStream.write(bytes);
 	}
 
@@ -104,7 +104,7 @@ final class NpmResourceHelper {
 	}
 
 	static void awaitReadableFile(File file, Duration maxWaitTime) throws TimeoutException {
-		final long startedAt = System.currentTimeMillis();
+		 long startedAt = System.currentTimeMillis();
 		while (!file.exists() || !file.canRead()) {
 			// wait for at most maxWaitTime
 			if ((System.currentTimeMillis() - startedAt) > maxWaitTime.toMillis()) {
@@ -115,7 +115,7 @@ final class NpmResourceHelper {
 	}
 
 	static void awaitFileDeleted(File file, Duration maxWaitTime) throws TimeoutException {
-		final long startedAt = System.currentTimeMillis();
+		 long startedAt = System.currentTimeMillis();
 		while (file.exists()) {
 			// wait for at most maxWaitTime
 			if ((System.currentTimeMillis() - startedAt) > maxWaitTime.toMillis()) {
@@ -133,7 +133,7 @@ final class NpmResourceHelper {
 		Objects.requireNonNull(relativePath);
 		try {
 			// create file pointing to relativePath in targetDir
-			final Path relativeTargetFile = Path.of(targetDir.getAbsolutePath(), relativePath);
+			 Path relativeTargetFile = Path.of(targetDir.getAbsolutePath(), relativePath);
 			assertDirectoryExists(relativeTargetFile.getParent().toFile());
 
 			Files.copy(file.toPath(), relativeTargetFile, StandardCopyOption.REPLACE_EXISTING);

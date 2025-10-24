@@ -29,17 +29,17 @@ class FormatterToken {
 	private String fString;
 	private int fPos = -1;
 
-	FormatterToken(final TokenType argType, final String argString, final int argPos) {
+	FormatterToken( TokenType argType,  String argString,  int argPos) {
 		fType = argType;
 		fString = argString;
 		fPos = argPos;
 	}
 
-	FormatterToken(final TokenType argType, final String argString) {
+	FormatterToken( TokenType argType,  String argString) {
 		this(argType, argString, -1);
 	}
 
-	public void setType(final TokenType argType) {
+	public void setType( TokenType argType) {
 		fType = argType;
 	}
 
@@ -47,7 +47,7 @@ class FormatterToken {
 		return fType;
 	}
 
-	public void setString(final String argString) {
+	public void setString( String argString) {
 		fString = argString;
 	}
 
@@ -55,7 +55,7 @@ class FormatterToken {
 		return fString;
 	}
 
-	public void setPos(final int argPos) {
+	public void setPos( int argPos) {
 		fPos = argPos;
 	}
 
@@ -65,7 +65,7 @@ class FormatterToken {
 
 	@Override
 	public String toString() {
-		final StringBuilder buf = new StringBuilder();
+		 StringBuilder buf = new StringBuilder();
 		buf.append(getClass().getName());
 		buf.append("type=").append(fType);
 		buf.append(",string=").append(fString);

@@ -204,7 +204,7 @@ final class BiomeExecutableDownloader {
 			var expectedChecksum = readTextFile(checksumPath, StandardCharsets.ISO_8859_1);
 			LOGGER.debug("Expected checksum: {}, actual checksum: {}", expectedChecksum, actualChecksum);
 			return Objects.equals(expectedChecksum, actualChecksum);
-		} catch (final IOException ignored) {
+		} catch ( IOException ignored) {
 			return false;
 		}
 	}

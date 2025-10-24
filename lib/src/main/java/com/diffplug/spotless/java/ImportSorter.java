@@ -102,14 +102,14 @@ final class ImportSorter {
 		return false;
 	}
 
-	private static String applyImportsToDocument(final String document, int firstImportLine, int lastImportLine, List<String> strings) {
+	private static String applyImportsToDocument( String document, int firstImportLine, int lastImportLine, List<String> strings) {
 		if (document.isEmpty()) {
 			return document;
 		}
 		boolean importsAlreadyAppended = false;
 		Scanner scanner = new Scanner(document);
 		int curentLine = 0;
-		final StringBuilder sb = new StringBuilder();
+		 StringBuilder sb = new StringBuilder();
 		while (scanner.hasNext()) {
 			curentLine++;
 			String next = scanner.nextLine();

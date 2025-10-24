@@ -62,7 +62,7 @@ public class DiktatCompat1Dot2Dot5Adapter implements DiktatCompatAdapter {
 	}
 
 	@Override
-	public String format(final File file, final String content, final boolean isScript) {
+	public String format( File file,  String content,  boolean isScript) {
 		errors.clear();
 		String result = KtLint.INSTANCE.format(new KtLint.ExperimentalParams(
 				// Unlike Ktlint, Diktat requires full path to the file.
