@@ -38,6 +38,7 @@ tasks.withType(JavaCompile).configureEach {
 				'SelfAssignment',
 				'StringJoin',
 				'StringJoining',
+				'UnusedVariable',
 				'UnnecessarilyFullyQualified',
 				'UnnecessaryAssignment',
 				'UnnecessaryBoxedAssignment',
