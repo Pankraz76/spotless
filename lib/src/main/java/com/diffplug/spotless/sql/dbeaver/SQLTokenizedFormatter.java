@@ -397,9 +397,8 @@ public class SQLTokenizedFormatter {
 			return 0;
 		}
 		try {
-			final String defaultLineSeparator = getDefaultLineSeparator();
-			StringBuilder s = new StringBuilder(defaultLineSeparator);
-			s.append(String.valueOf(formatterCfg.getIndentString()).repeat(Math.max(0, argIndent)));
+			StringBuilder s = new StringBuilder(getDefaultLineSeparator());
+			s.append(formatterCfg.getIndentString().repeat(Math.max(0, argIndent)));
 			if (argIndex > 0) {
 				final FormatterToken token = argList.get(argIndex);
 				final FormatterToken prevToken = argList.get(argIndex - 1);
@@ -408,10 +407,7 @@ public class SQLTokenizedFormatter {
 						&& prevToken.getType() != TokenType.END) {
 					s.setCharAt(0, ' ');
 					s.setLength(1);
-
-					final String comment = token.getString();
-					final String withoutTrailingWhitespace = comment.replaceFirst("\\s*$", "");
-					token.setString(withoutTrailingWhitespace);
+					withoutTrailingWhitespace(token);
 				}
 			}
 
@@ -443,6 +439,10 @@ public class SQLTokenizedFormatter {
 			e.printStackTrace();
 			return 0;
 		}
+	}
+
+	private static void withoutTrailingWhitespace(final FormatterToken token) {
+		token.setString(token.getString().replaceFirst("\\s*$", ""));
 	}
 
 	private static boolean isCommentLine(SQLDialect dialect, String line) {
