@@ -61,7 +61,7 @@ public abstract class FormatterFactory {
 	private static final String RATCHETFROM_NOT_SET_AT_FORMAT_LEVEL = " not set at format level ";
 
 	@Parameter
-	private final String ratchetFrom = RATCHETFROM_NOT_SET_AT_FORMAT_LEVEL;
+	private String ratchetFrom = RATCHETFROM_NOT_SET_AT_FORMAT_LEVEL;
 
 	@Parameter
 	private String[] includes;
