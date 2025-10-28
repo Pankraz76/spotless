@@ -23,6 +23,7 @@ tasks.withType(JavaCompile).configureEach {
 				'EmptyMethod',
 				'ExplicitArgumentEnumeration',
 				'ExplicitEnumOrdering',
+				'FieldCanBeFinal',
 				'IdentityConversion',
 				'ImmutablesSortedSetComparator',
 				'IsInstanceLambdaUsage',
