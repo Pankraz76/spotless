@@ -66,10 +66,10 @@ class FormatterToken {
 	@Override
 	public String toString() {
 		final String buf = getClass().getName() +
-			"type=" + fType +
-			",string=" + fString +
-			",pos=" + fPos +
-			"]";
+				"type=" + fType +
+				",string=" + fString +
+				",pos=" + fPos +
+				"]";
 		return buf;
 	}
 }
