@@ -41,10 +41,10 @@ import eu.solven.cleanthat.formatter.PathAndContent;
 public class JavaCleanthatRefactorerFunc implements FormatterFunc.NeedsFile {
 	private static final Logger LOGGER = LoggerFactory.getLogger(JavaCleanthatRefactorerFunc.class);
 
-	private String jdkVersion;
-	private List<String> included;
-	private List<String> excluded;
-	private boolean includeDraft;
+	private final String jdkVersion;
+	private final List<String> included;
+	private final List<String> excluded;
+	private final boolean includeDraft;
 
 	public JavaCleanthatRefactorerFunc(String jdkVersion, List<String> included, List<String> excluded, boolean includeDraft) {
 		this.jdkVersion = jdkVersion == null ? IJdkVersionConstants.JDK_8 : jdkVersion;

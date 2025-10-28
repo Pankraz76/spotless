@@ -213,7 +213,7 @@ public class JsonExtension extends FormatExtension {
 
 	public class JsonPatchConfig {
 		private String zjsonPatchVersion;
-		private List<Map<String, Object>> patch;
+		private final List<Map<String, Object>> patch;
 
 		public JsonPatchConfig(List<Map<String, Object>> patch) {
 			this(DEFAULT_ZJSONPATCH_VERSION, patch);

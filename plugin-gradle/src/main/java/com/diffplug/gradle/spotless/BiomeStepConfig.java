@@ -80,7 +80,7 @@ public abstract class BiomeStepConfig<Self extends BiomeStepConfig<Self>> {
 	 * version explicitly. This parameter is ignored when you specify a
 	 * <code>pathToExe</code> explicitly.
 	 */
-	@Nullable private String version;
+	@Nullable private final String version;
 
 	protected BiomeStepConfig(Project project, Consumer<FormatterStep> replaceStep, String version) {
 		this.project = requireNonNull(project);

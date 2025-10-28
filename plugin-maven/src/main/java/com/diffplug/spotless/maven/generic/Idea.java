@@ -31,7 +31,7 @@ public class Idea implements FormatterStepFactory {
 	private String codeStyleSettingsPath;
 
 	@Parameter
-	private Boolean withDefaults = true;
+	private final Boolean withDefaults = true;
 
 	@Override
 	public FormatterStep newFormatterStep(FormatterStepConfig config) {

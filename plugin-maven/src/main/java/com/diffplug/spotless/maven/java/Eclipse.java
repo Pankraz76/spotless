@@ -38,13 +38,13 @@ public class Eclipse implements FormatterStepFactory {
 	private String version;
 
 	@Parameter
-	private List<P2Mirror> p2Mirrors = new ArrayList<>();
+	private final List<P2Mirror> p2Mirrors = new ArrayList<>();
 
 	@Parameter
-	private Boolean sortMembersDoNotSortFields = true;
+	private final Boolean sortMembersDoNotSortFields = true;
 
 	@Parameter
-	private Boolean sortMembersEnabled = false;
+	private final Boolean sortMembersEnabled = false;
 
 	@Parameter
 	private String sortMembersOrder;
@@ -53,7 +53,7 @@ public class Eclipse implements FormatterStepFactory {
 	private String sortMembersVisibilityOrder;
 
 	@Parameter
-	private Boolean sortMembersVisibilityOrderEnabled = false;
+	private final Boolean sortMembersVisibilityOrderEnabled = false;
 
 	private File cacheDirectory;
 

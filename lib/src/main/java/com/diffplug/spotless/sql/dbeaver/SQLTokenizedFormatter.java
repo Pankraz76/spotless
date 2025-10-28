@@ -38,9 +38,9 @@ public class SQLTokenizedFormatter {
 
 	private static final String[] JOIN_BEGIN = {"LEFT", "RIGHT", "INNER", "OUTER", "JOIN"};
 	private static final SQLDialect SQL_DIALECT = SQLDialect.INSTANCE;
-	private DBeaverSQLFormatterConfiguration formatterCfg;
-	private List<Boolean> functionBracket = new ArrayList<>();
-	private List<String> statementDelimiters = new ArrayList<>(2);
+	private final DBeaverSQLFormatterConfiguration formatterCfg;
+	private final List<Boolean> functionBracket = new ArrayList<>();
+	private final List<String> statementDelimiters = new ArrayList<>(2);
 
 	public SQLTokenizedFormatter(DBeaverSQLFormatterConfiguration formatterCfg) {
 		this.formatterCfg = formatterCfg;

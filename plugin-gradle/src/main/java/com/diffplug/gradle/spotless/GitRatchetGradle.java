@@ -41,7 +41,7 @@ public class GitRatchetGradle extends GitRatchet<File> {
 	static void redirectJGitExecutions() {
 		SystemReader existing = SystemReader.getInstance();
 		SystemReader.setInstance(new DelegatingSystemReader(existing) {
-			private AtomicReference<FileBasedConfig> systemConfig = new AtomicReference<>();
+			private final AtomicReference<FileBasedConfig> systemConfig = new AtomicReference<>();
 
 			@Override
 			public StoredConfig getSystemConfig() throws ConfigInvalidException, IOException {

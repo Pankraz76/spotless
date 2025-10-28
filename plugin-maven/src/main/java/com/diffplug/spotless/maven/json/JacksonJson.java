@@ -33,16 +33,16 @@ import com.diffplug.spotless.maven.FormatterStepFactory;
 public class JacksonJson implements FormatterStepFactory {
 
 	@Parameter
-	private String version = JacksonJsonStep.defaultVersion();
+	private final String version = JacksonJsonStep.defaultVersion();
 
 	@Parameter
-	private boolean spaceBeforeSeparator = new JacksonJsonConfig().isSpaceBeforeSeparator();
+	private final boolean spaceBeforeSeparator = new JacksonJsonConfig().isSpaceBeforeSeparator();
 
 	@Parameter
-	private Map<String, Boolean> features = Collections.emptyMap();
+	private final Map<String, Boolean> features = Collections.emptyMap();
 
 	@Parameter
-	private Map<String, Boolean> jsonFeatures = Collections.emptyMap();
+	private final Map<String, Boolean> jsonFeatures = Collections.emptyMap();
 
 	@Override
 	public FormatterStep newFormatterStep(FormatterStepConfig stepConfig) {

@@ -33,16 +33,16 @@ public class CleanthatJava implements FormatterStepFactory {
 
 	// https://maven.apache.org/plugins/maven-compiler-plugin/compile-mojo.html#source
 	@Parameter(property = "maven.compiler.source")
-	private String sourceJdk = CleanthatJavaStep.defaultSourceJdk();
+	private final String sourceJdk = CleanthatJavaStep.defaultSourceJdk();
 
 	@Parameter
-	private List<String> mutators = CleanthatJavaStep.defaultMutators();
+	private final List<String> mutators = CleanthatJavaStep.defaultMutators();
 
 	@Parameter
-	private List<String> excludedMutators = CleanthatJavaStep.defaultExcludedMutators();
+	private final List<String> excludedMutators = CleanthatJavaStep.defaultExcludedMutators();
 
 	@Parameter
-	private boolean includeDraft = CleanthatJavaStep.defaultIncludeDraft();
+	private final boolean includeDraft = CleanthatJavaStep.defaultIncludeDraft();
 
 	@Override
 	public FormatterStep newFormatterStep(FormatterStepConfig config) {

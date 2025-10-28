@@ -33,13 +33,13 @@ import com.diffplug.spotless.yaml.JacksonYamlStep;
 public class JacksonYaml implements FormatterStepFactory {
 
 	@Parameter
-	private String version = JacksonYamlStep.defaultVersion();
+	private final String version = JacksonYamlStep.defaultVersion();
 
 	@Parameter
-	private Map<String, Boolean> features = Collections.emptyMap();
+	private final Map<String, Boolean> features = Collections.emptyMap();
 
 	@Parameter
-	private Map<String, Boolean> yamlFeatures = Collections.emptyMap();
+	private final Map<String, Boolean> yamlFeatures = Collections.emptyMap();
 
 	@Override
 	public FormatterStep newFormatterStep(FormatterStepConfig stepConfig) {

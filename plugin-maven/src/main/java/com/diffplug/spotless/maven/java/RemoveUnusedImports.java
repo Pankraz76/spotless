@@ -25,7 +25,7 @@ import com.diffplug.spotless.maven.FormatterStepFactory;
 public class RemoveUnusedImports implements FormatterStepFactory {
 
 	@Parameter
-	private String engine = RemoveUnusedImportsStep.defaultFormatter();
+	private final String engine = RemoveUnusedImportsStep.defaultFormatter();
 
 	@Override
 	public FormatterStep newFormatterStep(FormatterStepConfig config) {

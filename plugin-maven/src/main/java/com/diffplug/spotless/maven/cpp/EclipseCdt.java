@@ -38,7 +38,7 @@ public class EclipseCdt implements FormatterStepFactory {
 	private String version;
 
 	@Parameter
-	private List<P2Mirror> p2Mirrors = new ArrayList<>();
+	private final List<P2Mirror> p2Mirrors = new ArrayList<>();
 
 	@Override
 	public FormatterStep newFormatterStep(FormatterStepConfig stepConfig) {

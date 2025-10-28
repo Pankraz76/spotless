@@ -1,3 +1,5 @@
+import static java.lang.System.getenv
+
 apply plugin: 'net.ltgt.errorprone'
 
 dependencies {

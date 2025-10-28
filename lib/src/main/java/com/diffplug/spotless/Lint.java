@@ -45,10 +45,10 @@ public final class Lint implements Serializable {
 	@Serial
 	private static final long serialVersionUID = 1L;
 
-	private int lineStart;
-	private int lineEnd; // 1-indexed, inclusive
-	private String shortCode; // e.g. CN_IDIOM https://spotbugs.readthedocs.io/en/stable/bugDescriptions.html#cn-class-implements-cloneable-but-does-not-define-or-use-clone-method-cn-idiom
-	private String detail;
+	private final int lineStart;
+	private final int lineEnd; // 1-indexed, inclusive
+	private final String shortCode; // e.g. CN_IDIOM https://spotbugs.readthedocs.io/en/stable/bugDescriptions.html#cn-class-implements-cloneable-but-does-not-define-or-use-clone-method-cn-idiom
+	private final String detail;
 
 	private Lint(int lineStart, int lineEnd, String shortCode, String detail) {
 		if (lineEnd < lineStart) {

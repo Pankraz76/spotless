@@ -42,7 +42,7 @@ public class GherkinExtension extends FormatExtension {
 
 	public class GherkinUtilsConfig {
 		private String version;
-		private int indent;
+		private final int indent;
 
 		public GherkinUtilsConfig() {
 			this.version = GherkinUtilsStep.defaultVersion();

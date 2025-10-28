@@ -145,7 +145,7 @@ public abstract class AbstractSpotlessMojo extends AbstractMojo {
 	private LicenseHeader licenseHeader;
 
 	@Parameter
-	private List<Format> formats = Collections.emptyList();
+	private final List<Format> formats = Collections.emptyList();
 
 	@Parameter
 	private Css css;
@@ -214,10 +214,10 @@ public abstract class AbstractSpotlessMojo extends AbstractMojo {
 	private String setLicenseHeaderYearsFromGitHistory;
 
 	@Parameter
-	private UpToDateChecking upToDateChecking = UpToDateChecking.enabled();
+	private final UpToDateChecking upToDateChecking = UpToDateChecking.enabled();
 
 	@Parameter
-	private List<LintSuppression> lintSuppressions = new ArrayList<>();
+	private final List<LintSuppression> lintSuppressions = new ArrayList<>();
 
 	/**
 	 * If set to {@code true} will also run on incremental builds (i.e. within Eclipse with m2e).

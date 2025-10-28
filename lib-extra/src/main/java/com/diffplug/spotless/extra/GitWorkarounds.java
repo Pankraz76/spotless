@@ -107,7 +107,7 @@ public final class GitWorkarounds {
 
 		private File commonDirectory;
 
-		private Config baseConfig;
+		private final Config baseConfig;
 
 		public RepositorySpecificResolver() {
 			this(null);

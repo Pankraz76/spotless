@@ -178,8 +178,8 @@ public abstract class EquoBasedStepBuilder {
 		private final FileSignature.Promised settingsPromise;
 		private final JarState.Promised jarPromise;
 		private final ImmutableMap<String, String> stepProperties;
-		private List<String> settingProperties;
-		private List<String> settingXml;
+		private final List<String> settingProperties;
+		private final List<String> settingXml;
 
 		EquoStep(
 				String semanticVersion,
@@ -212,8 +212,8 @@ public abstract class EquoBasedStepBuilder {
 		final JarState jarState;
 		final FileSignature settingsFiles;
 		final ImmutableMap<String, String> stepProperties;
-		private List<String> settingProperties;
-		private List<String> settingXml;
+		private final List<String> settingProperties;
+		private final List<String> settingXml;
 
 		public State(String semanticVersion, JarState jarState, List<String> settingProperties, List<String> settingXml, FileSignature settingsFiles, ImmutableMap<String, String> stepProperties) {
 			this.semanticVersion = semanticVersion;

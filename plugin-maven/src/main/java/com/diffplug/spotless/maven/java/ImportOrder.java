@@ -51,14 +51,14 @@ public class ImportOrder implements FormatterStepFactory {
 	 * <code>semanticSort</code>. Useful for upper case package names.
 	 */
 	@Parameter
-	private Set<String> treatAsPackage = new HashSet<>();
+	private final Set<String> treatAsPackage = new HashSet<>();
 
 	/**
 	 * The prefixes that should be treated as classes for
 	 * <code>semanticSort</code>. Useful for lower case class names.
 	 */
 	@Parameter
-	private Set<String> treatAsClass = new HashSet<>();
+	private final Set<String> treatAsClass = new HashSet<>();
 
 	@Override
 	public FormatterStep newFormatterStep(FormatterStepConfig config) {

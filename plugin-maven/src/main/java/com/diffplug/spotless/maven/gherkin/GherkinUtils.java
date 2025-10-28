@@ -30,10 +30,10 @@ import com.diffplug.spotless.maven.FormatterStepFactory;
 public class GherkinUtils implements FormatterStepFactory {
 
 	@Parameter
-	private String version = GherkinUtilsStep.defaultVersion();
+	private final String version = GherkinUtilsStep.defaultVersion();
 
 	@Parameter
-	private int indentWithSpaces = GherkinUtilsConfig.defaultIndentSpaces();
+	private final int indentWithSpaces = GherkinUtilsConfig.defaultIndentSpaces();
 
 	@Override
 	public FormatterStep newFormatterStep(FormatterStepConfig stepConfig) {

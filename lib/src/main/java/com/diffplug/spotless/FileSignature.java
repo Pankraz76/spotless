@@ -182,7 +182,7 @@ public final class FileSignature implements Serializable {
 	static final Cache CACHE = new Cache();
 
 	private static final class Cache {
-		Map<String, Sig> cache = new HashMap<>();
+		final Map<String, Sig> cache = new HashMap<>();
 
 		synchronized Sig sign(File fileInput) throws IOException {
 			String canonicalPath = fileInput.getCanonicalPath();

@@ -683,7 +683,7 @@ public class FormatExtension {
 
 		protected Project project;
 
-		private Consumer<FormatterStep> replaceStep;
+		private final Consumer<FormatterStep> replaceStep;
 
 		protected NpmStepConfig(Project project, Consumer<FormatterStep> replaceStep) {
 			this.project = requireNonNull(project);

@@ -224,7 +224,7 @@ public class ResourceHarness {
 	}
 
 	public static final class WriteAsserter {
-		private File file;
+		private final File file;
 
 		private WriteAsserter(File file) {
 			file.getParentFile().mkdirs();
