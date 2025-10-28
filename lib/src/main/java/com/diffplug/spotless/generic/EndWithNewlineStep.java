@@ -52,10 +52,9 @@ public final class EndWithNewlineStep {
 		} else if (lastContentCharacter == rawUnix.length() - 2 && rawUnix.charAt(rawUnix.length() - 1) == '\n') {
 			return rawUnix;
 		} else {
-			StringBuilder builder = new StringBuilder(lastContentCharacter + 2);
-			builder.append(rawUnix, 0, lastContentCharacter + 1);
-			builder.append('\n');
-			return builder.toString();
+			final String builder = rawUnix.substring(0, lastContentCharacter + 1) +
+				'\n';
+			return builder;
 		}
 	}
 }
