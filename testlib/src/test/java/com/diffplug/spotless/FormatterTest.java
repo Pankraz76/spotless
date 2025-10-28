@@ -39,7 +39,7 @@ class FormatterTest {
 		new SerializableEqualityTester() {
 			private LineEnding.Policy lineEndingsPolicy = LineEnding.UNIX.createPolicy();
 			private Charset encoding = StandardCharsets.UTF_8;
-			private List<FormatterStep> steps = new ArrayList<>();
+			private final List<FormatterStep> steps = new ArrayList<>();
 
 			@Override
 			protected void setupTest(API api) throws Exception {

@@ -70,6 +70,6 @@ class FormatterToken {
 				",string=" + fString +
 				",pos=" + fPos +
 				"]";
-		
+
 	}
 }

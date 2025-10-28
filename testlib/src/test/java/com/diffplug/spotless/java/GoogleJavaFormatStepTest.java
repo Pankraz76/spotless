@@ -168,8 +168,8 @@ class GoogleJavaFormatStepTest extends ResourceHarness {
 	void equalityGroupArtifact() throws Exception {
 		new SerializableEqualityTester() {
 			String groupArtifact = GoogleJavaFormatStep.defaultGroupArtifact();
-			String version = "1.11.0";
-			String style = "";
+			final String version = "1.11.0";
+			final String style = "";
 			boolean reflowLongStrings;
 
 			@Override

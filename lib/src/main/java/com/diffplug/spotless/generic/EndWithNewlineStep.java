@@ -54,7 +54,7 @@ public final class EndWithNewlineStep {
 		} else {
 			return rawUnix.substring(0, lastContentCharacter + 1) +
 					'\n';
-			
+
 		}
 	}
 }

@@ -40,19 +40,19 @@ import com.diffplug.spotless.TestProvisioner;
 
 class PaddedCellTaskTest extends ResourceHarness {
 	private class Bundle {
-		String name;
-		Project project = TestProvisioner.gradleProject(rootFolder());
-		Provider<SpotlessTaskService> taskService = GradleIntegrationHarness.providerOf(new SpotlessTaskService() {
+		final String name;
+		final Project project = TestProvisioner.gradleProject(rootFolder());
+		final Provider<SpotlessTaskService> taskService = GradleIntegrationHarness.providerOf(new SpotlessTaskService() {
 			@Override
 			public BuildServiceParameters.None getParameters() {
 				return null;
 			}
 		});
-		File file;
-		File outputFile;
-		SpotlessTaskImpl source;
-		SpotlessCheck check;
-		SpotlessApply apply;
+		final File file;
+		final File outputFile;
+		final SpotlessTaskImpl source;
+		final SpotlessCheck check;
+		final SpotlessApply apply;
 
 		Bundle(String name, SerializedFunction<String, String> function) throws IOException {
 			this.name = name;

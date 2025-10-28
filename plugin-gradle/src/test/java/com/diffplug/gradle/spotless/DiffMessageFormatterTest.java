@@ -39,17 +39,17 @@ import com.diffplug.spotless.generic.TrimTrailingWhitespaceStep;
 class DiffMessageFormatterTest extends ResourceHarness {
 
 	private class Bundle {
-		Project project = TestProvisioner.gradleProject(rootFolder());
-		Provider<SpotlessTaskService> taskService = GradleIntegrationHarness.providerOf(new SpotlessTaskService() {
+		final Project project = TestProvisioner.gradleProject(rootFolder());
+		final Provider<SpotlessTaskService> taskService = GradleIntegrationHarness.providerOf(new SpotlessTaskService() {
 			@Override
 			public BuildServiceParameters.None getParameters() {
 				return null;
 			}
 		});
 
-		File file;
-		SpotlessTaskImpl task;
-		SpotlessCheck check;
+		final File file;
+		final SpotlessTaskImpl task;
+		final SpotlessCheck check;
 
 		Bundle(String name) throws IOException {
 			file = setFile("src/test." + name).toContent("CCC");

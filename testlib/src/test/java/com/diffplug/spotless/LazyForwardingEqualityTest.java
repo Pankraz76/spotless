@@ -32,7 +32,7 @@ class LazyForwardingEqualityTest {
 	}
 
 	static class Str extends LazyForwardingEquality<String> {
-		private String state;
+		private final String state;
 
 		Str(String state) {
 			this.state = state;
