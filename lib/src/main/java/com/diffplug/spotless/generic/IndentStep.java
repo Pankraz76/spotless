@@ -115,8 +115,6 @@ public final class IndentStep implements Serializable {
 							builder.append(' ');
 						}
 						break;
-					default:
-						throw new IllegalArgumentException("Unexpected enum " + state.type);
 					}
 				}
 
