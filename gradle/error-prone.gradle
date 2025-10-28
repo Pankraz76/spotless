@@ -65,6 +65,7 @@ tasks.withType(JavaCompile).configureEach {
 		// ForbidGradleInternal(import org.gradle.api.internal.project.ProjectInternal;)
 		errorproneArgs.add('-XepExcludedPaths:' +
 				'.*/SelfTest.java|' +
+				'.*/FormatterFactory.java|' + // @Parameter
 				'.*/GradleIntegrationHarness.java'
 				)
 		if (!getenv().containsKey('CI') && getenv('IN_PLACE')?.toBoolean()) {
