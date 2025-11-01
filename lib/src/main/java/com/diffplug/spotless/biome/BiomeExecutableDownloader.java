@@ -241,10 +241,14 @@ final class BiomeExecutableDownloader {
 	 * @throws IOException When the given OS is not supported by Biome.
 	 */
 	private String getArchitectureCodeName(Architecture architecture) throws IOException {
-		return switch (architecture) {
-			case ARM64 -> "arm64";
-			case X64 -> "x64";
-		};
+		switch (architecture) {
+		case ARM64:
+			return "arm64";
+		case X64:
+			return "x64";
+		default:
+			throw new IOException("Unsupported architecture: " + architecture);
+		}
 	}
 
 	/**
@@ -286,10 +290,16 @@ final class BiomeExecutableDownloader {
 	 * @throws IOException When the given OS is not supported by Biome.
 	 */
 	private String getDownloadUrlExtension(OS os) throws IOException {
-		return switch (os) {
-			case LINUX, MAC_OS -> "";
-			case WINDOWS -> ".exe";
-		};
+		switch (os) {
+		case LINUX:
+			return "";
+		case MAC_OS:
+			return "";
+		case WINDOWS:
+			return ".exe";
+		default:
+			throw new IOException("Unsupported OS: " + os);
+		}
 	}
 
 	/**
@@ -316,11 +326,16 @@ final class BiomeExecutableDownloader {
 	 * @throws IOException When the given OS is not supported by Biome.
 	 */
 	private String getOsCodeName(OS os) throws IOException {
-		return switch (os) {
-			case LINUX -> "linux";
-			case MAC_OS -> "darwin";
-			case WINDOWS -> "win32";
-		};
+		switch (os) {
+		case LINUX:
+			return "linux";
+		case MAC_OS:
+			return "darwin";
+		case WINDOWS:
+			return "win32";
+		default:
+			throw new IOException("Unsupported OS: " + os);
+		}
 	}
 
 	/**

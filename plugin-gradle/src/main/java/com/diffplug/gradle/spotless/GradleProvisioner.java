@@ -45,11 +45,15 @@ final class GradleProvisioner {
 		INDEPENDENT, ROOT_PROJECT, ROOT_BUILDSCRIPT;
 
 		public DedupingProvisioner dedupingProvisioner(Project project) {
-			return switch (this) {
-				case ROOT_PROJECT -> new DedupingProvisioner(forProject(project));
-				case ROOT_BUILDSCRIPT -> new DedupingProvisioner(forRootProjectBuildscript(project));
-				case INDEPENDENT -> throw Unhandled.enumException(this);
-			};
+			switch (this) {
+			case ROOT_PROJECT:
+				return new DedupingProvisioner(forProject(project));
+			case ROOT_BUILDSCRIPT:
+				return new DedupingProvisioner(forRootProjectBuildscript(project));
+			case INDEPENDENT:
+			default:
+				throw Unhandled.enumException(this);
+			}
 		}
 	}
 

@@ -114,9 +114,6 @@ case "$( uname )" in                #(
   NONSTOP* )        nonstop=true ;;
 esac
 
-<% if ( classpath ) {%>\
-CLASSPATH="\\\"\\\""
-<% } %>\
 
 
 # Determine the Java command to use to start the JVM.
@@ -174,9 +171,6 @@ fi
 # For Cygwin or MSYS, switch paths to Windows format before running java
 if "$cygwin" || "$msys" ; then
     APP_HOME=$( cygpath --path --mixed "$APP_HOME" )
-<% if ( classpath ) {%>\
-    CLASSPATH=$( cygpath --path --mixed "$CLASSPATH" )
-<% } %>\
 
     JAVACMD=$( cygpath --unix "$JAVACMD" )
 
@@ -216,10 +210,6 @@ DEFAULT_JVM_OPTS='"-Xmx64m" "-Xms64m"'
 
 set -- \
         "-Dorg.gradle.appname=$APP_BASE_NAME" \
-\
-<% if ( classpath ) {%>\
-        -classpath "$CLASSPATH" \
-<% } %>\
         -jar "$APP_HOME/gradle/wrapper/gradle-wrapper.jar" \
         "$@"
 
