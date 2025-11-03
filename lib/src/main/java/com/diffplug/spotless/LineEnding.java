@@ -83,14 +83,8 @@ public enum LineEnding {
 	// @formatter:off
 	/** Should use {@link #createPolicy(File, Supplier)} instead, but this will work iff its a path-independent LineEnding policy. */
 	public Policy createPolicy() {
-		switch (this) {
-		case PLATFORM_NATIVE:	return _PLATFORM_NATIVE_POLICY;
-		case WINDOWS:			return WINDOWS_POLICY;
-		case UNIX:				return UNIX_POLICY;
-		case MAC_CLASSIC:		return MAC_CLASSIC_POLICY;
-		case PRESERVE:			return PRESERVE_POLICY;
-		default:	throw new UnsupportedOperationException(this + " is a path-specific line ending.");
-		}
+		return switch (this) {case PLATFORM_NATIVE->_PLATFORM_NATIVE_POLICY;case WINDOWS->WINDOWS_POLICY;case UNIX->UNIX_POLICY;case MAC_CLASSIC->MAC_CLASSIC_POLICY;case PRESERVE->PRESERVE_POLICY;default->throw new UnsupportedOperationException(this + " is a path-specific line ending.");
+};
 	}
 
 	static class ConstantLineEndingPolicy extends NoLambda.EqualityBasedOnSerialization implements Policy {
@@ -169,13 +163,8 @@ public enum LineEnding {
 
 	/** Returns the standard line ending for this policy. */
 	public String str() {
-		switch (this) {
-		case PLATFORM_NATIVE:	return _PLATFORM_NATIVE;
-		case WINDOWS:			return "\r\n";
-		case UNIX:				return "\n";
-		case MAC_CLASSIC:		return "\r";
-		default:	throw new UnsupportedOperationException(this + " is a path-specific line ending.");
-		}
+		return switch (this) {case PLATFORM_NATIVE->_PLATFORM_NATIVE;case WINDOWS->"\r\n";case UNIX->"\n";case MAC_CLASSIC->"\r";default->throw new UnsupportedOperationException(this + " is a path-specific line ending.");
+};
 	}
 	// @formatter:on
 
