@@ -16,7 +16,7 @@ spotless {
 		}
 	}
 	groovyGradle {
-		target '*.gradle', 'gradle/*.gradle'
+		target '**.gradle'
 		greclipse().configFile rootProject.files('gradle/spotless.eclipseformat.xml', 'gradle/spotless.groovyformat.prefs')
 	}
 	format 'dotfiles', {

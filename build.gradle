@@ -15,7 +15,3 @@ allprojects {
 	apply from: rootProject.file('gradle/error-prone.gradle')
 	apply from: rootProject.file('gradle/spotless.gradle')
 }
-
-repositories {
-	mavenCentral()
-}

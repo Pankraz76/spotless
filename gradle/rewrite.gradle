@@ -1,4 +1,5 @@
 apply plugin: 'org.openrewrite.rewrite'
+
 rewrite {
 	activeRecipe('com.diffplug.spotless.openrewrite.SanityCheck')
 	exclusions.addAll(
@@ -20,6 +21,7 @@ rewrite {
 	exportDatatables = true
 	failOnDryRunResults = true
 }
+
 dependencies {
 	rewrite(platform('org.openrewrite.recipe:rewrite-recipe-bom:3.18.0'))
 	rewrite('org.openrewrite.recipe:rewrite-migrate-java:3.20.0')
