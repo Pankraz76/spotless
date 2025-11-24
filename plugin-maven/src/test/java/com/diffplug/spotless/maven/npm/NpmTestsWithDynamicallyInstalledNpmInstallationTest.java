@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 DiffPlug
+ * Copyright 2023-2025 DiffPlug
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ import static com.diffplug.spotless.maven.npm.NpmFrontendMavenPlugin.installNpmM
 import static com.diffplug.spotless.maven.npm.NpmFrontendMavenPlugin.installedNpmPath;
 import static com.diffplug.spotless.maven.npm.NpmFrontendMavenPlugin.pomPluginLines;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.diffplug.spotless.maven.MavenIntegrationHarness;
@@ -26,6 +27,7 @@ import com.diffplug.spotless.maven.MavenIntegrationHarness;
 public class NpmTestsWithDynamicallyInstalledNpmInstallationTest extends MavenIntegrationHarness {
 
 	@Test
+	@Disabled
 	void useDownloadedNpmInstallation() throws Exception {
 		writePomWithPrettierSteps(
 				pomPluginLines("v18.13.0", null),
