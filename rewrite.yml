@@ -10,6 +10,7 @@ tags:
   - cleanup
 recipeList:
   - org.openrewrite.codemods.ESLint
+  - org.openrewrite.analysis.controlflow.ControlFlowVisualization
   - org.openrewrite.codemods.UI5
   - org.openrewrite.codemods.cleanup.javascript.EmptyBraceSpaces
   - org.openrewrite.codemods.cleanup.javascript.PreferModule
