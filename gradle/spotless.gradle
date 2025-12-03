@@ -7,7 +7,7 @@ spotless {
 			eclipse().configFile rootProject.file('gradle/spotless.eclipseformat.xml')
 			expandWildcardImports()
 			forbidRegex('ForbidGradleInternal', 'import org\\.gradle\\.api\\.internal\\.(.*)', "Don't use Gradle's internal API")
-			forbidWildcardImports()
+			expandWildcardImports()
 			formatAnnotations()
 			importOrderFile   rootProject.file('gradle/spotless.importorder')
 			licenseHeaderFile rootProject.file('gradle/spotless.license')

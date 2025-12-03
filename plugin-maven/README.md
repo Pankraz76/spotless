@@ -231,7 +231,7 @@ any other maven phase (i.e. compile) then it can be configured as below;
     </importOrder>
 
     <removeUnusedImports /> <!-- self-explanatory -->
-    <forbidWildcardImports /> <!-- yell if any import ends with '*' -->
+    <expandWildcardImports /> <!-- yell if any import ends with '*' -->
     <forbidModuleImports /> <!-- yell if any module imports are found (Java 25+) -->
 
     <formatAnnotations />  <!-- fixes formatting of type annotations, see below -->
@@ -251,10 +251,10 @@ any other maven phase (i.e. compile) then it can be configured as below;
 </removeUnusedImports>
 ```
 
-### forbidWildcardImports
+### expandWildcardImports
 
 ```xml
-<forbidWildcardImports/>
+<expandWildcardImports/>
 ```
 
 ### forbidModuleImports
@@ -1975,7 +1975,7 @@ Sometimes Spotless will encounter lint errors that can't be auto-fixed. For exam
 
 ```
 [ERROR] Unable to format file src/main/java/com/example/App.java
-[ERROR] Step 'forbidWildcardImports' found problem in 'App.java':
+[ERROR] Step 'expandWildcardImports' found problem in 'App.java':
 [ERROR]   Do not use wildcard imports
 ```
 
@@ -1988,12 +1988,12 @@ To suppress these lints, you can use the `<lintSuppressions>` configuration:
   <version>${spotless.version}</version>
   <configuration>
     <java>
-      <forbidWildcardImports/>
+      <expandWildcardImports/>
     </java>
     <lintSuppressions>
       <lintSuppression>
         <path>src/main/java/com/example/App.java</path>
-        <step>forbidWildcardImports</step>
+        <step>expandWildcardImports</step>
         <shortCode>*</shortCode>
       </lintSuppression>
     </lintSuppressions>
@@ -2013,13 +2013,13 @@ You can suppress multiple patterns:
   <!-- Suppress all wildcard import errors in legacy code -->
   <lintSuppression>
     <path>src/main/java/com/example/legacy/*</path>
-    <step>forbidWildcardImports</step>
+    <step>expandWildcardImports</step>
     <shortCode>*</shortCode>
   </lintSuppression>
   <!-- Suppress all errors from a specific step -->
   <lintSuppression>
     <path>*</path>
-    <step>forbidWildcardImports</step>
+    <step>expandWildcardImports</step>
     <shortCode>*</shortCode>
   </lintSuppression>
 </lintSuppressions>

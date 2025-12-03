@@ -19,11 +19,11 @@ import org.junit.jupiter.api.Test;
 
 import com.diffplug.spotless.maven.MavenIntegrationHarness;
 
-class ForbidWildcardImportsStepTest extends MavenIntegrationHarness {
+class ExpandWildcardImportsStepTest extends MavenIntegrationHarness {
 
 	@Test
-	void testForbidWildcardImports() throws Exception {
-		writePomWithJavaSteps("<forbidWildcardImports/>");
+	void testExpandWildcardImports() throws Exception {
+		writePomWithJavaSteps("<expandWildcardImports/>");
 
 		String path = "src/main/java/test.java";
 		setFile(path).toResource("java/forbidwildcardimports/JavaCodeWildcardsUnformatted.test");
@@ -31,11 +31,11 @@ class ForbidWildcardImportsStepTest extends MavenIntegrationHarness {
 		assertFile(path).sameAsResource("java/forbidwildcardimports/JavaCodeWildcardsUnformatted.test");
 		selfie.toBe("""
 				Failed to execute goal com.diffplug.spotless:spotless-maven-plugin:VERSION:apply (default-cli) on project spotless-maven-plugin-tests: There were 5 lint error(s), they must be fixed or suppressed.
-				src/main/java/test.java:L1 forbidWildcardImports(import java.util.*;) Do not use wildcard imports (e.g. java.util.*) - replace with specific class imports (e.g. java.util.List) as 'spotlessApply' cannot auto-fix this
-				src/main/java/test.java:L2 forbidWildcardImports(import static java.util.Collections.*;) Do not use wildcard imports (e.g. java.util.*) - replace with specific class imports (e.g. java.util.List) as 'spotlessApply' cannot auto-fix this
-				src/main/java/test.java:L5 forbidWildcardImports(import io.quarkus.maven.dependency.*;) Do not use wildcard imports (e.g. java.util.*) - replace with specific class imports (e.g. java.util.List) as 'spotlessApply' cannot auto-fix this
-				src/main/java/test.java:L6 forbidWildcardImports(import static io.quarkus.vertx.web.Route.HttpMethod.*;) Do not use wildcard imports (e.g. java.util.*) - replace with specific class imports (e.g. java.util.List) as 'spotlessApply' cannot auto-fix this
-				src/main/java/test.java:L7 forbidWildcardImports(import static org.springframework.web.reactive.function.BodyInserters.*;) Do not use wildcard imports (e.g. java.util.*) - replace with specific class imports (e.g. java.util.List) as 'spotlessApply' cannot auto-fix this
+				src/main/java/test.java:L1 expandWildcardImports(import java.util.*;) Do not use wildcard imports (e.g. java.util.*) - replace with specific class imports (e.g. java.util.List) as 'spotlessApply' cannot auto-fix this
+				src/main/java/test.java:L2 expandWildcardImports(import static java.util.Collections.*;) Do not use wildcard imports (e.g. java.util.*) - replace with specific class imports (e.g. java.util.List) as 'spotlessApply' cannot auto-fix this
+				src/main/java/test.java:L5 expandWildcardImports(import io.quarkus.maven.dependency.*;) Do not use wildcard imports (e.g. java.util.*) - replace with specific class imports (e.g. java.util.List) as 'spotlessApply' cannot auto-fix this
+				src/main/java/test.java:L6 expandWildcardImports(import static io.quarkus.vertx.web.Route.HttpMethod.*;) Do not use wildcard imports (e.g. java.util.*) - replace with specific class imports (e.g. java.util.List) as 'spotlessApply' cannot auto-fix this
+				src/main/java/test.java:L7 expandWildcardImports(import static org.springframework.web.reactive.function.BodyInserters.*;) Do not use wildcard imports (e.g. java.util.*) - replace with specific class imports (e.g. java.util.List) as 'spotlessApply' cannot auto-fix this
 				Resolve these lints or suppress with `<lintSuppressions>`
 				""");
 	}

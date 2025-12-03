@@ -27,26 +27,26 @@ class LintSuppressionTest extends MavenIntegrationHarness {
 
 	@Test
 	void testNoSuppressionFailsOnWildcardImports() throws Exception {
-		writePomWithJavaSteps("<forbidWildcardImports/>");
+		writePomWithJavaSteps("<expandWildcardImports/>");
 
 		String path = "src/main/java/TestFile.java";
 		setFile(path).toResource("java/forbidwildcardimports/JavaCodeWildcardsUnformatted.test");
 
 		expectSelfieErrorMsg(mavenRunner().withArguments("spotless:check").runHasError()).toBe("""
 				Failed to execute goal com.diffplug.spotless:spotless-maven-plugin:VERSION:check (default-cli) on project spotless-maven-plugin-tests: Unable to format file ${PROJECT_DIR}/src/main/java/TestFile.java
-				Step 'forbidWildcardImports' found problem in 'TestFile.java':
-				TestFile.java:L1 forbidWildcardImports(import java.util.*;) Do not use wildcard imports (e.g. java.util.*) - replace with specific class imports (e.g. java.util.List) as 'spotlessApply' cannot auto-fix this
-				TestFile.java:L2 forbidWildcardImports(import static java.util.Collections.*;) Do not use wildcard imports (e.g. java.util.*) - replace with specific class imports (e.g. java.util.List) as 'spotlessApply' cannot auto-fix this
-				TestFile.java:L5 forbidWildcardImports(import io.quarkus.maven.dependency.*;) Do not use wildcard imports (e.g. java.util.*) - replace with specific class imports (e.g. java.util.List) as 'spotlessApply' cannot auto-fix this
-				TestFile.java:L6 forbidWildcardImports(import static io.quarkus.vertx.web.Route.HttpMethod.*;) Do not use wildcard imports (e.g. java.util.*) - replace with specific class imports (e.g. java.util.List) as 'spotlessApply' cannot auto-fix this
-				TestFile.java:L7 forbidWildcardImports(import static org.springframework.web.reactive.function.BodyInserters.*;) Do not use wildcard imports (e.g. java.util.*) - replace with specific class imports (e.g. java.util.List) as 'spotlessApply' cannot auto-fix this
+				Step 'expandWildcardImports' found problem in 'TestFile.java':
+				TestFile.java:L1 expandWildcardImports(import java.util.*;) Do not use wildcard imports (e.g. java.util.*) - replace with specific class imports (e.g. java.util.List) as 'spotlessApply' cannot auto-fix this
+				TestFile.java:L2 expandWildcardImports(import static java.util.Collections.*;) Do not use wildcard imports (e.g. java.util.*) - replace with specific class imports (e.g. java.util.List) as 'spotlessApply' cannot auto-fix this
+				TestFile.java:L5 expandWildcardImports(import io.quarkus.maven.dependency.*;) Do not use wildcard imports (e.g. java.util.*) - replace with specific class imports (e.g. java.util.List) as 'spotlessApply' cannot auto-fix this
+				TestFile.java:L6 expandWildcardImports(import static io.quarkus.vertx.web.Route.HttpMethod.*;) Do not use wildcard imports (e.g. java.util.*) - replace with specific class imports (e.g. java.util.List) as 'spotlessApply' cannot auto-fix this
+				TestFile.java:L7 expandWildcardImports(import static org.springframework.web.reactive.function.BodyInserters.*;) Do not use wildcard imports (e.g. java.util.*) - replace with specific class imports (e.g. java.util.List) as 'spotlessApply' cannot auto-fix this
 				""");
 	}
 
 	@Test
 	void testSuppressByFilePath() throws Exception {
 		writePomWithLintSuppressions(
-				"<forbidWildcardImports/>",
+				"<expandWildcardImports/>",
 				"<lintSuppressions>",
 				"  <lintSuppression>",
 				"    <path>src/main/java/TestFile1.java</path>",
@@ -69,11 +69,11 @@ class LintSuppressionTest extends MavenIntegrationHarness {
 	@Test
 	void testSuppressByStep() throws Exception {
 		writePomWithLintSuppressions(
-				"<forbidWildcardImports/>",
+				"<expandWildcardImports/>",
 				"<lintSuppressions>",
 				"  <lintSuppression>",
 				"    <path>*</path>",
-				"    <step>forbidWildcardImports</step>",
+				"    <step>expandWildcardImports</step>",
 				"    <shortCode>*</shortCode>",
 				"  </lintSuppression>",
 				"</lintSuppressions>");
@@ -89,7 +89,7 @@ class LintSuppressionTest extends MavenIntegrationHarness {
 	void testSuppressByShortCode() throws Exception {
 		// Use wildcard to suppress all shortCodes - this tests the shortCode suppression mechanism
 		writePomWithLintSuppressions(
-				"<forbidWildcardImports/>",
+				"<expandWildcardImports/>",
 				"<lintSuppressions>",
 				"  <lintSuppression>",
 				"    <path>*</path>",
@@ -108,7 +108,7 @@ class LintSuppressionTest extends MavenIntegrationHarness {
 	@Test
 	void testMultipleSuppressionsWork() throws Exception {
 		writePomWithLintSuppressions(
-				"<forbidWildcardImports/>",
+				"<expandWildcardImports/>",
 				"<lintSuppressions>",
 				"  <lintSuppression>",
 				"    <path>src/main/java/TestFile1.java</path>",

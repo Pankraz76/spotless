@@ -41,7 +41,7 @@ import com.diffplug.spotless.generic.LicenseHeaderStep;
 import com.diffplug.spotless.java.CleanthatJavaStep;
 import com.diffplug.spotless.java.ExpandWildcardImportsStep;
 import com.diffplug.spotless.java.ForbidModuleImportsStep;
-import com.diffplug.spotless.java.ForbidWildcardImportsStep;
+import com.diffplug.spotless.java.ExpandWildcardImportsStep;
 import com.diffplug.spotless.java.FormatAnnotationsStep;
 import com.diffplug.spotless.java.GoogleJavaFormatStep;
 import com.diffplug.spotless.java.ImportOrderStep;
@@ -159,12 +159,12 @@ public class JavaExtension extends FormatExtension implements HasBuiltinDelimite
 
 	@Deprecated
 	public void removeWildcardImports() {
-		System.err.println("`removeWildcardImports()` replaced by `forbidWildcardImports()`");
-		forbidWildcardImports();
+		System.err.println("`removeWildcardImports()` replaced by `forbidWildcardImports()` replaced by `expandWildcardImports()`");
+		expandWildcardImports();
 	}
 
-	public void forbidWildcardImports() {
-		addStep(ForbidWildcardImportsStep.create());
+	public void expandWildcardImports() {
+		addStep(ExpandWildcardImportsStep.create());
 	}
 
 	public void forbidModuleImports() {

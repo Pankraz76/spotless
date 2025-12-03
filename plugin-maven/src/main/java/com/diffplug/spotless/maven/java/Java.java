@@ -76,8 +76,8 @@ public class Java extends FormatterFactory {
 		addStepFactory(removeUnusedImports);
 	}
 
-	public void addForbidWildcardImports(ForbidWildcardImports forbidWildcardImports) {
-		addStepFactory(forbidWildcardImports);
+	public void addExpandWildcardImports(ExpandWildcardImports expandWildcardImports) {
+		addStepFactory(expandWildcardImports);
 	}
 
 	public void addForbidModuleImports(ForbidModuleImports forbidModuleImports) {

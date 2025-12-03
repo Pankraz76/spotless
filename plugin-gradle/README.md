@@ -207,7 +207,7 @@ spotless {
     importOrderFile('eclipse-import-order.txt') // import order file as exported from eclipse
 
     removeUnusedImports()
-    forbidWildcardImports() // or expandWildcardImports, see below
+    expandWildcardImports() // or expandWildcardImports, see below
     forbidModuleImports()
 
     // Cleanthat will refactor your code, but it may break your style: apply it before your formatter
@@ -249,12 +249,12 @@ spotless {
   removeUnusedImports('cleanthat-javaparser-unnecessaryimport')
 ```
 
-### forbidWildcardImports
+### expandWildcardImports
 
 ```
 spotless {
   java {
-    forbidWildcardImports()
+    expandWildcardImports()
   }
 }
 ```
@@ -263,7 +263,7 @@ spotless {
 
 This step expands all wildcard imports to single class imports.
 To do this, [JavaParser](https://javaparser.org/) is used to parse the complete sourcecode and resolve the full qualified name of all used classes and static methods.
-This operation can be resource intensive when formatting many source files, so you may want to change to `forbidWildcardImports` when your codebase is cleaned and stable.
+This operation can be resource intensive when formatting many source files, so you may want to change to `expandWildcardImports` when your codebase is cleaned and stable.
 
 ```
 spotless {

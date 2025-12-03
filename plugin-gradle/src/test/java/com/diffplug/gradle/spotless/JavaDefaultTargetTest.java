@@ -83,7 +83,7 @@ class JavaDefaultTargetTest extends GradleIntegrationHarness {
 	}
 
 	@Test
-	void forbidWildcardImports() throws IOException {
+	void expandWildcardImports() throws IOException {
 		setFile("build.gradle").toLines(
 				"plugins {",
 				"    id 'com.diffplug.spotless'",
@@ -93,7 +93,7 @@ class JavaDefaultTargetTest extends GradleIntegrationHarness {
 				"spotless {",
 				"    java {",
 				"        target file('test.java')",
-				"        forbidWildcardImports()",
+				"        expandWildcardImports()",
 				"    }",
 				"}");
 

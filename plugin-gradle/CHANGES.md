@@ -30,7 +30,7 @@ We adhere to the [keepachangelog](https://keepachangelog.com/en/1.0.0/) format (
 ## [8.0.0] - 2025-09-24
 ### Changed
 * **BREAKING** Bump the required Gradle to `7.3` and required Java to `17`. ([#2375](https://github.com/diffplug/spotless/issues/2375), [#2540](https://github.com/diffplug/spotless/pull/2540))
-* **BREAKING** Renamed `removeWildcardImports` to `forbidWildcardImports`. ([#2633](https://github.com/diffplug/spotless/pull/2633))
+* **BREAKING** Renamed `removeWildcardImports` to `expandWildcardImports`. ([#2633](https://github.com/diffplug/spotless/pull/2633))
 * **BREAKING** `spotlessInstallGitPrePushHook` task is now installed only on the root project. ([#2570](https://github.com/diffplug/spotless/pull/2570))
 * **BREAKING** `LintSuppression` now enforces unix-style paths in its `setPath` method. ([#2629](https://github.com/diffplug/spotless/pull/2629))
 * Running `spotlessCheck` with violations unilaterally produces the error message `Run './gradlew spotlessApply' to fix these violations`. ([#2592](https://github.com/diffplug/spotless/issues/2592))
