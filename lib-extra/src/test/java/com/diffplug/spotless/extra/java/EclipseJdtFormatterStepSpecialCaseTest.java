@@ -24,11 +24,6 @@ import com.diffplug.spotless.StepHarness;
 import com.diffplug.spotless.TestProvisioner;
 import com.diffplug.spotless.extra.EquoBasedStepBuilder;
 
-import org.junit.jupiter.api.condition.DisabledOnOs;
-
-import static org.junit.jupiter.api.condition.OS.WINDOWS;
-
-@DisabledOnOs(WINDOWS)
 class EclipseJdtFormatterStepSpecialCaseTest {
 	/** https://github.com/diffplug/spotless/issues/1638 */
 	@Test

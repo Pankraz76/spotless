@@ -26,7 +26,6 @@ import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.DisabledOnOs;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -34,9 +33,6 @@ import com.diffplug.spotless.Jvm;
 import com.diffplug.spotless.TestProvisioner;
 import com.diffplug.spotless.extra.eclipse.EclipseResourceHarness;
 
-import static org.junit.jupiter.api.condition.OS.WINDOWS;
-
-@DisabledOnOs(WINDOWS)
 public class EclipseWtpFormatterStepTest {
 	private static final Jvm.Support<String> JVM_SUPPORT = Jvm.<String> support("Oldest Version").add(8, "4.8.0");
 
