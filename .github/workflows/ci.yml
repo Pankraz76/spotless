@@ -28,9 +28,6 @@ jobs:
           java-version: 21
       - name: Gradle Setup 🐘
         uses: gradle/actions/setup-gradle@v5
-      - name: Error Prone 🚧️
-        run: ./gradlew assemble -Derror-prone=false
-      # run: ./gradlew assemble -Derror-prone=true
       - name: Spotless ✨
         run: ./gradlew spotlessCheck
       - name: Spotbugs 🐞
