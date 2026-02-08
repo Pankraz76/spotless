@@ -184,14 +184,8 @@ concerning what you are working on:
 Before creating a pull request, you might want to format (yes, spotless is  formatted by spotless)
 the code and check for possible bugs
 
-* Error Prone 🚧
-  * `./gradlew assemble -Derror-prone=true`
-* OpenRewrite ☑️
-  * `./gradlew rewriteRun`
-* Spotless ✨
-  * `./gradlew spotlessApply`
-* Spotbugs 🐞
-  * `./gradlew spotbugsMain`
+* `./gradlew spotlessApply`
+* `./gradlew spotbugsMain`
 
 These checks are also run by the automated pipeline when you submit a pull request, if
 the pipeline fails, first check if the code is formatted and no bugs were found.
