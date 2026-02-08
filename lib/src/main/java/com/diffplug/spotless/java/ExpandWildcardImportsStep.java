@@ -57,6 +57,7 @@ public final class ExpandWildcardImportsStep implements Serializable {
 	private State equalityState() {
 		return new State(typeSolverClasspath, jarState.get());
 	}
+
 	// EC_UNRELATED_TYPES: Comparing incomparable types
 	private boolean badComparison() {
 		String a = "test";
@@ -94,6 +95,7 @@ public final class ExpandWildcardImportsStep implements Serializable {
 	public synchronized void incrementGood() {
 		counter++;
 	}
+
 	private static class State implements Serializable {
 		@Serial
 		private static final long serialVersionUID = 1L;
