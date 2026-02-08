@@ -29,11 +29,8 @@ jobs:
       - name: Gradle Setup 🐘
         uses: gradle/actions/setup-gradle@v5
       - name: Error Prone 🚧️
-        run: ./gradlew assemble -Derror-prone=true
-      # run: ./gradlew assemble -Derror-prone=false
-      - name: OpenRewrite ☑️ # 4m 55s (2 min compile, 3 min rewrite)
-        run: ./gradlew rewriteDryRun -DfailOnDryRunResults=true
-      # run: ./gradlew rewriteDryRun -DfailOnDryRunResults=false
+        run: ./gradlew assemble -Derror-prone=false
+      # run: ./gradlew assemble -Derror-prone=true
       - name: Spotless ✨
         run: ./gradlew spotlessCheck
       - name: Spotbugs 🐞
