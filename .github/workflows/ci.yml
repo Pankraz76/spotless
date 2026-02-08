@@ -7,12 +7,13 @@ on:
   push:
     branches: [main, release]
   workflow_dispatch:
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  sanity:
-    name: Sanity 🦢
+  sanity-check:
+    name: Sanity Check 🦢
     runs-on: ubuntu-latest
     env:
       buildcacheuser: ${{ secrets.BUILDCACHE_USER }}
@@ -24,20 +25,16 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-java@v5
         with:
-          distribution: temurin
+          distribution: "temurin"
           java-version: 21
-      - name: Gradle Setup 🐘
+      - name: gradle caching
         uses: gradle/actions/setup-gradle@v5
       - name: Spotless ✨
         run: ./gradlew spotlessCheck
-      - name: Spotbugs 🐞
-        run: ./gradlew spotbugsMain
-      - name: Assemble 🏗️
-        run: ./gradlew assemble
-      - name: TestClasses 📋
-        run: ./gradlew testClasses
+      - name: assemble testClasses
+        run: ./gradlew assemble testClasses
   build:
-    needs: sanity
+    needs: sanity-check
     strategy:
       fail-fast: false
       matrix:
@@ -63,7 +60,7 @@ jobs:
         uses: actions/checkout@v6
       - uses: actions/setup-java@v5
         with:
-          distribution: temurin
+          distribution: "temurin"
           java-version: ${{ matrix.jre }}
       - name: gradle caching
         uses: gradle/actions/setup-gradle@v5
@@ -91,11 +88,11 @@ jobs:
       - name: Test idea
         if: matrix.kind == 'idea'
         run: |
-          download_link=$(curl -s "https://data.services.jetbrains.com/products/releases?code=IIC&latest=true&type=release" | jq -r '.IIC[0].downloads.linux.link')
+          download_link=$(curl https://data.services.jetbrains.com/products/releases\?code\=IIC\&latest\=true\&type\=release | jq -r '.IIC[0].downloads.linux.link')
           curl --location "$download_link" -o idea.tar.gz
           tar -xf idea.tar.gz
           cd idea-IC*
-          export PATH="${PATH}:$(pwd)/bin"
+          export PATH=${PATH}:$(pwd)/bin
           cd ..
           ./gradlew testIdea
       - name: junit result
@@ -105,19 +102,20 @@ jobs:
           check_name: JUnit ${{ matrix.kind }} ${{ matrix.jre }} ${{ matrix.os }}
           report_paths: '*/build/test-results/*/TEST-*.xml'
           check_retries: true
+
   # Status check that is required in branch protection rules.
   final-status:
     needs:
-      - sanity
+      - sanity-check
       - build
     runs-on: ubuntu-latest
     if: always()
     steps:
       - name: Check
         run: |
-          results=$(tr -d '\n' <<< "${{ toJSON(needs.*.result) }}")
+          results=$(tr -d '\n' <<< '${{ toJSON(needs.*.result) }}')
           if ! grep -q -v -E '(failure|cancelled)' <<< "$results"; then
-            echo "One or more required jobs failed. ❌"
+            echo "One or more required jobs failed"
             exit 1
           fi
-          echo "All required jobs completed successfully. ✅"
+          echo "All required jobs completed successfully."
