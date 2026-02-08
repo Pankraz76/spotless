@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.Serial;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.Set;
@@ -56,7 +57,43 @@ public final class ExpandWildcardImportsStep implements Serializable {
 	private State equalityState() {
 		return new State(typeSolverClasspath, jarState.get());
 	}
+	// EC_UNRELATED_TYPES: Comparing incomparable types
+	private boolean badComparison() {
+		String a = "test";
+		Integer b = 123;
+		return a.equals(b);  // Always false, but SpotBugs will catch it
+	}
 
+	// DM_EXIT: Code contains System.exit()
+	private void badExit() {
+		if (typeSolverClasspath == null) {
+			System.exit(1);  // Should not call System.exit() in library code
+		}
+	}
+
+	// REC_CATCH_EXCEPTION: Catching generic Exception
+	private void badExceptionHandling() {
+		try {
+			// some code
+		} catch (Exception e) {  // Catching generic Exception
+			// handle
+		}
+	}
+
+	// MS_SHOULD_BE_FINAL: Mutable static field
+	private static Collection<File> mutableStatic = new ArrayList<>();
+
+	// IS2_INCONSISTENT_SYNC: Inconsistent synchronization
+	private final Object lock = new Object();
+	private int counter = 0;
+
+	public void incrementBad() {
+		counter++;  // Not synchronized but accessed in synchronized context elsewhere
+	}
+
+	public synchronized void incrementGood() {
+		counter++;
+	}
 	private static class State implements Serializable {
 		@Serial
 		private static final long serialVersionUID = 1L;
